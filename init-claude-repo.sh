@@ -4,7 +4,8 @@
 
 set -e
 
-PROJECT_NAME=${1:-"my_project"}
+CURRENT_DIR=$(basename "$PWD")
+PROJECT_NAME=${1:-"$CURRENT_DIR"}
 PROJECT_DESC=${2:-"A new Claude Code project"}
 CURRENT_DATE=$(date +%Y-%m-%d)
 
