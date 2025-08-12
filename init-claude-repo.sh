@@ -25,6 +25,10 @@ fi
 
 # 3. Copy and customize CLAUDE.md
 echo "📝 Setting up CLAUDE.md..."
+if [ -f "CLAUDE.md" ]; then
+    echo "⚠️  CLAUDE.md already exists. Creating backup..."
+    cp CLAUDE.md CLAUDE.md.backup.$(date +%Y%m%d_%H%M%S)
+fi
 sed -e "s/\[PROJECT_NAME\]/$PROJECT_NAME/g" \
     -e "s/\[PROJECT_DESCRIPTION\]/$PROJECT_DESC/g" \
     -e "s/\[project_name\]/$PROJECT_NAME/g" \
