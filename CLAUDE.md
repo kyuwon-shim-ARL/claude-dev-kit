@@ -70,34 +70,15 @@ archive/           # Legacy code (organized)
 └── CLAUDE.md       # This file - system documentation
 ```
 
-## Claude Code 워크플로우
+## 개발 워크플로우
 
-### 개발 키워드 체계
-개발 과정을 4단계 키워드로 체계화:
+이 프로젝트는 4단계 키워드 기반 개발을 사용합니다:
+- **"기획"** → 요구사항 분석 및 PRD 작성
+- **"구현"** → DRY 원칙 기반 코딩 (기존 코드 확인 후 재사용)
+- **"안정화"** → MECE 검증 및 리팩토링 순환
+- **"배포"** → 최종 검증 및 커밋&푸시
 
-#### 🔍 **"기획"** - Discovery & Planning
-- 탐색 + 분석 + 계획 + PRD 작성 순환
-- 수렴까지 반복하여 완전한 요구사항 정의
-
-#### ⚡ **"구현"** - Implementation  
-- TodoWrite 계획 + 코딩 + 단위테스트
-- 핵심 기능 동작까지 완료
-
-#### 🔄 **"안정화"** - Validation & Polish Loop
-- 검증 → 문제발견 → 리팩토링 → 재검증 순환
-- MECE 철저검증 + 성능최적화 + 코드정리 수렴까지 반복
-
-#### 🚀 **"배포"** - Deployment
-- 최종 검증 + 구조화된 커밋 + 푸시
-
-### 사용법
-```bash
-# 단계별 진행
-"새 기능 기획해줘"
-"로그인 기능 구현해줘" 
-"안정화해줘"
-"배포해줘"
-```
+📝 **상세 가이드**: `docs/development/guides/claude-code-workflow.md` 참조
 
 ## 구현 체크리스트
 
