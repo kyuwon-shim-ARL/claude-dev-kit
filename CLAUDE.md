@@ -83,9 +83,9 @@ archive/           # Legacy code (organized)
 - TodoWrite 계획 + 코딩 + 단위테스트
 - 핵심 기능 동작까지 완료
 
-#### 🔄 **"안정화"** - Validation & Polish
-- MECE 방식 철저한 검증 자동 실행
-- 성능측정, 에지케이스, 품질점검 포함
+#### 🔄 **"안정화"** - Validation & Polish Loop
+- 검증 → 문제발견 → 리팩토링 → 재검증 순환
+- MECE 철저검증 + 성능최적화 + 코드정리 수렴까지 반복
 
 #### 🚀 **"배포"** - Deployment
 - 최종 검증 + 구조화된 커밋 + 푸시

@@ -17,7 +17,7 @@ When user uses these Korean keywords, automatically apply corresponding workflow
 
 - **"기획"** → Discovery & Planning: 탐색+분석+계획+PRD 순환 (수렴까지 반복)
 - **"구현"** → Implementation: TodoWrite 계획 + 코딩 + 단위테스트 + 기본검증
-- **"안정화"** → Validation & Polish: MECE 철저검증 + 성능측정 + 리팩토링 순환
+- **"안정화"** → Validation & Polish Loop: 검증→문제발견→리팩토링→재검증 순환 (수렴까지)
 - **"배포"** → Deployment: 최종체크 + 구조화커밋 + 푸시 + 태깅
 
 #### Auto-Behaviors
