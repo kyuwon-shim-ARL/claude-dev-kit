@@ -34,8 +34,12 @@ def create_directory_structure(project_name: str, base_path: str = "."):
         directories.extend([
             f"src/{project_name}",
             f"src/{project_name}/core",
+            f"src/{project_name}/core/state",      # 상태 관리 모듈
+            f"src/{project_name}/core/utils",      # 공통 유틸리티
+            f"src/{project_name}/core/interfaces", # 명확한 계약
+            f"src/{project_name}/features",        # 기능별 모듈 (core 재사용)
             f"src/{project_name}/models", 
-            f"src/{project_name}/services",
+            f"src/{project_name}/services",        # 외부 연동
         ])
     
     # Always create these Claude Code specific directories
@@ -86,6 +90,11 @@ def create_directory_structure(project_name: str, base_path: str = "."):
         essential_files.update({
             "main_app.py": "# Main application entry point\npass\n",
             f"src/{project_name}/__init__.py": f'"""\n{project_name}: [Project description]\n"""\n\n__version__ = "0.1.0"\n',
+            f"src/{project_name}/core/__init__.py": '"""\nCore modules - Single Source of Truth\n"""\n',
+            f"src/{project_name}/core/utils/__init__.py": '"""\nCommon utilities and helper functions\n"""\n',
+            f"src/{project_name}/core/state/__init__.py": '"""\nState management modules\n"""\n',
+            f"src/{project_name}/core/interfaces/__init__.py": '"""\nInterface definitions and contracts\n"""\n',
+            f"src/{project_name}/features/__init__.py": '"""\nFeature modules (should reuse core modules)\n"""\n',
         })
     
     # Always create these files
@@ -135,8 +144,13 @@ def create_directory_structure(project_name: str, base_path: str = "."):
 
 ### ⚡ "구현" - Implementation Phase
 - **포함**: TodoWrite 계획 + 코딩 + 단위 테스트 + 기본 검증
-- **동작**: 계획 수립 → 기능 개발 → 테스트 작성 → 기본 동작 확인
-- **완료 기준**: 핵심 기능 동작, 기본 테스트 통과
+- **구현 원칙**:
+  - ✅ **DRY 원칙**: 기존 코드 검색 → 재사용 → 없으면 생성
+  - ✅ **Single Source of Truth**: 동일 기능은 한 곳에만
+  - ✅ **Core Modules**: 공통 기능은 core/ 디렉토리에 중앙화
+  - ✅ **Interface First**: 모듈 간 명확한 계약 정의
+- **동작**: 계획 수립 → 기존 코드 검색 → 재사용/새로구현 → 테스트 작성
+- **완료 기준**: 핵심 기능 동작 + 기본 테스트 통과 + 코드 중복 없음
 
 ### 🔄 "안정화" - Validation & Polish Loop  
 - **순환 프로세스**: 검증 → 문제발견 → 정리(리팩토링) → 재검증 (수렴까지 반복)
