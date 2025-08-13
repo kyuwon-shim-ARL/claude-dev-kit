@@ -30,7 +30,7 @@ python test_setup.py
 ## 🔥 핵심 기능들
 
 ### ✅ 검증된 워크플로우
-- **키워드 기반**: "분석", "시작", "정리", "검증", "커밋"
+- **키워드 기반**: "기획", "구현", "안정화", "배포"
 - **TodoWrite 중심**: 모든 복합 작업 추적
 - **MECE 분석**: 정량적 진행률 측정  
 - **세션 아카이브**: 재현 가능한 개발 기록
@@ -64,20 +64,20 @@ archive/            # 정리된 레거시
 ### 개발 시작 패턴
 ```
 # Claude Code에서 이렇게 말하면:
-"분석해줘" → 현황 파악 + 요구사항 정리
-"시작해줘" → TodoWrite로 계획, 실행 개시
-"정리해줘" → 리팩토링, 구조 개선
-"검증해줘" → 테스트, 문서화
-"커밋해줘" → 의미있는 커밋 생성
+"기획해줘" → 탐색+분석+계획+PRD 순환 (수렴까지)
+"구현해줘" → TodoWrite 계획 + 코딩 + 단위테스트
+"안정화해줘" → 검증→문제발견→리팩토링→재검증 순환
+"배포해줘" → 최종검증 + 구조화커밋 + 푸시
 ```
 
 ### 진행 상황 추적
 ```python
 # TodoWrite 패턴
 todos = [
-    {"content": "분석: 현황 + 요구사항", "status": "completed"},
-    {"content": "시작: 핵심 기능 구현", "status": "in_progress"},  
-    {"content": "검증: 테스트 및 문서화", "status": "pending"}
+    {"content": "기획: 요구사항 분석 + PRD 작성", "status": "completed"},
+    {"content": "구현: 핵심 기능 + 단위테스트", "status": "in_progress"},
+    {"content": "안정화: MECE 검증 + 품질확보", "status": "pending"},
+    {"content": "배포: 최종검증 + 커밋&푸시", "status": "pending"}
 ]
 ```
 
@@ -96,7 +96,7 @@ todos = [
 
 1. **이 템플릿 다운로드**: 4개 핵심 파일 복사
 2. **새 레포에서 실행**: `./init-claude-repo.sh project_name`
-3. **개발 시작**: `python test_setup.py` 후 "분석해줘"로 시작
+3. **개발 시작**: `python test_setup.py` 후 "기획해줘"로 시작
 
 ---
 

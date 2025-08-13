@@ -64,11 +64,10 @@ if [ "$MERGE_CLAUDE" = true ] && [ -f "CLAUDE.md" ]; then
 ## Development Workflow (Claude Code)
 
 ### Keyword Commands
-- **"분석"** → Analyze current state + requirements planning
-- **"시작"** → Create TodoWrite plan, begin implementation
-- **"정리"** → Refactor, organize files
-- **"검증"** → Test and validate
-- **"커밋"** → Create meaningful commits
+- **"기획"** → Discovery & Planning: 탐색+분석+계획+PRD 순환 (수렴까지 반복)
+- **"구현"** → Implementation: TodoWrite 계획 + 코딩 + 단위테스트 + 기본검증
+- **"안정화"** → Validation & Polish Loop: 검증→문제발견→리팩토링→재검증 순환
+- **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
 
 ### Project Structure Guidelines
 Keep root clean with only essential files.
@@ -107,5 +106,5 @@ echo "  - Ready for Claude Code workflows"
 echo ""
 echo "🔧 Next steps:"
 echo "  1. Review CLAUDE.md for any needed updates"
-echo "  2. Start with: '현재 상태 분석해줘'"
-echo "  3. Use keywords: 분석, 시작, 정리, 검증, 커밋"
+echo "  2. Start with: '현재 상태 기획해줘'"
+echo "  3. Use keywords: 기획, 구현, 안정화, 배포"

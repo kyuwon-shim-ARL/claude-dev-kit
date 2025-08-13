@@ -67,7 +67,7 @@ python examples/basic_usage.py
 This project follows **Claude Code development patterns**. See \`CLAUDE.md\` for detailed documentation and workflows.
 
 ### Key Commands
-- **Planning**: Use simple keywords like "시작", "탐색", "정리"
+- **Development**: Use 4-stage keywords: "기획", "구현", "안정화", "배포"
 - **Tracking**: All multi-step tasks tracked with TodoWrite
 - **Documentation**: Session archives in \`docs/development/conversations/\`
 
@@ -225,7 +225,7 @@ echo "📋 Next steps:"
 echo "1. Customize CLAUDE.md with project-specific details"
 echo "2. Configure .env file with your settings"
 echo "3. Run: python test_setup.py"
-echo "4. Start development with: '탐색' or '시작' keywords"
+echo "4. Start development with: '기획' keyword for discovery & planning"
 echo ""
 echo "🔧 Available commands:"
 echo "- make setup    # Verify installation"
