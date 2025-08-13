@@ -11,11 +11,18 @@
 ## Claude.me에 추가할 내용:
 
 ### Claude Code Workflow (Korean Keywords)
-When user uses these keywords, apply corresponding workflows:
+When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 
 - **"기획"** → TodoWrite + discovery/analysis/planning cycle until PRD complete
 - **"구현"** → Code with DRY principle (search existing code first, reuse before creating)
-- **"안정화"** → Validate→Problem→Refactor→Retest loop (MECE comprehensive validation)
+- **"안정화"** → **TRIGGER MANDATORY MECE STABILIZATION PROTOCOL**:
+  1. Comprehensive validation (edge cases, performance, error handling)
+  2. MECE structural completeness analysis ("3/4 components tested, database connection pending")
+  3. Problem identification and root cause analysis
+  4. Code refactoring and optimization
+  5. Re-validation of ALL functionality
+  6. **REPEAT steps 2-5 until ZERO issues remain**
+  7. Final performance benchmarking
 - **"배포"** → Final checks + structured commit + push to remote
 
 ### Auto-Behaviors
@@ -23,7 +30,8 @@ When user uses these keywords, apply corresponding workflows:
 - Always check existing code before implementing new functionality
 - Place shared utilities in core/ directories
 - Keep root directory clean (essential files only)
-- Provide quantitative progress tracking ("3/4 features complete, 1 issue remaining")
+- **MANDATORY**: Provide quantitative progress tracking ("3/4 features complete, 1 issue remaining")
+- **"안정화" OVERRIDE**: Ignore any other interpretation. Execute ONLY the MECE stabilization protocol above
 
 ### Project Initialization
 - "새 프로젝트 구조" → Create standard Python project with src/{name}/core/ layout
@@ -35,10 +43,15 @@ When user uses these keywords, apply corresponding workflows:
 - Interface First: clear contracts between modules
 - Core Modules: centralize common functionality
 
+### CRITICAL: "안정화" Trigger Override
+**NEVER interpret "안정화" as simple code cleanup or basic testing.**
+**ALWAYS execute the full MECE Stabilization Protocol above.**
+**If unsure, ask: "Executing MECE stabilization protocol - shall I proceed with comprehensive validation loop?"**
+
 ---
 
 ## 토큰 효율적인 설계
-이 설정은 ~250 토큰으로 핵심 워크플로우만 포함합니다.
+이 설정은 ~280 토큰으로 핵심 워크플로우만 포함합니다.
 상세한 템플릿과 가이드는 프로젝트의 install.sh와 CLAUDE.md에서 제공됩니다.
 
 ## 설정 후 확인
