@@ -126,12 +126,35 @@ def create_directory_structure(project_name: str, base_path: str = "."):
 3. **Session Archiving**: Document all development sessions
 4. **Clean Commits**: Meaningful commit messages with context
 
-## Command Patterns
-- "탐색" → Analyze codebase, identify issues
-- "시작" → Plan with TodoWrite, begin execution  
-- "정리" → Refactor, organize, cleanup
-- "검증" → Test, validate, document
-- "커밋" → Create meaningful commits with full context
+## 개발 키워드 체계
+
+### 🔍 "기획" - Discovery & Planning Phase
+- **포함**: 탐색 + 분석 + 계획 + PRD 작성 순환
+- **동작**: 코드베이스 조사 → 문제 원인 분석 → 요구사항 정의 → 수렴까지 반복
+- **완료 기준**: PRD 완성, 구현 방향 확정
+
+### ⚡ "구현" - Implementation Phase
+- **포함**: TodoWrite 계획 + 코딩 + 단위 테스트 + 기본 검증
+- **동작**: 계획 수립 → 기능 개발 → 테스트 작성 → 기본 동작 확인
+- **완료 기준**: 핵심 기능 동작, 기본 테스트 통과
+
+### 🔄 "안정화" - Validation & Polish Loop  
+- **MECE 철저 검증 자동 실행**:
+  - ✅ 전체 기능 테스트 (엣지 케이스 포함)
+  - ✅ 성능 측정 및 이전 버전 비교
+  - ✅ MECE 방식 근거 검증 (구조적 완전성)
+  - ✅ 코드 품질 점검 (스타일, 복잡도, 보안)
+  - ✅ 에러 핸들링 및 복구 시나리오 테스트
+  - ✅ 문서화 일관성 확인
+- **완료 기준**: 모든 테스트 통과, 성능 기준 충족, 품질 검증 완료
+
+### 🚀 "배포" - Deployment Phase
+- **자동 프로토콜**:
+  - ✅ 배포 전 최종 체크리스트 실행
+  - ✅ 의미있는 커밋 메시지 구조화 생성
+  - ✅ 변경사항 영향도 분석
+  - ✅ 버전 관리 및 태깅 검토
+- **완료 기준**: 원격 저장소 반영, 배포 로그 기록
 
 ## File Organization
 Keep root directory clean with only essential entry points.

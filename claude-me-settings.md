@@ -15,11 +15,10 @@
 #### Keyword-Based Workflow
 When user uses these Korean keywords, automatically apply corresponding workflows:
 
-- **"분석"** → Analyze current state + requirements planning (combined planning+exploration)
-- **"시작"** → Create TodoWrite plan with quantitative tasks, begin implementation  
-- **"정리"** → Refactor code, organize files into proper directories
-- **"검증"** → Run tests, validate functionality, update documentation
-- **"커밋"** → Create meaningful commits with full context and structured messages
+- **"기획"** → Discovery & Planning: 탐색+분석+계획+PRD 순환 (수렴까지 반복)
+- **"구현"** → Implementation: TodoWrite 계획 + 코딩 + 단위테스트 + 기본검증
+- **"안정화"** → Validation & Polish: MECE 철저검증 + 성능측정 + 리팩토링 순환
+- **"배포"** → Deployment: 최종체크 + 구조화커밋 + 푸시 + 태깅
 
 #### Auto-Behaviors
 1. **TodoWrite Usage**: Always use TodoWrite for any task with 3+ steps
