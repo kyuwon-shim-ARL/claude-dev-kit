@@ -12,9 +12,10 @@ mkdir my-new-project
 cd my-new-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
 
-# 기존 프로젝트
+# 기존 프로젝트 (워크플로우 추가)
 cd existing-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
+# → CLAUDE-APPEND-TEMPLATE.md 생성됨 (기존 CLAUDE.md에 추가할 내용)
 ```
 
 ### 방법 2: 수동 설치
@@ -109,18 +110,25 @@ todos = [
 
 ### 가장 빠른 방법 (curl)
 ```bash
-# 단 한 줄로 설치 완료!
+# 새 프로젝트
+mkdir my-new-project && cd my-new-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
+
+# 기존 프로젝트 (워크플로우만 추가)
+cd existing-project
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
+# CLAUDE-APPEND-TEMPLATE.md를 기존 CLAUDE.md에 추가
 ```
 
 ### 단계별 진행
 1. **원클릭 설치**: 위 curl 명령 실행
-2. **개발 시작**: `python scripts/test_setup.py` 후 "기획해줘"로 시작
+2. **기존 프로젝트**: CLAUDE-APPEND-TEMPLATE.md 내용을 CLAUDE.md에 추가
+3. **개발 시작**: "기획해줘"로 시작
 
 ### 수동 설치
 1. **이 템플릿 다운로드**: 4개 핵심 파일 복사
 2. **새 레포에서 실행**: `./init-claude-repo.sh project_name`
-3. **개발 시작**: `python scripts/test_setup.py` 후 "기획해줘"로 시작
+3. **개발 시작**: "기획해줘"로 시작
 
 ---
 
