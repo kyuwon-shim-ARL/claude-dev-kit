@@ -27,11 +27,10 @@ cd [your-new-repo]
 # 2. 이 템플릿 파일들 복사
 # (이 파일들을 새 레포의 루트에 복사)
 
-# 3. 자동 초기화 실행
+# 3. 자동 초기화 실행 (검증 포함)
 ./init-claude-repo.sh my_project_name "My project description"
 
-# 4. 개발 시작
-python scripts/test_setup.py
+# 4. 개발 시작 - 바로 가능!
 ```
 
 ### 포함된 파일들:

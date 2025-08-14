@@ -38,10 +38,11 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 - **"안정화" OVERRIDE**: Execute STRUCTURAL SUSTAINABILITY PROTOCOL v2.0 above
 - **Auto-trigger conditions**: Root 20+ files, temp files 5+, import errors 3+, every 5th commit
 
-### Project Initialization
+### Project Initialization  
 - "새 프로젝트 구조" → Create standard Python project with src/{name}/core/ layout
-- Generate main_app.py, scripts/test_setup.py, and basic project structure
+- Generate main_app.py and basic project structure with auto-validation
 - Create .gitignore and essential directories
+- Automatic system verification and cleanup
 
 ### Implementation Principles
 - Single Source of Truth: identical functionality in one place only
@@ -60,6 +61,6 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 이 설정은 ~280 토큰으로 핵심 워크플로우만 포함합니다.
 상세한 템플릿과 가이드는 프로젝트의 install.sh와 CLAUDE.md에서 제공됩니다.
 
-## 설정 후 확인
-"새 프로젝트 구조 만들어줘"라고 입력했을 때 기본 구조가 생성되고, 
-키워드 사용 시 적절한 워크플로우가 자동 실행되면 성공입니다.
+## 설정 후 확인  
+curl 설치 시 자동 검증이 완료되고, 키워드 사용 시 워크플로우가 자동 실행되면 성공입니다.
+"@기획", "@구현", "@안정화", "@배포" 키워드가 설계된 프로토콜대로 동작하는지 확인하세요.
