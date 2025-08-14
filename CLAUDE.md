@@ -73,10 +73,19 @@ archive/           # Legacy code (organized)
 ## 개발 워크플로우
 
 이 프로젝트는 4단계 키워드 기반 개발을 사용합니다:
-- **"기획"** → 요구사항 분석 및 PRD 작성
-- **"구현"** → DRY 원칙 기반 코딩 (기존 코드 확인 후 재사용)
-- **"안정화"** → MECE 검증 및 리팩토링 순환
-- **"배포"** → 최종 검증 및 커밋&푸시
+- **"기획"** → Structured Discovery & Planning Loop:
+  - 탐색: 전체 구조 파악, As-Is/To-Be/Gap 분석
+  - 계획: MECE 기반 작업분해, 우선순위 설정
+  - 수렴: 탐색↔계획 반복 until PRD 완성
+- **"구현"** → Implementation with DRY:
+  - 기존 코드 검색 → 재사용 → 없으면 생성
+  - TodoWrite 기반 체계적 진행
+  - 단위 테스트 & 기본 검증
+- **"안정화"** → Comprehensive Validation Loop:
+  - 일관성: 키워드/문서/코드 동기화 검증
+  - MECE: 구조적 완전성 분석
+  - 리팩토링: 문제→수정→재검증 (ZERO 이슈까지)
+- **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
 
 📝 **상세 가이드**: `docs/development/guides/claude-code-workflow.md` 참조
 

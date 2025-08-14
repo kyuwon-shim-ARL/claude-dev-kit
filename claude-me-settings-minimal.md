@@ -13,7 +13,11 @@
 ### Claude Code Workflow (Korean Keywords)
 When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 
-- **"기획"** → TodoWrite + discovery/analysis/planning cycle until PRD complete
+- **"기획"** → **STRUCTURED DISCOVERY-PLANNING LOOP**:
+  1. Discovery: Full codebase structure analysis, As-Is/To-Be/Gap identification
+  2. Planning: MECE work breakdown (WBS), priority matrix, feasibility check
+  3. Convergence: Discovery↔Planning iteration until PRD complete & consistent
+  4. TodoWrite structuring with MECE principles
 - **"구현"** → Code with DRY principle (search existing code first, reuse before creating)
 - **"안정화"** → **TRIGGER MANDATORY MECE STABILIZATION PROTOCOL**:
   1. Comprehensive validation (edge cases, performance, error handling)

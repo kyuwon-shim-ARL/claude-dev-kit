@@ -359,25 +359,25 @@ cat > "docs/development/guides/claude-code-workflow.md" << 'EOF'
 
 ## Keyword-Based Development
 
-### 1. 기획 (Planning)
-- Discovery: 탐색 + 분석 + 계획 + PRD 작성 순환
-- Converge through iteration until complete requirements
-- Establish clear implementation direction
+### 1. 기획 (Structured Discovery & Planning Loop)
+- **탐색**: 전체 구조 파악, As-Is/To-Be/Gap 분석
+- **계획**: MECE 기반 작업분해(WBS), 우선순위 매트릭스
+- **수렴**: 탐색↔계획 반복 until PRD 완성 & TodoWrite 구조화
 
-### 2. 구현 (Implementation)  
-- TodoWrite planning + coding + unit tests
-- Core functionality implementation
-- Basic validation completion
+### 2. 구현 (Implementation with DRY)  
+- **DRY 원칙**: 기존 코드 검색 → 재사용 → 없으면 생성
+- **체계적 진행**: TodoWrite 기반 단계별 구현
+- **품질 보증**: 단위 테스트 + 기본 검증
 
-### 3. 안정화 (Stabilization)
-- Validation→Problem Discovery→Refactoring→Re-validation loop
-- MECE comprehensive testing + performance optimization
-- Iterate until convergence (all tests pass + quality standards met)
+### 3. 안정화 (Comprehensive Validation Loop)
+- **일관성 검증**: 키워드/문서/코드 동기화 체크
+- **MECE 분석**: 구조적 완전성 + 논리적 배타성
+- **리팩토링 루프**: 문제→수정→재검증 (ZERO 이슈까지)
 
 ### 4. 배포 (Deployment)
-- Final pre-deployment checklist
-- Structured commit message generation
-- Remote repository deployment + version management
+- **최종 검증**: 체크리스트 완료 확인
+- **구조화 커밋**: 의미있는 커밋 메시지 생성
+- **원격 배포**: 푸시 + 버전 태깅
 
 ## TodoWrite Usage
 
