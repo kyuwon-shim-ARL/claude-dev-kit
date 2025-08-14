@@ -169,7 +169,14 @@ def check_python_version():
 
 def check_project_structure():
     """Verify project directory structure."""
-    root = Path(__file__).parent
+    root = Path.cwd()
+    
+    # 안전장치: 올바른 프로젝트 루트인지 확인
+    if not (root / "CLAUDE.md").exists():
+        print("❌ Error: Not in a Claude Code project directory")
+        print("💡 Run this script from the project root directory")
+        return False
+    
     required_dirs = [
         "src", "core_features", "docs", "examples", 
         "tests", "tools", "scripts", "archive"
@@ -189,7 +196,14 @@ def check_project_structure():
 
 def check_essential_files():
     """Check for essential project files."""
-    root = Path(__file__).parent
+    root = Path.cwd()
+    
+    # 안전장치: 올바른 프로젝트 루트인지 확인
+    if not (root / "CLAUDE.md").exists():
+        print("❌ Error: Not in a Claude Code project directory")
+        print("💡 Run this script from the project root directory")
+        return False
+    
     essential_files = ["CLAUDE.md", "main_app.py"]
     
     missing_files = []
