@@ -24,7 +24,7 @@ cd [project-name]
 [installation commands]
 
 # 3. Verify setup
-python test_setup.py
+python scripts/test_setup.py
 
 # 4. Run examples
 [example commands]
@@ -64,10 +64,11 @@ tools/             # Standalone utilities
 scripts/           # Development scripts
 archive/           # Legacy code (organized)
 
-# Entry Points
+# Entry Points  
 ├── main_app.py     # Main application entry
-├── test_setup.py   # System validation script
-└── CLAUDE.md       # This file - system documentation
+├── CLAUDE.md       # This file - system documentation
+└── scripts/        # Development and validation tools
+    └── test_setup.py   # System validation script
 ```
 
 ## 개발 워크플로우
@@ -95,7 +96,7 @@ archive/           # Legacy code (organized)
 ## 구조적 지속가능성 원칙
 
 ### 📁 Repository 구조 관리
-- **Root 정리**: 필수 진입점만 유지 (main_app.py, test_setup.py, CLAUDE.md)
+- **Root 정리**: 필수 진입점만 유지 (main_app.py, CLAUDE.md), 도구는 scripts/
 - **계층구조**: src/{project}/core/, services/, models/ 체계 준수
 - **파일 분류**: 기능별 적절한 디렉토리 배치
 - **임시 파일 관리**: *.tmp, *.bak 등 정기적 정리

@@ -131,7 +131,7 @@ todos = [
 ```
 # ✅ 루트에 있어야 하는 것들
 ├── main_app.py        # 메인 애플리케이션 (배포 진입점)
-├── test_setup.py      # 시스템 검증 (설치 진입점)
+├── scripts/test_setup.py      # 시스템 검증 (설치 진입점)
 ├── CLAUDE.md          # 프로젝트 문서 (개발 진입점)
 ├── README.md          # 기본 설명서
 └── pyproject.toml     # 빌드 설정
@@ -240,7 +240,7 @@ def test_setup_requirements():
 - [ ] Run `python setup_claude_code_structure.py [project_name]`
 - [ ] Customize CLAUDE.md with project details
 - [ ] Configure .env file from .env.example
-- [ ] Run `python test_setup.py` to verify setup
+- [ ] Run `python scripts/test_setup.py` to verify setup
 - [ ] Create initial git commit with full structure
 
 ### Development Environment

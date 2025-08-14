@@ -56,7 +56,7 @@ cp .env.example .env
 # Edit .env with your configuration
 
 # 2. Verify installation
-python test_setup.py
+python scripts/test_setup.py
 
 # 3. Run example
 python examples/basic_usage.py
@@ -93,7 +93,7 @@ cat > Makefile << EOF
 
 setup:
 	@echo "🔧 Setting up $PROJECT_NAME development environment"
-	python test_setup.py
+	python scripts/test_setup.py
 
 test:
 	@echo "🧪 Running tests"
@@ -210,7 +210,7 @@ git commit -m "🎯 Initialize Claude Code project structure
 - ✅ Clean root directory with essential entry points only
 
 ## Next Steps
-1. Run: python test_setup.py
+1. Run: python scripts/test_setup.py
 2. Customize project-specific details in CLAUDE.md
 3. Begin development with keyword-based workflow
 
@@ -224,7 +224,7 @@ echo ""
 echo "📋 Next steps:"
 echo "1. Customize CLAUDE.md with project-specific details"
 echo "2. Configure .env file with your settings"
-echo "3. Run: python test_setup.py"
+echo "3. Run: python scripts/test_setup.py"
 echo "4. Start development with: '기획' keyword for discovery & planning"
 echo ""
 echo "🔧 Available commands:"

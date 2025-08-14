@@ -42,7 +42,7 @@ $PROJECT_DESC
 echo "# Add your environment variables here" > .env
 
 # 2. Install dependencies and test
-python test_setup.py
+python scripts/scripts/test_setup.py
 
 # 3. Run main application
 python main_app.py
@@ -65,14 +65,14 @@ See \`docs/development/guides/\` for detailed workflows.
 
 ### Development
 \`\`\`bash
-python test_setup.py    # Verify system setup
+python scripts/scripts/test_setup.py    # Verify system setup
 python main_app.py      # Run main application
 \`\`\`
 
 ## Testing Strategy
 
 ### Setup Verification
-- \`test_setup.py\`: Complete system verification
+- \`scripts/test_setup.py\`: Complete system verification
 - Tests core functionality and component integration
 
 ## Project Structure
@@ -146,8 +146,8 @@ if __name__ == "__main__":
     main()
 EOF
 
-# 3. test_setup.py
-cat > test_setup.py << 'EOF'
+# 3. scripts/test_setup.py
+cat > scripts/test_setup.py << 'EOF'
 #!/usr/bin/env python3
 """
 System validation and setup verification script.
@@ -437,7 +437,7 @@ EOF
 
 # Make scripts executable
 chmod +x main_app.py
-chmod +x test_setup.py
+chmod +x scripts/test_setup.py
 chmod +x examples/basic_usage.py
 
 echo ""
@@ -449,13 +449,13 @@ echo "  ✅ Generated essential files and templates"
 echo "  ✅ Set up development workflow guides"
 echo ""
 echo "🔧 Next steps:"
-echo "  1. Run: python test_setup.py"
+echo "  1. Run: python scripts/scripts/test_setup.py"
 echo "  2. Start development: '현재 상태 분석해줘'"
 echo "  3. Use keywords: 분석, 시작, 정리, 검증, 커밋"
 echo ""
 echo "📚 Key files created:"
 echo "  - CLAUDE.md (project documentation)"
 echo "  - main_app.py (application entry point)"  
-echo "  - test_setup.py (setup verification)"
+echo "  - scripts/test_setup.py (setup verification)"
 echo "  - examples/basic_usage.py (usage example)"
 echo "  - docs/development/guides/ (workflow guides)"

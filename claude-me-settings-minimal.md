@@ -40,7 +40,7 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 
 ### Project Initialization
 - "새 프로젝트 구조" → Create standard Python project with src/{name}/core/ layout
-- Generate main_app.py, test_setup.py, and basic project structure
+- Generate main_app.py, scripts/test_setup.py, and basic project structure
 - Create .gitignore and essential directories
 
 ### Implementation Principles

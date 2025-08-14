@@ -31,7 +31,7 @@ cd [your-new-repo]
 ./init-claude-repo.sh my_project_name "My project description"
 
 # 4. 개발 시작
-python test_setup.py
+python scripts/test_setup.py
 ```
 
 ### 포함된 파일들:
@@ -51,10 +51,11 @@ python test_setup.py
 ### ✅ 최적화된 구조
 ```
 # 깔끔한 루트 - 필수 진입점만
-├── main_app.py      # 메인 애플리케이션
-├── test_setup.py    # 시스템 검증
+├── main_app.py      # 메인 애플리케이션  
 ├── CLAUDE.md        # 프로젝트 문서
-└── README.md        # 기본 설명
+├── README.md        # 기본 설명
+└── scripts/         # 개발 도구
+    └── test_setup.py    # 시스템 검증
 
 # 조직화된 구조
 src/[project]/       # 핵심 구현체
@@ -115,12 +116,12 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ### 단계별 진행
 1. **원클릭 설치**: 위 curl 명령 실행
-2. **개발 시작**: `python test_setup.py` 후 "기획해줘"로 시작
+2. **개발 시작**: `python scripts/test_setup.py` 후 "기획해줘"로 시작
 
 ### 수동 설치
 1. **이 템플릿 다운로드**: 4개 핵심 파일 복사
 2. **새 레포에서 실행**: `./init-claude-repo.sh project_name`
-3. **개발 시작**: `python test_setup.py` 후 "기획해줘"로 시작
+3. **개발 시작**: `python scripts/test_setup.py` 후 "기획해줘"로 시작
 
 ---
 
