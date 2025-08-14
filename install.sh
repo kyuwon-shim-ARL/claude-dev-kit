@@ -369,10 +369,18 @@ cat > "docs/development/guides/claude-code-workflow.md" << 'EOF'
 - **체계적 진행**: TodoWrite 기반 단계별 구현
 - **품질 보증**: 단위 테스트 + 기본 검증
 
-### 3. 안정화 (Comprehensive Validation Loop)
-- **일관성 검증**: 키워드/문서/코드 동기화 체크
-- **MECE 분석**: 구조적 완전성 + 논리적 배타성
-- **리팩토링 루프**: 문제→수정→재검증 (ZERO 이슈까지)
+### 3. 안정화 (Structural Sustainability Protocol v2.0)
+**패러다임 전환**: 기능 중심 → **구조적 지속가능성** 중심
+
+**6단계 통합 검증 루프:**
+1. **Repository Structure Scan**: 전체 파일 분석, 중복/임시 파일 식별
+2. **Structural Optimization**: 디렉토리 정리, 파일 분류, 네이밍 표준화  
+3. **Dependency Resolution**: Import 수정, 참조 오류 해결, 환경 동기화
+4. **Comprehensive Testing**: 모듈 검증, API 테스트, 시스템 무결성 확인
+5. **Documentation Sync**: CLAUDE.md 반영, README 업데이트, .gitignore 정리
+6. **Quality Assurance**: MECE 분석, 성능 벤치마크, 정량 평가
+
+**예방적 관리**: 루트 20개 파일, 임시 파일 5개, Import 오류 3개 이상 시 자동 실행
 
 ### 4. 배포 (Deployment)
 - **최종 검증**: 체크리스트 완료 확인

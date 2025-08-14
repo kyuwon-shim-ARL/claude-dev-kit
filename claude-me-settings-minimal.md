@@ -19,14 +19,14 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
   3. Convergence: Discovery↔Planning iteration until PRD complete & consistent
   4. TodoWrite structuring with MECE principles
 - **"구현"** → Code with DRY principle (search existing code first, reuse before creating)
-- **"안정화"** → **TRIGGER MANDATORY MECE STABILIZATION PROTOCOL**:
-  1. Comprehensive validation (edge cases, performance, error handling)
-  2. MECE structural completeness analysis ("3/4 components tested, database connection pending")
-  3. Problem identification and root cause analysis
-  4. Code refactoring and optimization
-  5. Re-validation of ALL functionality
-  6. **REPEAT steps 2-5 until ZERO issues remain**
-  7. Final performance benchmarking
+- **"안정화"** → **TRIGGER MANDATORY STRUCTURAL SUSTAINABILITY PROTOCOL v2.0**:
+  1. **Repository Structure Scan**: Full file analysis, duplicate detection, dependency mapping
+  2. **Structural Optimization**: File classification, directory hierarchy cleanup, naming standardization
+  3. **Dependency Resolution**: Import path fixes, reference error resolution, environment sync
+  4. **Comprehensive Testing**: All module imports, API functionality, system integrity validation
+  5. **Documentation Sync**: CLAUDE.md update, README alignment, .gitignore cleanup
+  6. **Quality Assurance**: MECE analysis, performance benchmarks, quantitative metrics
+  7. **REPEAT steps 1-6 until ZERO structural + functional issues remain**
 - **"배포"** → Final checks + structured commit + push to remote
 
 ### Auto-Behaviors
@@ -35,7 +35,8 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 - Place shared utilities in core/ directories
 - Keep root directory clean (essential files only)
 - **MANDATORY**: Provide quantitative progress tracking ("3/4 features complete, 1 issue remaining")
-- **"안정화" OVERRIDE**: Ignore any other interpretation. Execute ONLY the MECE stabilization protocol above
+- **"안정화" OVERRIDE**: Execute STRUCTURAL SUSTAINABILITY PROTOCOL v2.0 above
+- **Auto-trigger conditions**: Root 20+ files, temp files 5+, import errors 3+, every 5th commit
 
 ### Project Initialization
 - "새 프로젝트 구조" → Create standard Python project with src/{name}/core/ layout
@@ -49,8 +50,9 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 
 ### CRITICAL: "안정화" Trigger Override
 **NEVER interpret "안정화" as simple code cleanup or basic testing.**
-**ALWAYS execute the full MECE Stabilization Protocol above.**
-**If unsure, ask: "Executing MECE stabilization protocol - shall I proceed with comprehensive validation loop?"**
+**ALWAYS execute the full STRUCTURAL SUSTAINABILITY PROTOCOL v2.0 above.**
+**Priority: Repository structure + file organization BEFORE functional testing.**
+**If unsure, ask: "Executing Structural Sustainability Protocol v2.0 - shall I proceed with 6-stage comprehensive validation?"**
 
 ---
 

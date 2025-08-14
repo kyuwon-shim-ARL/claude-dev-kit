@@ -81,13 +81,37 @@ archive/           # Legacy code (organized)
   - 기존 코드 검색 → 재사용 → 없으면 생성
   - TodoWrite 기반 체계적 진행
   - 단위 테스트 & 기본 검증
-- **"안정화"** → Comprehensive Validation Loop:
-  - 일관성: 키워드/문서/코드 동기화 검증
-  - MECE: 구조적 완전성 분석
-  - 리팩토링: 문제→수정→재검증 (ZERO 이슈까지)
+- **"안정화"** → Structural Sustainability Protocol v2.0:
+  - 구조 스캔: 전체 파일 분석, 중복/임시 파일 식별
+  - 구조 최적화: 디렉토리 정리, 파일 분류, 네이밍 표준화
+  - 의존성 해결: Import 수정, 참조 오류 해결
+  - 통합 테스트: 모듈 검증, API 테스트, 시스템 무결성
+  - 문서 동기화: CLAUDE.md 반영, README 업데이트
+  - 품질 검증: MECE 분석, 성능 벤치마크 (ZERO 이슈까지)
 - **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
 
 📝 **상세 가이드**: `docs/development/guides/claude-code-workflow.md` 참조
+
+## 구조적 지속가능성 원칙
+
+### 📁 Repository 구조 관리
+- **Root 정리**: 필수 진입점만 유지 (main_app.py, test_setup.py, CLAUDE.md)
+- **계층구조**: src/{project}/core/, services/, models/ 체계 준수
+- **파일 분류**: 기능별 적절한 디렉토리 배치
+- **임시 파일 관리**: *.tmp, *.bak 등 정기적 정리
+
+### 🔄 예방적 관리 시스템
+**자동 트리거 조건:**
+- 루트 디렉토리 파일 20개 이상
+- 임시 파일 5개 이상
+- Import 오류 3개 이상
+- 매 5번째 커밋마다
+
+### 📊 품질 메트릭스
+- **구조적 복잡도**: 디렉토리 깊이, 파일 분산도
+- **의존성 건전성**: 순환참조, 결합도
+- **문서 동기화율**: 코드-문서 일치 정도
+- **테스트 커버리지**: 전체 시스템 검증률
 
 ## 구현 체크리스트
 
