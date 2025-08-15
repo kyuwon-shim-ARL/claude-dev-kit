@@ -24,6 +24,8 @@ When user uses these keywords, IMMEDIATELY apply corresponding workflows:
   2. **Structural Optimization**: File classification, directory hierarchy cleanup, naming standardization
   3. **Dependency Resolution**: Import path fixes, reference error resolution, environment sync
   4. **Comprehensive Testing**: All module imports, API functionality, system integrity validation
+     - **Web Projects**: MANDATORY Playwright E2E tests (./scripts/test-web.sh or uv run pytest src/web/tests/)
+     - **Non-Web Projects**: Unit tests + integration tests + import validation
   5. **Documentation Sync**: CLAUDE.md update, README alignment, .gitignore cleanup
   6. **Quality Assurance**: MECE analysis, performance benchmarks, quantitative metrics
   7. **REPEAT steps 1-6 until ZERO structural + functional issues remain**

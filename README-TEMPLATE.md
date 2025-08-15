@@ -16,6 +16,10 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 cd existing-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
 # → CLAUDE-APPEND-TEMPLATE.md 생성됨 (기존 CLAUDE.md에 추가할 내용)
+
+# 🌐 웹 개발 확장 설치 (선택사항)
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install-web.sh | bash
+# → Playwright + FastAPI + uv 웹 개발 스택 추가
 ```
 
 ### 방법 2: 수동 설치
@@ -73,6 +77,12 @@ archive/            # 정리된 레거시
 - Git 초기화 및 첫 커밋
 - 개발 가이드 자동 배치
 
+### 🌐 웹 개발 확장 (선택사항)
+- **Playwright**: E2E 테스트 + 웹 자동화 + 스크래핑
+- **FastAPI**: 고성능 웹 API 프레임워크
+- **uv**: 초고속 Python 패키지 관리자
+- **웹 기반 프레젠테이션**: reveal.js 통합
+
 ## 🎯 사용법
 
 ### 개발 시작 패턴
@@ -110,14 +120,16 @@ todos = [
 
 ### 가장 빠른 방법 (curl)
 ```bash
-# 새 프로젝트
+# 1. 기본 설치
 mkdir my-new-project && cd my-new-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
 
-# 기존 프로젝트 (워크플로우만 추가)
+# 2. 웹 개발 확장 (선택사항)
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install-web.sh | bash
+
+# 기존 프로젝트는 워크플로우만 추가
 cd existing-project
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
-# CLAUDE-APPEND-TEMPLATE.md를 기존 CLAUDE.md에 추가
 ```
 
 ### 단계별 진행
