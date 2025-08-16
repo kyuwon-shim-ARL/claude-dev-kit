@@ -43,32 +43,41 @@ make clean          # Clean generated files
 
 ## Project Structure
 ```
-src/[project_name]/
-├── core/           # Core components
-├── models/         # Data schemas
-├── services/       # Service layer
-└── main.py         # Main interface
+claude-dev-kit/           # Claude Code Development Kit
+├── CLAUDE.md            # Main project documentation
+├── install.sh           # Core installation script
+├── install-web.sh       # Web development extension
+├── init-claude-repo.sh  # Legacy repo initialization
+└── safe-init-claude-repo.sh  # Safe initialization variant
 
-docs/
-├── CURRENT/        # Latest project status
-├── development/    # Development process records
-│   ├── conversations/  # Session archives
-│   ├── templates/     # Documentation templates
-│   └── guides/        # Development guides
-└── specs/          # Project specifications
+docs/                    # Documentation
+├── guides/              # Development guides and settings
+│   ├── claude-code-best-practices.md  # Best practices
+│   ├── claude-me-settings-korean.md   # Korean settings
+│   ├── claude-me-settings-minimal.md  # Minimal settings
+│   └── distribute.md    # Distribution guide
+└── templates/           # Document templates
+    └── README-TEMPLATE.md  # README template
 
-core_features/      # Validated functionality
-tests/             # Unit and integration tests
-examples/          # Usage examples
-tools/             # Standalone utilities
-scripts/           # Development scripts
-archive/           # Legacy code (organized)
+scripts/                 # Development tools
+├── setup_claude_code_structure.py  # Structure generator
+└── test_comprehensive.py           # Test suite
 
-# Entry Points  
-├── main_app.py     # Main application entry
-├── CLAUDE.md       # This file - system documentation
-└── scripts/        # Development and validation tools
-    └── test_setup.py   # System validation script
+# Generated in target projects:
+src/[project]/          # Core implementation
+├── core/               # Shared components
+├── models/             # Data schemas
+├── services/           # Business logic
+└── web/               # Web extension (optional)
+    ├── backend/       # FastAPI server
+    ├── frontend/      # Frontend code
+    └── tests/         # E2E tests
+
+examples/              # Usage examples
+tests/                # Test suites
+tools/                # Utilities
+project_rules.md      # Project constitution (manual)
+.claudeignore         # Context exclusions
 ```
 
 ## 개발 워크플로우
@@ -90,6 +99,54 @@ archive/           # Legacy code (organized)
   - 문서 동기화: CLAUDE.md 반영, README 업데이트
   - 품질 검증: MECE 분석, 성능 벤치마크 (ZERO 이슈까지)
 - **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
+
+## @배포 전: Claude 컨텍스트 관리 시스템
+
+프로젝트의 안정성과 AI 협업 효율을 극대화하기 위해, Claude의 컨텍스트를 **전략**과 **실행**으로 나누어 체계적으로 관리한다.
+
+### **1. 전략 (Strategy): 역할 분리를 통한 안정성 확보**
+
+#### **1.1. 핵심 원칙: '불변'과 '가변'의 분리**
+
+* **불변(Immutable) 컨텍스트**: 프로젝트의 핵심 규칙과 철학. **수동**으로 관리하여 안정성을 보장한다.
+* **가변(Mutable) 컨텍스트**: 코드의 현재 상태와 구조. **자동**으로 관리하여 최신성을 보장한다.
+
+#### **1.2. `project_rules.md`: 프로젝트의 '헌법' 📜**
+
+* **역할**: 프로젝트의 목표, 아키텍처 원칙, 코딩 스타일, DevOps 규칙 등 **사람의 의사결정이 담긴 최상위 지침**을 정의한다.
+* **관리**: **수동 관리(Manual)**. 전략적 변경이 있을 때만 신중하게 수정한다. `claude init`의 영향을 받지 않는다.
+
+#### **1.3. `claude.md`: 프로젝트의 '실시간 지도' 🗺️**
+
+* **역할**: `claude init`을 통해 생성된, 현재 코드베이스의 구조와 관계를 요약한 **기술적 현황 보고서**이다.
+* **관리**: **자동 관리(Automatic)**. Git Hook을 통해 커밋 시마다 자동으로 갱신되어 항상 최신 상태를 유지한다.
+
+### **2. 실행 (Implementation): 3단계 워크플로우**
+
+#### **2.1. 1단계: 초기 설정 (Set-up)**
+
+* **a. `project_rules.md` 파일 생성**: 프로젝트 최상단에 핵심 규칙을 담은 `project_rules.md` 파일을 작성한다.
+* **b. `.claudeignore` 파일 설정**: `node_modules`, `dist`, 빌드 결과물, 로그 등 AI 컨텍스트에 불필요한 자원을 명시하여 `claude.md`의 품질과 효율을 높인다.
+
+#### **2.2. 2단계: 자동화 (Automation)**
+
+* **a. Git `pre-commit` Hook 설정**: `git commit` 시 `claude init` 명령어가 자동으로 실행되도록 설정한다.
+  * **목표**: `claude.md` 파일이 항상 최신 코드 상태를 반영하도록 강제한다.
+  * **스크립트 예시**:
+    ```bash
+    #!/bin/sh
+    claude init --silent
+    git add claude.md
+    ```
+
+#### **2.3. 3단계: 활용 (Execution)**
+
+* **a. 컨텍스트 통합 호출**: Claude에게 질문 시, '헌법'과 '지도'를 함께 제공하여 가장 정확한 답변을 유도한다.
+  * **목표**: 안정적인 상위 규칙(헌법) 하에 최신 코드 구조(지도)를 분석하도록 지시한다.
+  * **명령어 예시**:
+    ```bash
+    cat project_rules.md claude.md | claude ask "질문 내용"
+    ```
 
 📝 **상세 가이드**: `docs/development/guides/claude-code-workflow.md` 참조
 

@@ -515,6 +515,147 @@ cat > "docs/development/templates/session-template.md" << 'EOF'
 Session archived: [timestamp]
 EOF
 
+# 8. Setup Claude context management (Git hooks + project files)
+echo ""
+echo "🤖 Setting up Claude context management..."
+
+# Create hooks directory if it doesn't exist (for git repos)
+if [ -d ".git" ]; then
+    mkdir -p .git/hooks
+    
+    # Create pre-commit hook
+    cat > .git/hooks/pre-commit << 'HOOK_EOF'
+#!/bin/sh
+# Claude Dev Kit: Auto-update claude.md before commit
+
+echo "🤖 Auto-updating claude.md..."
+
+# Check if claude command is available
+if command -v claude &> /dev/null; then
+    # Run claude init silently
+    claude init --silent
+    
+    # Add claude.md to staging if it exists and was modified
+    if [ -f "claude.md" ]; then
+        git add claude.md
+        echo "✅ claude.md updated and staged"
+    fi
+else
+    echo "⚠️  Warning: claude command not found, skipping auto-update"
+    echo "💡 Install Claude Code: https://docs.anthropic.com/claude/docs/claude-code"
+fi
+
+echo "🎯 Proceeding with commit..."
+HOOK_EOF
+    
+    # Make the hook executable
+    chmod +x .git/hooks/pre-commit
+    echo "  ✅ Git pre-commit hook installed"
+fi
+
+# Create project_rules.md template
+cat > project_rules.md << 'RULES_EOF'
+# Project Rules (프로젝트 헌법)
+
+## 프로젝트 목표
+[이 프로젝트의 핵심 목적과 비전을 명시]
+
+## 아키텍처 원칙
+- **단일 진실 공급원**: 동일한 기능은 한 곳에만 구현
+- **모듈 분리**: 명확한 인터페이스로 모듈 간 결합도 최소화
+- **확장성 우선**: 새로운 기능 추가가 용이한 구조
+- **테스트 가능성**: 모든 핵심 기능은 테스트 가능하도록 설계
+
+## 코딩 스타일 (변경 금지)
+- **Python**: PEP 8 준수, type hints 필수
+- **명명 규칙**: snake_case (함수/변수), PascalCase (클래스)
+- **문서화**: 모든 public 함수에 docstring 필수
+- **Import 순서**: standard library → third-party → local imports
+
+## DevOps 규칙
+- **브랜치 전략**: main 브랜치 직접 push 금지, PR 필수
+- **커밋 메시지**: [타입] 제목 (예: [feat] 사용자 인증 추가)
+- **테스트**: 모든 PR은 테스트 통과 필수
+- **문서**: README.md와 API 문서 항상 최신 유지
+
+## 보안 정책
+- **환경 변수**: .env 파일 사용, .gitignore에 포함
+- **API 키**: 코드에 하드코딩 금지
+- **의존성**: 정기적 보안 업데이트 확인
+
+## 성능 기준
+- **응답 시간**: API 엔드포인트 500ms 이하
+- **메모리 사용량**: 프로덕션 환경에서 1GB 이하
+- **코드 복잡도**: Cyclomatic complexity 10 이하
+
+---
+⚠️ **중요**: 이 파일은 프로젝트의 핵심 규칙을 담고 있습니다.
+수정 시에는 팀 전체의 합의가 필요하며, claude init의 영향을 받지 않습니다.
+RULES_EOF
+echo "  ✅ Created: project_rules.md (project constitution)"
+
+# Create .claudeignore
+cat > .claudeignore << 'IGNORE_EOF'
+# Claude Context Ignore File
+# Files and directories listed here will be excluded from claude.md generation
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Logs and temporary files
+*.log
+logs/
+tmp/
+temp/
+.tmp/
+*.tmp
+*.bak
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Large binary files
+*.pdf
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.zip
+*.tar.gz
+
+# Generated documentation
+_build/
+site/
+IGNORE_EOF
+echo "  ✅ Created: .claudeignore (context quality control)"
+
 # Make scripts executable
 chmod +x main_app.py
 chmod +x scripts/test_setup.py
@@ -559,7 +700,17 @@ if python scripts/test_setup.py; then
     fi
     echo "  - examples/basic_usage.py (usage example)"
     echo "  - docs/development/guides/ (workflow guides)"
+    echo "  - project_rules.md (project constitution - edit this!)"
+    echo "  - .claudeignore (context quality control)"
     echo "  - claude-me-settings-minimal.md (Custom Instructions template)"
+    if [ -d ".git" ]; then
+        echo "  - .git/hooks/pre-commit (auto-updates claude.md)"
+    fi
+    echo ""
+    echo "🤖 Claude context management ready!"
+    echo "  Edit project_rules.md with your specific project rules"
+    echo "  Run 'claude init' to generate initial claude.md"
+    echo "  Commit will auto-update claude.md from now on"
 else
     echo ""
     echo "❌ Validation failed"
