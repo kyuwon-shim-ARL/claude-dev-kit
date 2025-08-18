@@ -711,6 +711,21 @@ if python scripts/test_setup.py; then
     echo "  Edit project_rules.md with your specific project rules"
     echo "  Run 'claude init' to generate initial claude.md"
     echo "  Commit will auto-update claude.md from now on"
+    echo ""
+    echo "⚡ Setting up Claude Code slash commands..."
+    
+    # Download and install Claude Code commands
+    if command -v curl &> /dev/null; then
+        mkdir -p .claude/commands
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/기획.md -o .claude/commands/기획.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/구현.md -o .claude/commands/구현.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/안정화.md -o .claude/commands/안정화.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/배포.md -o .claude/commands/배포.md
+        echo "  ✅ Claude Code slash commands installed"
+        echo "  💡 Use: /기획, /구현, /안정화, /배포"
+    else
+        echo "  ⚠️  curl not found - slash commands not installed"
+    fi
 else
     echo ""
     echo "❌ Validation failed"

@@ -1,0 +1,5 @@
+{
+  "button_text": "@배포",
+  "description": "최종 검증 및 원격 배포",
+  "message": "배포를 진행해줘.\n\n다음 순서로 배포 프로세스를 완료해주세요:\n\n1. **최종 검증**:\n   - 모든 테스트 통과 확인\n   - Import 오류 0개 검증\n   - 임시 파일 정리 확인\n   - 루트 디렉토리 구조 점검\n\n2. **구조화된 커밋**:\n   - 의미 있는 커밋 메시지 작성\n   - 변경사항을 명확히 설명\n   - Co-Authored-By: Claude 포함\n\n3. **원격 배포**:\n   - git push로 원격 저장소에 업로드\n   - 필요시 버전 태그 생성 및 푸시\n\n4. **배포 완료 보고**:\n   - 배포된 주요 변경사항 요약\n   - 다음 단계 제안 (있을 경우)\n\n커밋 메시지는 다음 형식을 사용하세요:\n```\n[타입] 간결한 제목\n\n상세 설명\n- 주요 변경사항 1\n- 주요 변경사항 2\n\n🤖 Generated with [Claude Code](https://claude.ai/code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\n```"
+}
