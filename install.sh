@@ -717,12 +717,20 @@ if python scripts/test_setup.py; then
     # Download and install Claude Code commands
     if command -v curl &> /dev/null; then
         mkdir -p .claude/commands
+        # Download individual unit commands
         curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/기획.md -o .claude/commands/기획.md
         curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/구현.md -o .claude/commands/구현.md
         curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/안정화.md -o .claude/commands/안정화.md
         curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/배포.md -o .claude/commands/배포.md
-        echo "  ✅ Claude Code slash commands installed"
-        echo "  💡 Use: /기획, /구현, /안정화, /배포"
+        
+        # Download workflow combination commands
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/전체사이클.md -o .claude/commands/전체사이클.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/개발완료.md -o .claude/commands/개발완료.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/품질보증.md -o .claude/commands/품질보증.md
+        curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/prompts/claude-commands/기획구현.md -o .claude/commands/기획구현.md
+        echo "  ✅ Claude Code slash commands installed (8 commands)"
+        echo "  💡 Individual: /기획, /구현, /안정화, /배포"
+        echo "  💡 Workflows: /전체사이클, /개발완료, /품질보증, /기획구현"
     else
         echo "  ⚠️  curl not found - slash commands not installed"
     fi
