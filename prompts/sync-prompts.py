@@ -18,11 +18,64 @@ def generate_claude_commands(prompts_data):
     commands_dir = Path("prompts/claude-commands")
     commands_dir.mkdir(exist_ok=True)
     
+    # Generate individual commands
     for keyword, data in prompts_data["prompts"].items():
         command_file = commands_dir / f"{keyword}.md"
         with open(command_file, "w", encoding="utf-8") as f:
             f.write(data["text"])
         print(f"✅ Generated: {command_file}")
+    
+    # Generate workflow combinations
+    workflows = {
+        "전체사이클": ["기획", "구현", "안정화", "배포"],
+        "개발완료": ["구현", "안정화"],
+        "품질보증": ["안정화", "배포"],
+        "기획구현": ["기획", "구현"]
+    }
+    
+    for workflow_name, steps in workflows.items():
+        workflow_file = commands_dir / f"{workflow_name}.md"
+        combined_content = []
+        
+        # Add workflow header
+        if workflow_name == "전체사이클":
+            combined_content.append("🔄 **전체 개발 워크플로우 실행**\n")
+            combined_content.append("다음 4단계를 순차적으로 진행하되, 현재 프로젝트 상태를 고려하여 필요한 단계에 집중해주세요:\n")
+        elif workflow_name == "개발완료":
+            combined_content.append("⚡ **개발 완료 워크플로우**\n")
+            combined_content.append("구현이 완료된 상태에서 안정화까지 진행합니다:\n")
+        elif workflow_name == "품질보증":
+            combined_content.append("🎯 **품질보증 및 배포 워크플로우**\n")
+            combined_content.append("개발이 완료된 시스템의 최종 검증과 배포를 진행합니다:\n")
+        elif workflow_name == "기획구현":
+            combined_content.append("📋 **기획부터 구현까지 워크플로우**\n")
+            combined_content.append("아이디어부터 동작하는 코드까지 완성합니다:\n")
+        
+        combined_content.append("\n" + "="*50 + "\n")
+        
+        for i, step in enumerate(steps):
+            if step in prompts_data["prompts"]:
+                # Add transition context between steps
+                if i > 0:
+                    transitions = {
+                        ("기획", "구현"): "\n📍 **기획 완료 → 구현 시작**\n위에서 수립한 계획을 바탕으로 실제 구현을 진행합니다:\n",
+                        ("구현", "안정화"): "\n📍 **구현 완료 → 안정화 시작**\n구현된 코드의 구조적 지속가능성을 확보합니다:\n",
+                        ("안정화", "배포"): "\n📍 **안정화 완료 → 배포 시작**\n검증된 시스템을 프로덕션에 배포합니다:\n"
+                    }
+                    
+                    prev_step = steps[i-1]
+                    transition_key = (prev_step, step)
+                    if transition_key in transitions:
+                        combined_content.append(transitions[transition_key])
+                
+                combined_content.append(prompts_data["prompts"][step]["text"])
+                
+                if i < len(steps) - 1:  # Not the last step
+                    combined_content.append("\n" + "="*50 + "\n")
+        
+        with open(workflow_file, "w", encoding="utf-8") as f:
+            f.write("\n".join(combined_content))
+        print(f"✅ Generated: {workflow_file} (조합: {' → '.join(steps)})")
 
 def generate_raw_prompts(prompts_data):
     """Generate raw text prompts for external consumption"""
