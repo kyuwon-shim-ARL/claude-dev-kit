@@ -1,5 +1,9 @@
 🚀 **배포 (Deployment)**
 
+**📚 컨텍스트 자동 로딩:**
+- project_rules.md 확인 (있으면 읽기)
+- docs/CURRENT/ 전체 상태 확인
+
 **최종 검증:**
 - 체크리스트 완료 확인: 모든 TODO 완료, 테스트 통과
 - 코드 리뷰: 보안, 성능, 코딩 표준 최종 점검
@@ -24,4 +28,11 @@
 
 **💡 배포 = 커밋 + 푸시 + 태깅 + 검증의 완전한 과정**
 
-**산출물:** 원격 저장소에 반영되어 실제 사용 가능한 프로덕션 서비스
+**📦 세션 아카이빙 (자동 실행):**
+- docs/CURRENT/* 내용을 docs/development/sessions/YYYY-MM/session-XXX.md로 아카이브
+- 세션 번호는 해당 월의 순차 번호 (session-001, session-002...)
+- Git commit message에 세션 요약 포함
+- docs/CURRENT/ 디렉토리를 다음 세션을 위해 초기화
+- 다음 세션을 위한 next-session.md 템플릿 생성
+
+**산출물:** 원격 저장소에 반영되어 실제 사용 가능한 프로덕션 서비스 + 완전한 세션 기록
