@@ -62,11 +62,13 @@ declare -A commands=(
     ["기획"]="%EA%B8%B0%ED%9A%8D"
     ["구현"]="%EA%B5%AC%ED%98%84"
     ["안정화"]="%EC%95%88%EC%A0%95%ED%99%94"
+    ["검증"]="%EA%B2%80%EC%A6%9D"
     ["배포"]="%EB%B0%B0%ED%8F%AC"
     ["전체사이클"]="%EC%A0%84%EC%B2%B4%EC%82%AC%EC%9D%B4%ED%81%B4"
     ["개발완료"]="%EA%B0%9C%EB%B0%9C%EC%99%84%EB%A3%8C"
     ["품질보증"]="%ED%92%88%EC%A7%88%EB%B3%B4%EC%A6%9D"
     ["기획구현"]="%EA%B8%B0%ED%9A%8D%EA%B5%AC%ED%98%84"
+    ["극한검증"]="%EA%B7%B9%ED%95%9C%EA%B2%80%EC%A6%9D"
 )
 
 # Download each command
@@ -430,8 +432,8 @@ fi
 
 echo ""
 echo "📚 Available Slash Commands:"
-echo "  Individual: /기획, /구현, /안정화, /배포"
-echo "  Workflows: /전체사이클, /개발완료, /품질보증, /기획구현"
+echo "  Individual: /기획, /구현, /안정화, /검증, /배포"
+echo "  Workflows: /전체사이클, /개발완료, /품질보증, /기획구현, /극한검증"
 echo ""
 echo "🚀 Next Steps:"
 echo "  1. Open Claude Code in this directory"

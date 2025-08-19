@@ -9,7 +9,7 @@
 ## 📐 Architecture Principles
 - **프롬프트 동기화**: prompts/api.json → 모든 플랫폼 자동 동기화
 - **4단계 워크플로우**: 기획 → 구현 → 안정화 → 배포
-- **글로벌 슬래시 명령어**: 8개 명령어 표준화 (개별 4개 + 조합 4개)
+- **글로벌 슬래시 명령어**: 10개 명령어 표준화 (개별 5개 + 조합 5개)
 - **3층 문서화 구조**: project_rules.md / docs/CURRENT/ / sessions/
 
 ## 🔧 Development Standards
