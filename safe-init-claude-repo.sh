@@ -104,6 +104,23 @@ else
     echo "  ⏭️  .gitignore already exists"
 fi
 
+# Check if init-complete.sh exists and offer to run it
+if [ -f "$(dirname "$0")/init-complete.sh" ]; then
+    echo ""
+    echo "🔔 Complete installation available!"
+    read -p "Do you want to run the complete installation? (includes slash commands, ZEDS, etc.) [Y/n]: " complete_choice
+    case $complete_choice in
+        [Nn]* )
+            echo "⏭️  Skipping complete installation"
+            ;;
+        * )
+            echo "🚀 Running complete installation..."
+            bash "$(dirname "$0")/init-complete.sh" "$PROJECT_NAME" "$PROJECT_DESC"
+            exit 0
+            ;;
+    esac
+fi
+
 # Summary
 echo ""
 echo "🎉 Safe initialization complete!"
@@ -114,6 +131,6 @@ echo "  - Created missing directories"
 echo "  - Ready for Claude Code workflows"
 echo ""
 echo "🔧 Next steps:"
-echo "  1. Review CLAUDE.md for any needed updates"
-echo "  2. Start with: '기획' keyword for structured discovery"
-echo "  3. Use 4-stage keywords: 기획, 구현, 안정화, 배포"
+echo "  1. Run ./init-complete.sh for full installation (slash commands, ZEDS, etc.)"
+echo "  2. Or manually run install.sh for slash commands only"
+echo "  3. Review CLAUDE.md for any needed updates"

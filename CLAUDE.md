@@ -1,33 +1,37 @@
-# [PROJECT_NAME]: [PROJECT_DESCRIPTION]
+# claude-dev-kit: Complete Development Kit for Claude Code
 
 ## Project Overview
-[Brief description of what this project does and its main purpose]
+A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 
 ## Current Status
-- ✅ **Phase 1**: [Completed milestone]
-- 🔄 **Phase 2**: [Current focus]
-- 📋 **Next**: [Planned next steps]
+- ✅ **Phase 1**: Core installation scripts completed
+- ✅ **Phase 2**: ZEDS implementation completed  
+- ✅ **Phase 3**: Unified initialization system completed
+- 📋 **Next**: Testing in production environments
 
 ## Development Environment Setup
 
 ### Prerequisites
-- [List key dependencies]
-- [Development tools needed]
+- Claude Code CLI installed
+- Bash shell (Linux/Mac/WSL)
+- Git (optional, for version control)
+- curl (for downloading commands)
 
 ### Quick Start
 ```bash
-# 1. Clone and setup
-git clone [repo-url]
-cd [project-name]
+# 1. Clone the repository
+git clone https://github.com/kyuwon-shim-ARL/claude-dev-kit.git
+cd claude-dev-kit
 
-# 2. Install dependencies
-[installation commands]
+# 2. For new projects - Complete installation (recommended)
+./init-complete.sh "project_name" "Project description"
 
-# 3. Verify setup
-python scripts/test_setup.py
+# 3. For existing projects - Safe installation
+./safe-init-claude-repo.sh "project_name"
+# Then follow prompts to run complete installation
 
-# 4. Run examples
-[example commands]
+# 4. Verify installation
+ls -la .claude/commands/  # Should show 8 commands
 ```
 
 ## Key Commands
@@ -48,7 +52,8 @@ claude-dev-kit/           # Claude Code Development Kit
 ├── install.sh           # Core installation script
 ├── install-web.sh       # Web development extension
 ├── init-claude-repo.sh  # Legacy repo initialization
-└── safe-init-claude-repo.sh  # Safe initialization variant
+├── safe-init-claude-repo.sh  # Safe initialization variant
+└── init-complete.sh     # Complete unified installation (NEW)
 
 docs/                    # Documentation
 ├── guides/              # Development guides and settings
