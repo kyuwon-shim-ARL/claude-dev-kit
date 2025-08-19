@@ -91,7 +91,7 @@ for cmd in "${!commands[@]}"; do
 done
 
 if [ "$DOWNLOAD_SUCCESS" = true ]; then
-    echo "  ✅ All 8 slash commands installed"
+    echo "  ✅ All 10 slash commands installed"
 else
     echo "  ⚠️  Some commands could not be installed (check network)"
 fi
@@ -111,7 +111,7 @@ if [ ! -f "project_rules.md" ]; then
 
 ## 📐 Architecture Principles
 - **4단계 워크플로우**: 기획 → 구현 → 안정화 → 배포
-- **글로벌 슬래시 명령어**: 8개 명령어 표준화 (개별 4개 + 조합 4개)
+- **글로벌 슬래시 명령어**: 10개 명령어 표준화 (개별 5개 + 조합 5개)
 - **3층 문서화 구조**: project_rules.md / docs/CURRENT/ / sessions/
 - **구조적 지속가능성**: 6단계 검증 루프 필수 적용
 

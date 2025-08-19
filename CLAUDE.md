@@ -31,7 +31,7 @@ cd claude-dev-kit
 # Then follow prompts to run complete installation
 
 # 4. Verify installation
-ls -la .claude/commands/  # Should show 8 commands
+ls -la .claude/commands/  # Should show 10 commands
 ```
 
 ## Key Commands
