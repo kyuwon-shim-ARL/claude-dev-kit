@@ -1,5 +1,7 @@
 #!/bin/bash
-# Safe Claude Code Repository Initialization Script
+# [DEPRECATED] Safe Claude Code Repository Initialization Script
+# ⚠️  DEPRECATED: Use init.sh instead - it includes all safety features
+# This script is kept for backward compatibility only
 # Preserves existing files and structure
 
 set -e
@@ -7,6 +9,20 @@ set -e
 PROJECT_NAME=${1:-"my_project"}
 PROJECT_DESC=${2:-"A new Claude Code project"}
 CURRENT_DATE=$(date +%Y-%m-%d)
+
+echo "⚠️  WARNING: This script is DEPRECATED!"
+echo "Please use ./init.sh instead - it has all the same safety features plus more."
+echo ""
+read -p "Do you want to use the new init.sh instead? [Y/n]: " use_new
+case $use_new in
+    [Nn]* )
+        echo "Continuing with deprecated script..."
+        ;;
+    * )
+        echo "🚀 Switching to init.sh..."
+        exec bash "$(dirname "$0")/init.sh" "$PROJECT_NAME" "$PROJECT_DESC"
+        ;;
+esac
 
 echo "🚀 Safely initializing Claude Code structure for: $PROJECT_NAME"
 echo "=" 

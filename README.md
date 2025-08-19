@@ -4,16 +4,22 @@
 
 ## ⚡ 30초 설치
 
-### 기본 설치
+### 🚀 Universal 설치 (Git 유무 자동 감지)
 ```bash
-# 새 프로젝트
-mkdir my-project && cd my-project
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
+# 새 프로젝트 또는 기존 프로젝트 모두 지원
+cd my-project
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh | bash
 
-# 기존 프로젝트에 워크플로우 추가
-cd existing-project
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install.sh | bash
+# 또는 직접 다운로드 후 실행
+wget https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh
+chmod +x init.sh
+./init.sh "프로젝트명" "프로젝트 설명"
 ```
+
+**특징:**
+- ✅ Git 있으면: 전체 기능 (hooks, push, tag)
+- ✅ Git 없어도: 완벽 작동 (로컬 백업)
+- ✅ 비개발자 친화적: 에러 없이 자동 설치
 
 ### 웹 개발 확장 (선택사항)
 ```bash
@@ -23,11 +29,12 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## 🔥 핵심 기능
 
-### ✅ 4단계 워크플로우
-- **@기획**: 구조화된 탐색-계획 루프
-- **@구현**: DRY 원칙 기반 구현
-- **@안정화**: 구조적 지속가능성 프로토콜 v2.0
-- **@배포**: 최종 검증 + 자동 배포
+### ✅ 슬래시 명령어 워크플로우
+- **/기획**: 구조화된 탐색-계획 루프
+- **/구현**: DRY 원칙 기반 구현
+- **/안정화**: 구조적 지속가능성 프로토콜 v2.0
+- **/배포**: 최종 검증 + 자동 배포
+- **/전체사이클**: 기획→구현→안정화→배포 완전 자동화
 
 ### 🌐 웹 개발 확장
 - **Playwright**: E2E 테스트 + 웹 자동화
@@ -44,7 +51,8 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ```
 claude-dev-kit/
-├── install.sh              # 핵심 설치 스크립트
+├── init.sh                 # 🆕 Universal 설치 (권장)
+├── install.sh              # 슬래시 명령어만 설치
 ├── install-web.sh          # 웹 확장 설치
 ├── docs/
 │   ├── guides/             # 개발 가이드
