@@ -7,7 +7,8 @@ A comprehensive toolkit that provides one-click installation of project structur
 - ✅ **Phase 1**: Core installation scripts completed
 - ✅ **Phase 2**: ZEDS implementation completed  
 - ✅ **Phase 3**: Unified initialization system completed
-- 📋 **Next**: Testing in production environments
+- ✅ **Phase 4**: Universal init.sh for all users (v4.0)
+- 📋 **Next**: Continuous improvement based on user feedback
 
 ## Development Environment Setup
 
@@ -23,11 +24,10 @@ A comprehensive toolkit that provides one-click installation of project structur
 git clone https://github.com/kyuwon-shim-ARL/claude-dev-kit.git
 cd claude-dev-kit
 
-# 2. For new projects - Complete installation (recommended)
-./init-complete.sh "project_name" "Project description"
-
-# 3. For existing projects - Safe installation
-./safe-init-claude-repo.sh "project_name"
+# 2. Universal installation (recommended for ALL users)
+./init.sh "project_name" "Project description"
+# Works for both new and existing projects
+# Automatically detects Git and adapts features
 # Then follow prompts to run complete installation
 
 # 4. Verify installation
@@ -51,9 +51,10 @@ claude-dev-kit/           # Claude Code Development Kit
 ├── CLAUDE.md            # Main project documentation
 ├── install.sh           # Core installation script
 ├── install-web.sh       # Web development extension
-├── init-claude-repo.sh  # Legacy repo initialization
-├── safe-init-claude-repo.sh  # Safe initialization variant
-└── init-complete.sh     # Complete unified installation (NEW)
+├── init.sh              # 🆕 Universal installer (v4.0) - USE THIS!
+├── init-complete.sh     # (Deprecated) Use init.sh instead
+├── safe-init-claude-repo.sh  # (Deprecated) Use init.sh instead
+└── init-claude-repo.sh  # (Legacy) Original script
 
 docs/                    # Documentation
 ├── guides/              # Development guides and settings
