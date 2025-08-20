@@ -1,0 +1,18 @@
+{
+  "session_20250820_204203_1755690123": {
+    "timestamp": "2025-08-20T20:42:03.902339",
+    "session_id": "session_20250820_204203",
+    "task_type": "tactical",
+    "token_count_before": null,
+    "token_count_after": null,
+    "response_time_ms": null,
+    "first_attempt_success": false,
+    "context_miss_detected": false,
+    "duplicate_work_detected": false,
+    "consistency_violation": false,
+    "error_repeated": false,
+    "compact_triggered": false,
+    "rollback_triggered": false,
+    "notes": "컨텍스트 관리 시스템 안전 도입 테스트"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "control_20250820_204209_claude_d": {
+    "session_id": "control_20250820_204209_claude_d",
+    "group": "control",
+    "start_time": "2025-08-20T20:42:09.427547",
+    "task_description": "컨텍스트_관리_안전_테스트",
+    "task_type": "tactical",
+    "completion_time_minutes": null,
+    "success_achieved": false,
+    "context_management_used": false,
+    "duplicate_work_detected": false,
+    "consistency_maintained": true,
+    "user_satisfaction": null
+  }
+}
