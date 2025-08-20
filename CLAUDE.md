@@ -59,6 +59,7 @@ claude-dev-kit/           # Claude Code Development Kit
 docs/                    # Documentation
 ├── guides/              # Development guides and settings
 │   ├── claude-code-best-practices.md  # Best practices
+│   ├── claude-me-settings-minimal.md  # 🔧 백업 옵션 (웹 전용)
 │   └── distribute.md    # Distribution guide
 └── templates/           # Document templates
     └── README-TEMPLATE.md  # README template

@@ -111,6 +111,11 @@ open http://localhost:8000
 - [개발 가이드](docs/guides/claude-code-best-practices.md)
 - [README 템플릿](docs/templates/README-TEMPLATE.md)
 
+## 🔧 고급/백업 옵션
+
+**⚠️ 특수 상황에서만 사용:**
+- [Claude.me 설정](docs/guides/claude-me-settings-minimal.md) - 웹 claude.ai 전용 사용자
+
 ## 🎯 특징
 
 - **즉시 사용**: 설치 후 바로 개발 시작
