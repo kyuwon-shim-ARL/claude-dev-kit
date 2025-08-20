@@ -681,12 +681,12 @@ if python scripts/test_setup.py; then
     echo "📋 Next steps:"
     if [ -f "CLAUDE.md" ] && [ ! -f "CLAUDE-APPEND-TEMPLATE.md" ]; then
         # New installation
-        echo "  1. Configure Custom Instructions in Claude.ai (see claude-me-settings-minimal.md)"
+        echo "  1. Start development with Claude Code and slash commands"
         echo "  2. Start development with keywords: @기획, @구현, @안정화, @배포"
     else
         # Existing project
         echo "  1. Existing CLAUDE.md detected - append workflow from CLAUDE-APPEND-TEMPLATE.md"
-        echo "  2. Configure Custom Instructions in Claude.ai (see claude-me-settings-minimal.md)"
+        echo "  2. Use slash commands: /전체사이클, /기획, /구현, /안정화, /배포"
         echo "  3. Start development with keywords: @기획, @구현, @안정화, @배포"
     fi
     echo ""
@@ -702,7 +702,7 @@ if python scripts/test_setup.py; then
     echo "  - docs/development/guides/ (workflow guides)"
     echo "  - project_rules.md (project constitution - edit this!)"
     echo "  - .claudeignore (context quality control)"
-    echo "  - claude-me-settings-minimal.md (Custom Instructions template)"
+    echo "  - CLAUDE.md (project context for Claude Code)"
     if [ -d ".git" ]; then
         echo "  - .git/hooks/pre-commit (auto-updates claude.md)"
     fi

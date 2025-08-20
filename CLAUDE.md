@@ -59,8 +59,6 @@ claude-dev-kit/           # Claude Code Development Kit
 docs/                    # Documentation
 ├── guides/              # Development guides and settings
 │   ├── claude-code-best-practices.md  # Best practices
-│   ├── claude-me-settings-korean.md   # Korean settings
-│   ├── claude-me-settings-minimal.md  # Minimal settings
 │   └── distribute.md    # Distribution guide
 └── templates/           # Document templates
     └── README-TEMPLATE.md  # README template

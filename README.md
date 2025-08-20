@@ -109,7 +109,6 @@ open http://localhost:8000
 ## 📚 문서
 
 - [개발 가이드](docs/guides/claude-code-best-practices.md)
-- [Claude.me 설정](docs/guides/claude-me-settings-minimal.md)
 - [README 템플릿](docs/templates/README-TEMPLATE.md)
 
 ## 🎯 특징
