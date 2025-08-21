@@ -10,12 +10,23 @@ PROJECT_DESC=${2:-"A new Claude Code project"}
 CURRENT_DATE=$(date +%Y-%m-%d)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Detect Git availability
+# Detect Git availability and setup
 HAS_GIT=false
+NEW_REPO=false
+SHOULD_INIT_GIT=false
+
 if command -v git >/dev/null 2>&1; then
     if [ -d ".git" ] || git rev-parse --git-dir >/dev/null 2>&1; then
         HAS_GIT=true
+        echo "🔍 Existing Git repository detected"
+    else
+        HAS_GIT=true
+        NEW_REPO=true
+        echo "💡 Git available but no repository - will initialize new repo"
+        SHOULD_INIT_GIT=true
     fi
+else
+    echo "⚠️  Git not available - will use local backup system"
 fi
 
 echo "🚀 Claude Dev Kit Universal Installation"
@@ -23,7 +34,11 @@ echo "========================================"
 echo "Project: $PROJECT_NAME"
 echo "Description: $PROJECT_DESC"
 if [ "$HAS_GIT" = true ]; then
-    echo "Git: ✅ Detected (full features enabled)"
+    if [ "$NEW_REPO" = true ]; then
+        echo "Git: ✅ Available (will initialize new repository)"
+    else
+        echo "Git: ✅ Detected (using existing repository)"
+    fi
 else
     echo "Git: ❌ Not detected (local mode)"
 fi
@@ -288,12 +303,78 @@ else
     echo "  ⏭️  PRD-template.md already exists"
 fi
 
-# Step 5: Set up Git hooks (only if Git is available)
+# Step 5: Git setup and hooks
 echo ""
 if [ "$HAS_GIT" = true ]; then
-    echo "🔗 Step 5/5: Setting up Git hooks..."
+    echo "🔗 Step 5/5: Setting up Git repository..."
+    
+    # Initialize new Git repository if needed
+    if [ "$SHOULD_INIT_GIT" = true ]; then
+        echo "  📦 Initializing new Git repository..."
+        git init
+        
+        # Create initial .gitignore
+        cat > .gitignore << 'EOF'
+# Build artifacts
+dist/
+build/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+
+# Dependencies  
+node_modules/
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Testing
+.coverage
+.pytest_cache/
+coverage/
+.nyc_output/
+
+# Temporary
+*.tmp
+*.bak
+tmp/
+temp/
+
+# Backups (for non-git mode)
+.backups/
+EOF
+        echo "  ✅ Git repository initialized"
+        echo ""
+        echo "  📋 Next steps for Git setup:"
+        echo "     1. Create a repository on GitHub/GitLab"  
+        echo "     2. Add remote: git remote add origin <your-repo-url>"
+        echo "     3. Push: git add . && git commit -m 'Initial commit' && git push -u origin main"
+        echo ""
+    fi
     
     # Create pre-commit hook
+    echo "  🪝 Installing Git pre-commit hook..."
+    mkdir -p .git/hooks
     cat > .git/hooks/pre-commit << 'EOF'
 #!/bin/sh
 # Auto-update claude.md on commit
@@ -474,13 +555,19 @@ echo "=========================================="
 echo ""
 echo "✅ Installed Components:"
 echo "  • Project structure created"
-echo "  • 8 slash commands installed"
-echo "  • project_rules.md created"
+echo "  • 10 slash commands installed"
+echo "  • project_rules.md created" 
 echo "  • ZEDS initialized"
 
 if [ "$HAS_GIT" = true ]; then
-    echo "  • Git hooks configured"
-    echo "  • Full version control enabled"
+    if [ "$NEW_REPO" = true ]; then
+        echo "  • New Git repository initialized"
+        echo "  • Git hooks configured"
+        echo "  • Ready for remote repository setup"
+    else
+        echo "  • Git hooks configured"
+        echo "  • Existing repository preserved"
+    fi
 else
     echo "  • Local backup system ready"
     echo "  • Use scripts/backup.sh for versioning"
@@ -491,10 +578,29 @@ echo "📚 Available Slash Commands:"
 echo "  Individual: /기획, /구현, /안정화, /검증, /배포"
 echo "  Workflows: /전체사이클, /개발완료, /품질보증, /기획구현, /극한검증"
 echo ""
+if [ "$NEW_REPO" = true ]; then
+    echo ""
+    echo "🔧 Git Setup Required:"
+    echo "  1. Create a new repository on GitHub/GitLab/etc"
+    echo "  2. Connect your repository:"
+    echo "     git remote add origin https://github.com/yourusername/${PROJECT_NAME}.git"
+    echo "  3. Make initial commit:"
+    echo "     git add ."
+    echo "     git commit -m 'Initial commit with claude-dev-kit'"  
+    echo "     git push -u origin main"
+    echo ""
+fi
+
 echo "🚀 Next Steps:"
 echo "  1. Open Claude Code in this directory"
-echo "  2. Use /기획 to plan your first feature"
-echo "  3. Or use /전체사이클 for complete workflow"
+if [ "$NEW_REPO" = true ]; then
+    echo "  2. Set up your Git remote repository (see above)"
+    echo "  3. Use /기획 to plan your first feature"
+    echo "  4. Or use /전체사이클 for complete workflow"
+else
+    echo "  2. Use /기획 to plan your first feature"
+    echo "  3. Or use /전체사이클 for complete workflow"  
+fi
 echo ""
 
 if [ "$HAS_GIT" = false ]; then
