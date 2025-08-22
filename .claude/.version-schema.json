@@ -1,5 +1,5 @@
 {
-  "current": "8.0.0",
+  "current": "9.0.0",
   "releases": {
     "8.0.0": {
       "date": "2025-08-22",
@@ -25,6 +25,31 @@
       "files_changed": [
         "init.sh",
         ".gitignore"
+      ]
+    },
+    "8.1.0": {
+      "date": "2025-08-22",
+      "breaking": false,
+      "features": [
+        "자동 업데이트 시스템",
+        "버전 관리 체계"
+      ],
+      "files_changed": [
+        "update.sh",
+        "docs/UPDATE_GUIDE.md"
+      ]
+    },
+    "9.0.0": {
+      "date": "2025-08-22",
+      "breaking": false,
+      "features": [
+        "동적 컨텍스트 가이드 생성",
+        "템플릿에서 실시간 분석으로 전환",
+        "85-95% 압축률 달성"
+      ],
+      "files_changed": [
+        ".claude/commands/배포.md",
+        "docs/CURRENT/dynamic-compact-guide.md"
       ]
     }
   },

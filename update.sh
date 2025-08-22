@@ -98,7 +98,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 # 6. 버전 정보 저장
-echo "v8.0.0 - $(date)" > .claude/.version
+echo "v9.0.0 - $(date)" > .claude/.version
 
 # 7. 완료 메시지
 echo ""
@@ -107,9 +107,9 @@ echo -e "${GREEN}✅ 업데이트 완료!${NC}"
 echo "========================================="
 echo ""
 echo "📋 다음 기능이 추가되었습니다:"
-echo "  1. 스마트 컨텍스트 관리 템플릿"
-echo "  2. ZEDS 문서화 시너지"
-echo "  3. 복사-붙여넣기 방식 간소화"
+echo "  1. 동적 컨텍스트 가이드 생성 (v9.0)"
+echo "  2. Claude가 실시간 작업 분석"
+echo "  3. 템플릿 제약 제거, 85-95% 압축률"
 echo ""
 echo "💡 사용 예시:"
 echo '  배포 후: /compact "v1.0.0 배포 완료. ZEDS 문서 보존됨. 구현 과정 제거"'
@@ -118,4 +118,4 @@ echo "🔄 롤백이 필요한 경우:"
 echo "  cp -r $BACKUP_DIR/* .claude/commands/"
 echo ""
 echo "📖 자세한 내용:"
-echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/tag/v8.0.0"
+echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/tag/v9.0.0"
