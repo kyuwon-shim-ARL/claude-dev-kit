@@ -74,8 +74,15 @@ echo "다음 파일들도 업데이트하시겠습니까? (y/n)"
 echo "  - project_rules.md (프로젝트 규칙)"
 echo "  - CLAUDE.md (프로젝트 설명서)"
 echo ""
-read -p "업데이트 하시겠습니까? (y/n): " -n 1 -r
-echo ""
+
+# stdin이 파이프인 경우 기본값 사용
+if [ -t 0 ]; then
+    read -p "업데이트 하시겠습니까? (y/n): " -n 1 -r
+    echo ""
+else
+    echo "자동 모드: 명령어만 업데이트합니다."
+    REPLY="n"
+fi
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # project_rules.md 업데이트 (템플릿만 제공)
