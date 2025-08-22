@@ -1,0 +1,36 @@
+{
+  "current": "8.0.0",
+  "releases": {
+    "8.0.0": {
+      "date": "2025-08-22",
+      "breaking": false,
+      "features": [
+        "스마트 컨텍스트 관리 시스템",
+        "/compact 템플릿 가이드",
+        "Claude-Ops 텔레그램 통합"
+      ],
+      "files_changed": [
+        ".claude/commands/배포.md",
+        "docs/development/claude-ops-integration.md",
+        "docs/CURRENT/compact-optimization.md"
+      ]
+    },
+    "7.1.0": {
+      "date": "2025-08-21",
+      "breaking": false,
+      "features": [
+        "Git 자동 초기화 수정",
+        "포괄적 .gitignore"
+      ],
+      "files_changed": [
+        "init.sh",
+        ".gitignore"
+      ]
+    }
+  },
+  "update_policy": {
+    "major": "재설치 권장",
+    "minor": "명령어 업데이트",
+    "patch": "선택적 업데이트"
+  }
+}
