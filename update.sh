@@ -75,7 +75,7 @@ echo "  - project_rules.md (프로젝트 규칙)"
 echo "  - CLAUDE.md (프로젝트 설명서)"
 echo ""
 read -p "업데이트 하시겠습니까? (y/n): " -n 1 -r
-echo
+echo ""
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     # project_rules.md 업데이트 (템플릿만 제공)
