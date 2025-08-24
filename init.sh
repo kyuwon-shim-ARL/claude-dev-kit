@@ -210,6 +210,8 @@ if [ ! -f "docs/CURRENT/status.md" ]; then
 ## 💡 Notes
 - All slash commands are ready to use
 - Documentation will be automatic
+- Context management: Dynamic guide generation (v9.0)
+- Expected compression: 85-95% with /compact
 EOF
     
     if [ "$HAS_GIT" = false ]; then
@@ -577,6 +579,11 @@ echo ""
 echo "📚 Available Slash Commands:"
 echo "  Individual: /기획, /구현, /안정화, /검증, /배포"
 echo "  Workflows: /전체사이클, /개발완료, /품질보증, /기획구현, /극한검증"
+echo ""
+echo "🚀 New Features (v9.0):"
+echo "  • Dynamic context guide generation"
+echo "  • 85-95% compression with smart /compact"
+echo "  • Claude analyzes your actual work for optimal cleanup"
 echo ""
 if [ "$NEW_REPO" = true ]; then
     echo ""
