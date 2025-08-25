@@ -88,7 +88,9 @@ project_rules.md      # Project constitution (manual)
 
 ## 개발 워크플로우
 
-이 프로젝트는 키워드 기반 개발을 사용합니다:
+이 프로젝트는 4단계 키워드 기반 개발을 사용합니다:
+
+### 핵심 워크플로우
 - **"기획"** → Structured Discovery & Planning Loop:
   - 탐색: 전체 구조 파악, As-Is/To-Be/Gap 분석
   - 계획: MECE 기반 작업분해, 우선순위 설정
@@ -97,27 +99,22 @@ project_rules.md      # Project constitution (manual)
   - 기존 코드 검색 → 재사용 → 없으면 생성
   - TodoWrite 기반 체계적 진행
   - 단위 테스트 & 기본 검증
-- **"안정화"** → Structural Sustainability Protocol v2.0:
+- **"안정화"** → Structural Sustainability Protocol v3.0 (ZEDS 2.0 통합):
   - 구조 스캔: 전체 파일 분석, 중복/임시 파일 식별
   - 구조 최적화: 디렉토리 정리, 파일 분류, 네이밍 표준화
   - 의존성 해결: Import 수정, 참조 오류 해결
   - 통합 테스트: 모듈 검증, API 테스트, 시스템 무결성
-  - 문서 동기화: CLAUDE.md 반영, README 업데이트
+  - **문서 동기화 & 정리 (ZEDS 2.0)**: 
+    * 코드 문서화: CLAUDE.md, README 업데이트
+    * 프로젝트 문서 자동 정리: 로드맵 기반 분류
+    * 버전 스냅샷: 개발 버전과 문서 버전 동기화
   - 품질 검증: MECE 분석, 성능 벤치마크 (ZERO 이슈까지)
-- **"분석"** → Systematic Analysis & Documentation:
-  - 성능/구조/보안/사용성/비즈니스 측면 체계적 분석
-  - MECE 프레임워크 적용으로 정확한 문제 진단
-  - docs/analysis/ 구조화된 보고서 생성
-  - 실행 가능한 개선안 도출
-- **"문서정리"** → Project Documentation Organization:
-  - 흩어진 문서를 프로젝트 구조로 체계화
-  - 로드맵 기반 자동 분류
-  - 진행 상황 추적 및 인덱싱
-- **"주간보고"** → Weekly Progress Report:
-  - 모든 프로젝트 PRD 기반 진행률 분석
-  - Mock vs 실제 구현 구분
-  - 자체 해결 가능 작업과 필요한 도움 분류
 - **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
+
+### 보조 명령어 (필요시 개별 실행)
+- **"분석"** → 분석 수행 및 자동 저장
+- **"문서정리"** → 프로젝트 문서 수동 정리 (안정화에 통합되어 자동 실행)
+- **"주간보고"** → 전체 프로젝트 진행 상황 보고
 
 ## @배포 전: Claude 컨텍스트 관리 시스템
 
