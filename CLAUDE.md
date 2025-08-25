@@ -88,7 +88,7 @@ project_rules.md      # Project constitution (manual)
 
 ## 개발 워크플로우
 
-이 프로젝트는 5단계 키워드 기반 개발을 사용합니다:
+이 프로젝트는 키워드 기반 개발을 사용합니다:
 - **"기획"** → Structured Discovery & Planning Loop:
   - 탐색: 전체 구조 파악, As-Is/To-Be/Gap 분석
   - 계획: MECE 기반 작업분해, 우선순위 설정
@@ -109,6 +109,14 @@ project_rules.md      # Project constitution (manual)
   - MECE 프레임워크 적용으로 정확한 문제 진단
   - docs/analysis/ 구조화된 보고서 생성
   - 실행 가능한 개선안 도출
+- **"문서정리"** → Project Documentation Organization:
+  - 흩어진 문서를 프로젝트 구조로 체계화
+  - 로드맵 기반 자동 분류
+  - 진행 상황 추적 및 인덱싱
+- **"주간보고"** → Weekly Progress Report:
+  - 모든 프로젝트 PRD 기반 진행률 분석
+  - Mock vs 실제 구현 구분
+  - 자체 해결 가능 작업과 필요한 도움 분류
 - **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
 
 ## @배포 전: Claude 컨텍스트 관리 시스템
