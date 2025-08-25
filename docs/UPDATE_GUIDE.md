@@ -22,7 +22,7 @@ curl -o .claude/commands/배포.md \
 ```bash
 # 모든 슬래시 명령어 업데이트
 cd .claude/commands
-for cmd in 기획 구현 안정화 배포 전체사이클 문서화 배포문서 분석; do
+for cmd in 기획 구현 안정화 배포 전체사이클 개발완료 품질보증 분석 문서정리 주간보고 검증 극한검증 기획구현; do
   curl -O "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands/${cmd}.md"
 done
 cd ../..
@@ -38,6 +38,18 @@ curl -o docs/development/claude-ops-integration.md \
 ```
 
 ## 🔄 버전별 업데이트 내역
+
+### v10.0.0 (2025-08-25) - ZEDS 2.0
+- 🚀 ZEDS 2.0 통합 문서 관리 시스템
+- 📁 자동 프로젝트 문서 분류 (6단계 로드맵)
+- 🔄 `/안정화`에 문서정리 기능 통합
+- 📊 분석 결과 자동 저장 시스템
+- 🗂️ 프로젝트별 문서 구조화
+
+### v8.1.0 (2025-08-22)
+- 🔄 자동 업데이트 시스템
+- 📋 update.sh 스크립트
+- 🛡️ 백업 & 롤백 기능
 
 ### v8.0.0 (2025-08-22)
 - ✨ 스마트 컨텍스트 관리 시스템
@@ -67,8 +79,11 @@ cp -r .claude/commands .claude/commands.backup
 # 버전 확인
 cat .claude/.version
 
-# 컨텍스트 관리 기능 확인
-grep "compact" .claude/commands/배포.md
+# ZEDS 2.0 문서 관리 기능 확인
+grep "Documentation Sync & Organization" .claude/commands/안정화.md
+
+# 분석 자동 저장 기능 확인
+ls -la .claude/commands/분석.md
 ```
 
 ## 💡 효과적인 업데이트 전략
@@ -91,8 +106,11 @@ grep "compact" .claude/commands/배포.md
 # 1. 명령어 확인
 ls -la .claude/commands/
 
-# 2. 컨텍스트 관리 테스트
-echo '/compact "테스트 완료. 문서 보존됨. 과정 제거"'
+# 2. ZEDS 2.0 문서 관리 테스트
+echo '이제 /안정화 실행 시 문서가 자동으로 정리됩니다'
+
+# 3. 분석 자동 저장 테스트
+echo '/분석 "시스템 분석" 실행 시 docs/analysis/에 자동 저장됨'
 
 # 3. 버전 확인
 cat .claude/.version
