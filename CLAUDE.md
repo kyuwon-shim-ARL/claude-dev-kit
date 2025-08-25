@@ -88,7 +88,7 @@ project_rules.md      # Project constitution (manual)
 
 ## 개발 워크플로우
 
-이 프로젝트는 4단계 키워드 기반 개발을 사용합니다:
+이 프로젝트는 5단계 키워드 기반 개발을 사용합니다:
 - **"기획"** → Structured Discovery & Planning Loop:
   - 탐색: 전체 구조 파악, As-Is/To-Be/Gap 분석
   - 계획: MECE 기반 작업분해, 우선순위 설정
@@ -104,6 +104,11 @@ project_rules.md      # Project constitution (manual)
   - 통합 테스트: 모듈 검증, API 테스트, 시스템 무결성
   - 문서 동기화: CLAUDE.md 반영, README 업데이트
   - 품질 검증: MECE 분석, 성능 벤치마크 (ZERO 이슈까지)
+- **"분석"** → Systematic Analysis & Documentation:
+  - 성능/구조/보안/사용성/비즈니스 측면 체계적 분석
+  - MECE 프레임워크 적용으로 정확한 문제 진단
+  - docs/analysis/ 구조화된 보고서 생성
+  - 실행 가능한 개선안 도출
 - **"배포"** → Deployment: 최종검증 + 구조화커밋 + 푸시 + 태깅
 
 ## @배포 전: Claude 컨텍스트 관리 시스템

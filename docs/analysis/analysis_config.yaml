@@ -1,0 +1,46 @@
+# 분석 문서화 자동 분류 설정
+
+categories:
+  dev:
+    keywords: [api, 성능, 코드, 리뷰, 버그, 테스트, 배포, 모니터링, 최적화, 리팩토링]
+    template: templates/dev.md
+    
+  bio:
+    keywords: [rna, dna, 유전자, 단백질, 샘플, seq, 발현, 변이, pathway, enrichment]
+    template: templates/research.md
+    
+  business:
+    keywords: [매출, 사용자, 비용, roi, 분기, 성과, 지표, 수익, 마케팅, 전략]
+    template: templates/business.md
+    
+  misc:
+    keywords: []  # 기본 카테고리
+    template: templates/general.md
+
+auto_management:
+  # 월별 정리
+  monthly_cleanup: true
+  min_files_per_category: 3  # 3개 미만시 misc로 이동
+  
+  # 자동 아카이빙
+  archive_after_days: 90
+  
+  # 인덱스 관리
+  auto_update_index: true
+  max_recent_items: 10
+
+file_naming:
+  format: "DD-{title}.md"
+  title_max_length: 30
+  title_cleanup: true  # 특수문자 제거
+
+metadata:
+  auto_add: true
+  include_duration: true
+  include_impact_estimate: true
+  include_tags: true
+
+search:
+  enable_content_search: true
+  enable_tag_search: true
+  generate_search_index: true
