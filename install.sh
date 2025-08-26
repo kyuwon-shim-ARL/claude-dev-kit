@@ -15,10 +15,9 @@ echo ""
 # Create directory structure
 echo "📁 Creating project structure..."
 for dir in "src/$PROJECT_NAME" "src/$PROJECT_NAME/core" "src/$PROJECT_NAME/models" \
-           "src/$PROJECT_NAME/services" "core_features" "docs/CURRENT" \
-           "docs/development/conversations" "docs/development/guides" \
-           "docs/development/templates" "docs/specs" "examples" "tests" \
-           "tools" "scripts" "archive"; do
+           "src/$PROJECT_NAME/services" "docs/CURRENT" \
+           "docs/development/sessions" "docs/specs" "examples" "tests" \
+           "scripts"; do
     mkdir -p "$dir"
     echo "  ✅ Created: $dir"
 done

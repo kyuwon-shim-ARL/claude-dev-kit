@@ -47,10 +47,9 @@ echo ""
 # Step 1: Create directory structure
 echo "📁 Step 1/5: Creating project structure..."
 for dir in "src/$PROJECT_NAME" "src/$PROJECT_NAME/core" "src/$PROJECT_NAME/models" \
-           "src/$PROJECT_NAME/services" "core_features" "docs/CURRENT" \
-           "docs/development/sessions" "docs/development/guides" \
-           "docs/development/templates" "docs/specs" "examples" "tests" \
-           "tools" "scripts" "archive" ".claude/commands"; do
+           "src/$PROJECT_NAME/services" "docs/CURRENT" \
+           "docs/development/sessions" "docs/specs" "examples" "tests" \
+           "scripts" ".claude/commands"; do
     if [ ! -d "$dir" ]; then
         mkdir -p "$dir"
         echo "  ✅ Created: $dir"

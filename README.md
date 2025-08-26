@@ -30,6 +30,11 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## 🔥 핵심 기능
 
+### 🆕 v14.0 폴더 구조 최적화 (2024.08.26)
+- **간소화**: conversations, tools, archive, core_features 폴더 제거
+- **명확성**: 각 폴더의 역할 명확화
+- **실용성**: 실제 사용되는 폴더만 유지
+
 ### ✅ 4단계 핵심 워크플로우 (ZEDS 2.0 통합)
 - **/기획**: 구조화된 탐색-계획 루프 + 요구사항 분석
 - **/구현**: DRY 원칙 기반 구현 + 단위 테스트
@@ -75,21 +80,27 @@ claude-dev-kit/
 └── scripts/               # 개발 도구
 ```
 
-설치 후 생성되는 구조:
+설치 후 생성되는 구조 (최적화 v14.0):
 ```
 your-project/
 ├── CLAUDE.md                   # 프로젝트 문서
-├── docs/
-│   ├── specs/
-│   │   ├── project_rules.md    # 🆕 프로젝트 헌법 (새 위치)
-│   │   ├── PRD-v1.0.md        # 제품 요구사항 문서
-│   │   ├── requirements.md     # 🤖 자동 생성
-│   │   └── architecture.md     # 🤖 자동 생성
-│   └── CURRENT/               # 현재 작업 상태
+├── .claude/commands/          # 슬래시 명령어
 ├── src/your-project/          # 핵심 구현
-├── examples/                  # 사용 예제
-├── tests/                    # 테스트
-└── scripts/                  # 개발 스크립트
+│   ├── core/                 # 공통 모듈
+│   ├── models/               # 데이터 모델  
+│   └── services/             # 비즈니스 로직
+├── docs/
+│   ├── specs/                # 사양서 (영구 보관)
+│   │   ├── project_rules.md  # 프로젝트 헌법
+│   │   ├── PRD-v1.0.md      # 제품 요구사항
+│   │   ├── requirements.md  # 🤖 자동 생성
+│   │   └── architecture.md  # 🤖 자동 생성
+│   ├── CURRENT/              # 현재 작업 상태
+│   └── development/
+│       └── sessions/         # 세션 아카이브
+├── examples/                 # 사용 예제
+├── tests/                    # 테스트 코드
+└── scripts/                  # 자동화 스크립트
 ```
 
 ## 🚀 사용법
