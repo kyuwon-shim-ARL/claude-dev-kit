@@ -84,7 +84,7 @@ declare -A commands=(
     ["품질보증"]="%ED%92%88%EC%A7%88%EB%B3%B4%EC%A6%9D"
     ["기획구현"]="%EA%B8%B0%ED%9A%8D%EA%B5%AC%ED%98%84"
     ["극한검증"]="%EA%B7%B9%ED%95%9C%EA%B2%80%EC%A6%9D"
-    ["정리"]="%EC%A0%95%EB%A6%AC"
+    ["컨텍스트"]="%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8"
 )
 
 # Download each command
