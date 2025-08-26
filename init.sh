@@ -92,7 +92,14 @@ DOWNLOAD_SUCCESS=true
 for cmd in "${!commands[@]}"; do
     encoded="${commands[$cmd]}"
     echo "  📥 Downloading /$cmd command..."
-    if curl -sSL "$BASE_URL/$encoded.md" -o ".claude/commands/$cmd.md" 2>/dev/null; then
+    
+    # Check if the response is valid (not 400/404 error)
+    RESPONSE=$(curl -sSL -w "\n%{http_code}" "$BASE_URL/$encoded.md" 2>/dev/null)
+    HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+    CONTENT=$(echo "$RESPONSE" | head -n -1)
+    
+    if [ "$HTTP_CODE" = "200" ] && [ -n "$CONTENT" ] && ! echo "$CONTENT" | grep -q "400 Bad request"; then
+        echo "$CONTENT" > ".claude/commands/$cmd.md"
         echo "     ✅ Downloaded"
     else
         # Fallback to local copy
@@ -100,7 +107,7 @@ for cmd in "${!commands[@]}"; do
             cp "$SCRIPT_DIR/.claude/commands/$cmd.md" ".claude/commands/$cmd.md"
             echo "     ✅ Copied from local"
         else
-            echo "     ⚠️  Could not install $cmd (network issue)"
+            echo "     ⚠️  Could not install $cmd (GitHub 파일 없음 또는 네트워크 오류)"
             DOWNLOAD_SUCCESS=false
         fi
     fi
