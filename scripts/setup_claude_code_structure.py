@@ -44,27 +44,15 @@ def create_directory_structure(project_name: str, base_path: str = "."):
     
     # Always create these Claude Code specific directories
     directories.extend([
-        # Active components
-        "core_features",
-        
-        # Documentation & examples
+        # Documentation
         "docs/CURRENT",
-        "docs/development/conversations",
-        "docs/development/guides", 
-        "docs/development/templates",
+        "docs/development/sessions",
         "docs/specs",
         
+        # Development
         "examples",
-        
-        # Testing & infrastructure
         "tests",
-        "tools",
         "scripts",
-        
-        # Organized archive
-        "archive/legacy_code",
-        "archive/experiments", 
-        "archive/old_docs",
     ])
     
     if is_existing_project:
