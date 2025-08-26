@@ -84,6 +84,7 @@ declare -A commands=(
     ["품질보증"]="%ED%92%88%EC%A7%88%EB%B3%B4%EC%A6%9D"
     ["기획구현"]="%EA%B8%B0%ED%9A%8D%EA%B5%AC%ED%98%84"
     ["극한검증"]="%EA%B7%B9%ED%95%9C%EA%B2%80%EC%A6%9D"
+    ["정리"]="%EC%A0%95%EB%A6%AC"
 )
 
 # Download each command
@@ -106,7 +107,7 @@ for cmd in "${!commands[@]}"; do
 done
 
 if [ "$DOWNLOAD_SUCCESS" = true ]; then
-    echo "  ✅ All 10 slash commands installed"
+    echo "  ✅ All 11 slash commands installed"
 else
     echo "  ⚠️  Some commands could not be installed (check network)"
 fi
@@ -557,7 +558,7 @@ echo "=========================================="
 echo ""
 echo "✅ Installed Components:"
 echo "  • Project structure created"
-echo "  • 10 slash commands installed"
+echo "  • 11 slash commands installed"
 echo "  • project_rules.md created" 
 echo "  • ZEDS initialized"
 
