@@ -129,11 +129,17 @@ else
     echo "  ⚠️  Some commands could not be installed (check network)"
 fi
 
-# Step 3: Create project_rules.md if missing
+# Step 3: Create project_rules.md if missing (새로운 위치: docs/specs/)
 echo ""
-echo "📜 Step 3/5: Creating project_rules.md..."
-if [ ! -f "project_rules.md" ]; then
-    cat > project_rules.md << 'EOF'
+echo "📜 Step 3/5: Creating project specifications..."
+
+# Check for existing project_rules.md and migrate if needed
+if [ -f "project_rules.md" ] && [ ! -f "docs/specs/project_rules.md" ]; then
+    echo "  📦 Migrating project_rules.md to docs/specs/..."
+    mv "project_rules.md" "docs/specs/project_rules.md"
+    echo "  ✅ Migrated project_rules.md to docs/specs/"
+elif [ ! -f "docs/specs/project_rules.md" ]; then
+    cat > docs/specs/project_rules.md << 'EOF'
 # PROJECT_NAME Project Rules
 
 ## 🎯 Core Philosophy
@@ -170,14 +176,14 @@ EOF
 - **원격 저장소**: GitHub 연동
 EOF
     else
-        cat >> project_rules.md << 'EOF'
+        cat >> docs/specs/project_rules.md << 'EOF'
 - **로컬 백업**: .backups/ 디렉토리에 날짜별 저장
 - **버전 관리**: 타임스탬프 기반 백업
 - **수동 동기화**: 필요시 외부 저장소에 수동 업로드
 EOF
     fi
     
-    cat >> project_rules.md << 'EOF'
+    cat >> docs/specs/project_rules.md << 'EOF'
 
 ## ⚙️ Technical Stack
 - **Claude Code**: 슬래시 명령어 기반 워크플로우
@@ -192,10 +198,10 @@ EOF
 ---
 *이 문서는 PROJECT_NAME의 헌법입니다. 수동으로만 수정하세요.*
 EOF
-    sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" project_rules.md
-    echo "  ✅ Created project_rules.md"
+    sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" docs/specs/project_rules.md
+    echo "  ✅ Created docs/specs/project_rules.md"
 else
-    echo "  ⏭️  project_rules.md already exists"
+    echo "  ⏭️  docs/specs/project_rules.md already exists"
 fi
 
 # Step 4: Initialize ZEDS structure
@@ -420,7 +426,7 @@ echo "Creating backup: $BACKUP_NAME"
 mkdir -p "$BACKUP_DIR/$BACKUP_NAME"
 
 # Backup important files
-for item in src/ docs/ tests/ examples/ project_rules.md CLAUDE.md; do
+for item in src/ docs/ tests/ examples/ CLAUDE.md; do
     if [ -e "$item" ]; then
         cp -r "$item" "$BACKUP_DIR/$BACKUP_NAME/"
     fi

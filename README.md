@@ -55,7 +55,7 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 - **웹 기반 프레젠테이션**: reveal.js 통합
 
 ### 🤖 ZEDS 2.0 통합 문서 관리 시스템
-- **project_rules.md**: 프로젝트 헌법 (수동 관리)
+- **docs/specs/project_rules.md**: 프로젝트 헌법 (수동 관리) 🆕 **새 위치**
 - **CLAUDE.md**: 실시간 코드 지도 (자동 업데이트)
 - **Git Hook**: 커밋시 자동 컨텍스트 갱신
 - **자동 문서 정리**: `/안정화` 실행 시 프로젝트 문서 자동 분류
@@ -78,13 +78,18 @@ claude-dev-kit/
 설치 후 생성되는 구조:
 ```
 your-project/
-├── CLAUDE.md              # 프로젝트 문서
-├── project_rules.md       # 프로젝트 헌법
-├── main_app.py           # 메인 애플리케이션
-├── src/your-project/     # 핵심 구현
-├── examples/             # 사용 예제
-├── tests/               # 테스트
-└── scripts/             # 개발 스크립트
+├── CLAUDE.md                   # 프로젝트 문서
+├── docs/
+│   ├── specs/
+│   │   ├── project_rules.md    # 🆕 프로젝트 헌법 (새 위치)
+│   │   ├── PRD-v1.0.md        # 제품 요구사항 문서
+│   │   ├── requirements.md     # 🤖 자동 생성
+│   │   └── architecture.md     # 🤖 자동 생성
+│   └── CURRENT/               # 현재 작업 상태
+├── src/your-project/          # 핵심 구현
+├── examples/                  # 사용 예제
+├── tests/                    # 테스트
+└── scripts/                  # 개발 스크립트
 ```
 
 ## 🚀 사용법

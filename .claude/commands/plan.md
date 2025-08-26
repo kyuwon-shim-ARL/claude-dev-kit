@@ -1,7 +1,8 @@
 🎯 **기획 (Structured Discovery & Planning Loop)**
 
-**📚 컨텍스트 자동 로딩:**
-- project_rules.md 확인 (있으면 읽기)
+**📚 컨텍스트 자동 로딩 (우선순위 순):**
+- docs/specs/project_rules.md 확인 (없으면 루트에서 찾기)
+- docs/specs/PRD-v*.md 확인 (최신 버전)
 - docs/CURRENT/status.md 확인 (있으면 읽기)
 - 이전 세션 TODO 확인
 
@@ -36,7 +37,7 @@ IF (새로운_주제_감지 OR 로드맵_전환_감지):
    - ❌반례: "새 로그분석도구"(기능추가=Tactical)
 
 3. **컨텍스트 상속 적용**:
-   - 영속 유지: project_rules.md + 핵심 아키텍처 결정
+   - 영속 유지: docs/specs/* (project_rules.md, PRD, requirements.md, architecture.md)
    - 관련성 필터: 새 주제와 연관성 기반 선별 보존  
    - 자동 아카이브: 완료 작업 + 미채택 대안 → sessions/
 
@@ -60,8 +61,35 @@ IF (새로운_주제_감지 OR 로드맵_전환_감지):
 - 전술적 (Tactical): 중간 기능, 모듈 개선 → planning.md 선택적
 - 운영적 (Operational): 버그 수정, 작은 개선 → TodoWrite만
 
-**💾 규모별 차별화된 문서화:**
-- **전략적 기획**: PRD 생성/업데이트 (docs/specs/PRD-vX.X.md) + planning.md + TodoWrite
+**💾 규모별 차별화된 문서화 + PRD 자동 분해:**
+
+**📋 PRD 기반 사양서 자동 생성 (조건부 실행):**
+```python
+def auto_generate_specs():
+    # 트리거 조건
+    if (not exists('docs/specs/requirements.md') or 
+        not exists('docs/specs/architecture.md') or
+        prd_newer_than_specs() or
+        detect_major_changes()):
+        
+        extract_requirements(PRD) → docs/specs/requirements.md
+        extract_architecture(PRD) → docs/specs/architecture.md
+        move_project_rules() → docs/specs/project_rules.md
+```
+
+**자동 생성 트리거:**
+- 초기 실행: requirements.md, architecture.md 미존재
+- 변경 감지: PRD 파일이 specs 문서들보다 최신
+- 키워드 감지: "아키텍처 변경", "요구사항 업데이트", "큰 변화"
+- 명시적 요청: 사용자가 직접 업데이트 요청
+
+**생성 내용:**
+- **requirements.md**: 기능 요구사항, 비기능 요구사항, 제약사항 추출
+- **architecture.md**: 시스템 구조, 기술 스택, 데이터 흐름, 인터페이스 설계
+- **project_rules.md**: 루트에서 docs/specs/로 이동 (최초 1회)
+
+**문서화 계층:**
+- **전략적 기획**: PRD 생성/업데이트 → 자동 specs 분해 + planning.md + TodoWrite
 - **전술적 기획**: planning.md 선택적 생성 + TodoWrite 
 - **운영적 작업**: TodoWrite만 사용 (문서 생성 최소화)
 - TodoWrite는 항상 docs/CURRENT/active-todos.md에 동기화
