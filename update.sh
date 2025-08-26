@@ -86,12 +86,26 @@ if grep -q "compact" .claude/commands/배포.md 2>/dev/null; then
     echo "   - 예상 감소율: 75-85%"
 fi
 
-# 5. 선택적 업데이트
+# 5. 문서 구조 마이그레이션 (v13.0.0 신규)
+echo ""
+echo "📁 문서 구조 업데이트 확인 중..."
+
+# project_rules.md 마이그레이션 (docs/specs/로 이동)
+if [ -f "project_rules.md" ] && [ ! -f "docs/specs/project_rules.md" ]; then
+    echo "📦 project_rules.md를 docs/specs/로 이동합니다..."
+    mkdir -p docs/specs
+    mv "project_rules.md" "docs/specs/project_rules.md"
+    echo -e "${GREEN}✅ project_rules.md가 docs/specs/로 이동되었습니다${NC}"
+elif [ -f "docs/specs/project_rules.md" ]; then
+    echo -e "${GREEN}✓ project_rules.md가 이미 docs/specs/에 있습니다${NC}"
+fi
+
+# 6. 선택적 업데이트
 echo ""
 echo -e "${YELLOW}📌 선택적 업데이트 항목:${NC}"
 echo ""
 echo "다음 파일들도 업데이트하시겠습니까? (y/n)"
-echo "  - project_rules.md (프로젝트 규칙)"
+echo "  - docs/specs/PRD-template.md (PRD 템플릿)"
 echo "  - CLAUDE.md (프로젝트 설명서)"
 echo ""
 
@@ -105,37 +119,39 @@ else
 fi
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    # project_rules.md 업데이트 (템플릿만 제공)
-    if [ ! -f "project_rules.md" ]; then
-        echo "📝 project_rules.md 템플릿 생성 중..."
-        curl -s -o "project_rules.template.md" \
-            "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/project_rules.md"
-        echo -e "${GREEN}✅ 템플릿 생성됨: project_rules.template.md${NC}"
-        echo "   필요에 따라 수정 후 project_rules.md로 저장하세요."
+    # PRD 템플릿 업데이트
+    if [ ! -f "docs/specs/PRD-template.md" ]; then
+        echo "📝 PRD 템플릿 생성 중..."
+        mkdir -p docs/specs
+        curl -s -o "docs/specs/PRD-template.md" \
+            "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/docs/specs/PRD-template.md"
+        echo -e "${GREEN}✅ 템플릿 생성됨: docs/specs/PRD-template.md${NC}"
     else
-        echo "⚠️  project_rules.md가 이미 존재합니다. 수동 업데이트를 권장합니다."
+        echo "⚠️  PRD-template.md가 이미 존재합니다."
     fi
 fi
 
-# 6. 버전 정보 저장
-echo "v9.0.0 - $(date)" > .claude/.version
+# 7. 버전 정보 저장
+echo "v13.0.0 - $(date)" > .claude/.version
 
-# 7. 완료 메시지
+# 8. 완료 메시지
 echo ""
 echo "========================================="
 echo -e "${GREEN}✅ 업데이트 완료!${NC}"
 echo "========================================="
 echo ""
 echo "📋 다음 기능이 추가되었습니다:"
-echo "  1. 동적 컨텍스트 가이드 생성 (v9.0)"
-echo "  2. Claude가 실시간 작업 분석"
-echo "  3. 템플릿 제약 제거, 85-95% 압축률"
+echo "  1. PRD 자동 분해 시스템 (v13.0)"
+echo "  2. docs/specs/ 통합 사양서 관리"
+echo "  3. project_rules.md 자동 마이그레이션"
+echo "  4. requirements.md, architecture.md 자동 생성"
 echo ""
-echo "💡 사용 예시:"
-echo '  배포 후: /compact "v1.0.0 배포 완료. ZEDS 문서 보존됨. 구현 과정 제거"'
+echo "💡 새로운 사용법:"
+echo '  1. PRD를 docs/specs/PRD-v1.0.md에 작성'
+echo '  2. /기획 실행 시 자동으로 requirements.md, architecture.md 생성'
 echo ""
 echo "🔄 롤백이 필요한 경우:"
 echo "  cp -r $BACKUP_DIR/* .claude/commands/"
 echo ""
 echo "📖 자세한 내용:"
-echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/tag/v9.0.0"
+echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/tag/v13.0.0"
