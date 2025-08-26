@@ -31,25 +31,45 @@ echo "⬇️ 최신 명령어 다운로드 중..."
 # GitHub Raw URL 기본 경로
 BASE_URL="https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands"
 
-# 다운로드할 명령어 목록 (v8.0 기준)
-COMMANDS=(
-    "기획.md"
-    "구현.md"
-    "안정화.md"
-    "배포.md"
-    "전체사이클.md"
-    "문서화.md"
-    "배포문서.md"
-    "분석.md"
+# Hybrid command mapping (GitHub uses English filenames)
+declare -A COMMAND_MAPPING=(
+    ["기획"]="plan"
+    ["구현"]="implement"
+    ["안정화"]="stabilize"
+    ["검증"]="validate"
+    ["배포"]="deploy"
+    ["전체사이클"]="fullcycle"
+    ["개발완료"]="complete"
+    ["품질보증"]="quality"
+    ["기획구현"]="plandev"
+    ["극한검증"]="extreme"
+    ["컨텍스트"]="context"
+    ["분석"]="analyze"
+    ["주간보고"]="weekly"
+    ["문서정리"]="docsorg"
 )
 
-# 명령어 다운로드
-for cmd in "${COMMANDS[@]}"; do
-    echo -n "  $cmd ... "
-    if curl -s -o ".claude/commands/$cmd" "$BASE_URL/$cmd"; then
-        echo -e "${GREEN}✓${NC}"
+# 명령어 다운로드 (하이브리드 방식)
+echo "Downloading commands with hybrid Korean/English support..."
+for korean_cmd in "${!COMMAND_MAPPING[@]}"; do
+    english_cmd="${COMMAND_MAPPING[$korean_cmd]}"
+    echo -n "  $korean_cmd ($english_cmd) ... "
+    
+    # Download from GitHub (English filename)
+    if curl -s -o ".tmp_download" "$BASE_URL/$english_cmd.md"; then
+        # Check if it's a valid file (not error page)
+        if ! grep -q "400 Bad request" ".tmp_download" && [ -s ".tmp_download" ]; then
+            # Create both Korean and English versions
+            cp ".tmp_download" ".claude/commands/$korean_cmd.md"
+            cp ".tmp_download" ".claude/commands/$english_cmd.md"
+            rm -f ".tmp_download"
+            echo -e "${GREEN}✓ (both /$korean_cmd and /$english_cmd)${NC}"
+        else
+            rm -f ".tmp_download"
+            echo -e "${RED}✗ (GitHub file corrupted)${NC}"
+        fi
     else
-        echo -e "${RED}✗${NC}"
+        echo -e "${RED}✗ (network error)${NC}"
     fi
 done
 

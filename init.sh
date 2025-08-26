@@ -72,42 +72,52 @@ echo ""
 echo "⚡ Step 2/5: Installing slash commands..."
 BASE_URL="https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands"
 
-# URL encode Korean characters properly
+# Hybrid command mapping: Korean -> English (GitHub-safe)
 declare -A commands=(
-    ["기획"]="%EA%B8%B0%ED%9A%8D"
-    ["구현"]="%EA%B5%AC%ED%98%84"
-    ["안정화"]="%EC%95%88%EC%A0%95%ED%99%94"
-    ["검증"]="%EA%B2%80%EC%A6%9D"
-    ["배포"]="%EB%B0%B0%ED%8F%AC"
-    ["전체사이클"]="%EC%A0%84%EC%B2%B4%EC%82%AC%EC%9D%B4%ED%81%B4"
-    ["개발완료"]="%EA%B0%9C%EB%B0%9C%EC%99%84%EB%A3%8C"
-    ["품질보증"]="%ED%92%88%EC%A7%88%EB%B3%B4%EC%A6%9D"
-    ["기획구현"]="%EA%B8%B0%ED%9A%8D%EA%B5%AC%ED%98%84"
-    ["극한검증"]="%EA%B7%B9%ED%95%9C%EA%B2%80%EC%A6%9D"
-    ["컨텍스트"]="%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8"
+    ["기획"]="plan"
+    ["구현"]="implement"
+    ["안정화"]="stabilize"
+    ["검증"]="validate"
+    ["배포"]="deploy"
+    ["전체사이클"]="fullcycle"
+    ["개발완료"]="complete"
+    ["품질보증"]="quality"
+    ["기획구현"]="plandev"
+    ["극한검증"]="extreme"
+    ["컨텍스트"]="context"
+    ["분석"]="analyze"
+    ["주간보고"]="weekly"
+    ["문서정리"]="docsorg"
 )
 
 # Download each command
 DOWNLOAD_SUCCESS=true
-for cmd in "${!commands[@]}"; do
-    encoded="${commands[$cmd]}"
-    echo "  📥 Downloading /$cmd command..."
+for korean_cmd in "${!commands[@]}"; do
+    english_cmd="${commands[$korean_cmd]}"
+    echo "  📥 Downloading /$korean_cmd command..."
     
-    # Check if the response is valid (not 400/404 error)
-    RESPONSE=$(curl -sSL -w "\n%{http_code}" "$BASE_URL/$encoded.md" 2>/dev/null)
+    # Try downloading from GitHub (English filename)
+    RESPONSE=$(curl -sSL -w "\n%{http_code}" "$BASE_URL/$english_cmd.md" 2>/dev/null)
     HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
     CONTENT=$(echo "$RESPONSE" | head -n -1)
     
     if [ "$HTTP_CODE" = "200" ] && [ -n "$CONTENT" ] && ! echo "$CONTENT" | grep -q "400 Bad request"; then
-        echo "$CONTENT" > ".claude/commands/$cmd.md"
-        echo "     ✅ Downloaded"
+        # Save as Korean filename but also create English alias
+        echo "$CONTENT" > ".claude/commands/$korean_cmd.md"
+        echo "$CONTENT" > ".claude/commands/$english_cmd.md"
+        echo "     ✅ Downloaded (both /$korean_cmd and /$english_cmd available)"
     else
         # Fallback to local copy
-        if [ -f "$SCRIPT_DIR/.claude/commands/$cmd.md" ]; then
-            cp "$SCRIPT_DIR/.claude/commands/$cmd.md" ".claude/commands/$cmd.md"
-            echo "     ✅ Copied from local"
+        if [ -f "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ]; then
+            cp "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ".claude/commands/$korean_cmd.md"
+            cp "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ".claude/commands/$english_cmd.md"
+            echo "     ✅ Copied from local (both /$korean_cmd and /$english_cmd available)"
+        elif [ -f "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ]; then
+            cp "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ".claude/commands/$korean_cmd.md"
+            cp "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ".claude/commands/$english_cmd.md"
+            echo "     ✅ Copied from local (both /$korean_cmd and /$english_cmd available)"
         else
-            echo "     ⚠️  Could not install $cmd (GitHub 파일 없음 또는 네트워크 오류)"
+            echo "     ⚠️  Could not install $korean_cmd ($english_cmd)"
             DOWNLOAD_SUCCESS=false
         fi
     fi
