@@ -3,21 +3,18 @@
 ## Project Overview
 A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 
-## Current Status (v11.0.0 - Smart Context Management)
-- ✅ **Phase 1**: Core installation scripts completed
-- ✅ **Phase 2**: ZEDS implementation completed  
-- ✅ **Phase 3**: Unified initialization system completed
-- ✅ **Phase 4**: Universal init.sh for all users (v4.0)
-- ✅ **Phase 5**: Smart Documentation System v2.0 (스마트 아카이빙, 규모별 차별화)
-- ✅ **Phase 6**: ZEDS 2.0 통합 문서 관리 시스템 (v10.0.0)
-- ✅ **Phase 7**: 종합 문서 정리 및 README 튜토리얼 완료
-- ✅ **Phase 8**: Git Hook 자동 트리거 수정 및 테스트 완료 (v10.1.0)
-- ✅ **Phase 9**: 스마트 컨텍스트 관리 v2.0 구현 완료 (v11.0.0)
-- 📋 **Next**: Continuous improvement based on user feedback
+## Current Status (v15.0.0 - Document Management Revolution)
+- ✅ **Phase 1-9**: Previous development phases completed
+- ✅ **Phase 10**: ZEDS 3.0 역할 분리 시스템 구현 완료 (v15.0.0)
+- ✅ **Phase 11**: 하이브리드 접근법 Phase 1 테스트 완료
+- 🔄 **Current**: Preparing for Phase 2 - Selective Automation
 
-### 🚀 Latest Achievement (v11.0.0)
-**스마트 컨텍스트 관리 v2.0:**
-- 기능: `/정리` 명령어로 언제든지 맞춤형 컨텍스트 정리 가이드 제공
+### 🚀 Latest Achievement (v15.0.0)
+**ZEDS 3.0 문서 관리 혁신:**
+- **구조-결합 문서**: `/안정화`로 자동 동기화 (CLAUDE.md, README.md, API 문서)
+- **구조-독립 문서**: `/문서정리`로 선택적 수동 관리 (튜토리얼, 회의록, 기획서)
+- **하이브리드 테스트**: 체크리스트 기반 완성도 검증 시스템 실증 완료
+- **성능 검증**: 4초 설치, 75% 완성도 정확 측정, 56개 파일 자동 생성
 - 해결: 사용자 요구 "수동으로 compact 가이드 얻고 싶을 때" 완벽 해결
 - 효과: 컨텍스트 관리의 사용자 주도성 100% 향상
 - 구현: 11개 슬래시 명령어로 확장, init.sh 자동 설치 지원

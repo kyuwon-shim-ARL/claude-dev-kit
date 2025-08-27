@@ -1,185 +1,260 @@
-# /문서정리 - 프로젝트 문서 체계화
+📝 **Document Organization (Independent Documentation Management v3.0)**
 
-## 명령어 개요
-흩어진 문서를 프로젝트 구조와 로드맵에 맞춰 체계적으로 정리
+**🎯 Core Role**: Systematic organization of **structure-independent** documents + project-specific archiving
 
-## 사용법
+**💡 Role Separation (v15.0)**:
+- **`/stabilize`**: Structure-coupled docs (CLAUDE.md, README.md, API docs) auto-sync
+- **`/docsorg`**: Structure-independent docs (tutorials, guides, meeting notes, specs) manual organization
+
+## Usage
 ```
-/문서정리 [프로젝트명]
-/문서정리  # 현재 프로젝트 자동 감지
+/docsorg [project-name]
+/docsorg  # Auto-detect current project
 ```
 
-## Claude 실행 프로세스
+## Claude Execution Process
 
-### 1단계: 문서 수집 및 분석
+### Step 1: Independent Document Identification & Collection
+
+**🎯 Target Documents (Structure-Independent)**:
+- Tutorials, user guides, how-to documents
+- Meeting notes, planning documents, pure text files
+- Research notes, idea sketches
+- Blog posts, marketing materials
+- User feedback, interview records
+
+**⛔ Excluded (Structure-Coupled)**:
+- CLAUDE.md, README.md → Handled automatically by `/stabilize`
+- API docs, code documentation → Handled automatically by `/stabilize`
+- requirements.txt, configs → Handled automatically by `/stabilize`
+
 ```python
-def collect_documents():
-    # 프로젝트 관련 문서 검색
-    - docs/CURRENT/*
-    - docs/analysis/*
-    - *.md 파일들
-    - 테스트 보고서
-    - 분석 결과
+def collect_independent_docs():
+    # Selective collection of independent documents only
+    targets = [
+        "docs/guides/", "docs/tutorials/", "docs/meetings/",
+        "*.md (non-technical docs)", "notes/", "planning/"
+    ]
+    # Skip structure-coupled documents
+    exclude = ["CLAUDE.md", "README.md", "architecture.md"]
 ```
 
-### 2단계: 로드맵 기반 분류
+### Step 2: Content-Based Semantic Classification
+
+**📚 Independent Document Classification System**:
 ```python
-def classify_by_roadmap():
+def classify_independent_docs():
     categories = {
-        "01-hypothesis": ["기획", "가설", "배경"],
-        "02-design": ["설계", "아키텍처", "인터페이스"],
-        "03-implementation": ["구현", "코드", "개발"],
-        "04-analysis": ["분석", "결과", "통계"],
-        "05-validation": ["검증", "테스트", "품질"],
-        "06-documentation": ["문서", "보고서", "논문"]
+        "tutorials": ["tutorial", "guide", "howto"],
+        "planning": ["planning", "meeting", "idea", "brainstorm"],
+        "research": ["research", "investigation", "analysis", "benchmark"],  
+        "communication": ["presentation", "report", "feedback", "interview"],
+        "knowledge": ["learning", "summary", "reference"],
+        "archive": ["old-version", "deprecated", "legacy"]
     }
-    # 키워드와 내용 기반 자동 분류
+    # Classification based on content keywords + filename + creation date
+    # Uses semantic classification, not roadmap-based
 ```
 
-### 3단계: 프로젝트 구조 생성/정리
+### Step 3: Independent Document Archive Structure
+
+**📁 Semantic Archiving (Code-Agnostic)**:
 ```bash
-projects/{프로젝트명}/
-├── README.md           # 프로젝트 개요 (자동 생성/업데이트)
-├── roadmap.md          # 로드맵과 현재 진행상황
-├── 01-hypothesis/      
-│   └── [관련 문서 이동]
-├── 02-design/
-│   └── [관련 문서 이동]
-├── 03-implementation/
-│   └── [관련 문서 이동]
-├── 04-analysis/
-│   └── [관련 문서 이동]
-├── 05-validation/
-│   └── [관련 문서 이동]
-└── 06-documentation/
-    └── [관련 문서 이동]
+docs/projects/{project-name}/
+├── index.md            # Independent document list (auto-generated)
+├── tutorials/          # Usage guides, tutorials
+│   └── [moved tutorial documents]
+├── planning/           # Planning docs, meeting notes, ideas
+│   └── [moved planning documents] 
+├── research/           # Investigation, research, benchmark materials
+│   └── [moved research documents]
+├── communication/      # Presentations, reports, feedback
+│   └── [moved communication documents]
+├── knowledge/          # Learning notes, reference materials
+│   └── [moved knowledge documents]
+└── archive/           # Old versions, deprecated
+    └── [moved archive documents]
+
+# Note: Structure-coupled documents are NOT included here
+# CLAUDE.md, README.md etc. are handled automatically by /stabilize
 ```
 
-### 4단계: 진행 상황 분석
+### Step 4: Independent Document Statistics & Quality Analysis
+
 ```python
-def analyze_progress():
+def analyze_document_quality():
     return {
-        "completed_phases": [],
-        "current_phase": "",
-        "completion_rate": "",
-        "next_steps": [],
-        "blockers": []
+        "document_count_by_type": {
+            "tutorials": 5, "planning": 8, "research": 3
+        },
+        "outdated_documents": ["old-guide.md", "deprecated-api.md"],
+        "missing_documentation": ["user-manual", "troubleshooting"],
+        "consolidation_opportunities": ["merge 3 similar tutorials"],
+        "knowledge_gaps": ["advanced topics", "edge cases"]
     }
 ```
 
-### 5단계: 인덱스 및 상태 업데이트
+### Step 5: Independent Document Index Generation
+
+**📋 Semantic Indexing (Structure-Independent)**:
 ```markdown
-# {프로젝트명} 문서 인덱스
+# {Project Name} Independent Document Archive
 
-## 📊 진행 현황
-- 전체 진행률: 65%
-- 현재 단계: 04-analysis
-- 다음 마일스톤: 검증 시작
+## 📊 Document Status  
+- Total documents: 24
+- Last updated: 2024-08-27
+- Quality status: Good (5 outdated)
 
-## 📁 문서 구조
-### 01-hypothesis (완료)
-- initial-hypothesis.md
-- literature-review.md
+## 📁 Documents by Category
 
-### 02-design (완료)
-- experimental-design.md
-- sample-preparation.md
+### 📚 Tutorials (5 docs)
+- [User Guide v2.1](tutorials/user-guide-v2.1.md) ⭐ Latest
+- [Installation Tutorial](tutorials/installation.md)  
+- [Advanced Features Guide](tutorials/advanced-features.md) ⚠️ Needs update
 
-### 03-implementation (완료)
-- data-collection.md
-- preprocessing.md
+### 📋 Planning (8 docs)
+- [2024 Q3 Plan](planning/2024-q3-plan.md)
+- [UI Improvement Meeting](planning/ui-improvement-meeting.md)
+- [User Feedback Summary](planning/user-feedback-summary.md)
 
-### 04-analysis (진행중)
-- deg-analysis.md
-- pathway-analysis.md
+### 🔍 Research (3 docs)
+- [Competitor Analysis](research/competitor-analysis.md)
+- [Tech Stack Comparison](research/tech-stack-comparison.md)
 
-### 05-validation (대기)
-### 06-documentation (대기)
+### 💬 Communication (4 docs) 
+- [Monthly Report](communication/monthly-report.md)
+- [Customer Interview Results](communication/customer-interviews.md)
 
-## 🔗 빠른 링크
-- [최근 분석 결과](04-analysis/latest-results.md)
-- [주요 발견사항](04-analysis/key-findings.md)
-- [다음 단계 계획](roadmap.md#next-steps)
+### 🧠 Knowledge (3 docs)
+- [Development Tips](knowledge/dev-tips.md)
+- [Troubleshooting Guide](knowledge/troubleshooting.md)
+
+### 📦 Archive (1 doc)
+- [Old Version Documents](archive/) 
+
+## 🔧 Document Quality Improvement Suggestions
+- ⚠️ 5 documents need updates
+- 💡 Recommend merging 3 duplicate tutorials
+- 📝 Need to create new user manual
+
+## 🔗 Related Resources
+- Structure-coupled documents managed by `/stabilize` command
+- Code documentation: CLAUDE.md, README.md (auto-sync)
+- API documentation: /docs/api/ (code-linked)
 ```
 
-## 실제 실행 예시
+## Actual Execution Example (Independent Documents Only)
 
-### 입력:
+### Input:
 ```
-/문서정리 "RNA-seq-2024"
-```
-
-### Claude 실행:
-1. docs/ 폴더에서 RNA-seq 관련 문서 검색
-2. 각 문서의 내용과 날짜 분석
-3. projects/RNA-seq-2024/ 구조 생성
-4. 문서를 적절한 하위 폴더로 이동/복사
-5. README.md와 roadmap.md 자동 생성/업데이트
-6. 진행 상황 요약 제시
-
-### 출력:
-```
-✅ RNA-seq-2024 프로젝트 문서 정리 완료
-
-📊 정리 결과:
-- 총 23개 문서 발견
-- 6개 카테고리로 분류
-- 현재 진행률: 65% (분석 단계)
-
-📁 생성된 구조:
-projects/RNA-seq-2024/
-├── README.md (업데이트됨)
-├── roadmap.md (생성됨)
-├── 01-hypothesis/ (3개 문서)
-├── 02-design/ (4개 문서)
-├── 03-implementation/ (5개 문서)
-├── 04-analysis/ (8개 문서)
-├── 05-validation/ (1개 문서)
-└── 06-documentation/ (2개 문서)
-
-💡 다음 단계 제안:
-- 분석 결과 검증 필요
-- qPCR validation 계획 수립
-- 논문 초안 작성 시작
-
-📝 상세 내용: projects/RNA-seq-2024/README.md
+/docsorg "Claude-Dev-Kit"  
 ```
 
-## 주요 기능
+### Claude Execution:
+1. **Selective search** for independent documents only (exclude structure-coupled docs)
+2. Semantic classification of each document by content
+3. Create docs/projects/Claude-Dev-Kit/ structure  
+4. Organize documents by semantic categories
+5. Quality analysis and improvement suggestions
+6. Generate independent document index
 
-### 자동 처리
-- 문서 키워드 기반 자동 분류
-- 중복 문서 감지 및 병합
-- 버전 관리 (날짜 기반)
-- 진행률 자동 계산
+### Output:
+```
+✅ Claude-Dev-Kit independent document organization complete
 
-### 수동 확인
-- 애매한 분류는 사용자에게 확인
-- 중요 문서 우선순위 지정
-- 커스텀 카테고리 추가 가능
+📊 Organization Results:
+- 18 independent documents found (7 structure-coupled docs excluded)
+- Classified into 6 semantic categories
+- Document quality: Good (4 updates recommended)
 
-## 연계 워크플로우
+📁 Created Structure:
+docs/projects/Claude-Dev-Kit/
+├── index.md (independent document list)
+├── tutorials/ (3 documents)
+├── planning/ (6 documents) 
+├── research/ (2 documents)
+├── communication/ (4 documents)
+├── knowledge/ (2 documents)
+└── archive/ (1 document)
 
+⚠️ Structure-coupled documents managed separately:
+- CLAUDE.md, README.md → Auto-sync via `/stabilize`
+- API docs, config files → Handled by `/stabilize`
+
+🔧 Document Quality Improvement Suggestions:
+- 4 tutorials need updates
+- Recommend merging 2 duplicate guides
+- Need to create advanced usage documentation
+
+📝 Detailed list: docs/projects/Claude-Dev-Kit/index.md
+```
+
+## Core Features (Independent Documents Only)
+
+### 📋 Smart Document Identification  
+- Auto-classify structure-coupled vs structure-independent
+- Code change impact analysis for improved classification accuracy
+- Automatically exclude CLAUDE.md, API docs, etc.
+
+### 🏷️ Semantic Classification System
+- Content-based classification, not roadmap-based
+- Tutorials, planning, research, communication, knowledge, archive 
+- Comprehensive analysis of keywords + context + creation date
+
+### 🔍 Quality Management
+- Duplicate document detection and merge suggestions
+- Freshness check (outdated document identification)
+- Documentation gap analysis (missing documentation)
+
+## 🔗 Role Separation Workflow (v15.0)
+
+### **Structure-Coupled Documents**: Auto-handled by `/stabilize`
 ```bash
-# 1. 프로젝트 시작
-/프로젝트시작 "RNA-seq-2024"
-
-# 2. 개발/분석 진행
-/기획, /구현, /분석 ...
-
-# 3. 주기적 문서 정리
-/문서정리 "RNA-seq-2024"  # 매주 실행
-
-# 4. 진행 상황 보고
-/주간보고  # 전체 프로젝트 조망
+# Auto-update linked docs when code changes
+/stabilize
+# → CLAUDE.md, README.md, API docs, requirements.txt etc.
+# → Automatic sync of documents closely tied to code structure
 ```
 
-## 효과
+### **Structure-Independent Documents**: Manual management via `/docsorg`  
+```bash  
+# 1. Organize independent documents (recommended monthly)
+/docsorg "project-name"
+# → Tutorials, guides, meeting notes, planning docs etc.
+# → Content-based semantic archiving
 
-1. **체계화**: 로드맵에 따른 문서 구조
-2. **추적성**: 프로젝트 진행 상황 한눈에 파악
-3. **효율성**: 필요한 문서 빠르게 찾기
-4. **일관성**: 모든 프로젝트 동일한 구조
+# 2. Quality improvement
+# → Update outdated documents
+# → Consolidate duplicate documents
+# → Identify missing documents
+```
+
+### **Integrated Flow**:
+```bash
+# Development → Stabilize(structure-coupled) → Docs-org(structure-independent) → Complete
+/implement → /stabilize → /docsorg → /weekly
+```
+
+## ✨ Improvement Effects (v15.0)
+
+### **🎯 Clear Role Separation**:
+- **Structure-coupled**: Auto-sync on code changes (`/stabilize`)
+- **Structure-independent**: Content-based manual archiving (`/docsorg`)
+
+### **📊 Document Management Efficiency**:
+- Remove unnecessary automation (forced roadmap classification of independent docs)
+- Improved searchability through semantic classification
+- Automated quality management (duplication, freshness, gaps)
+
+### **🔄 Circular Optimization**:
+- Mutual complementarity between stabilize ↔ docsorg
+- Minimize impact of structural changes on independent documents
+- Apply optimal management methods for each document type
+
+### **🚀 User Experience**:
+- Clear command system with defined roles
+- Simultaneous achievement of structural stability and document quality
+- Elimination of unnecessary redundant work
 
 ---
-*프로젝트의 현재 위치와 다음 단계를 명확히 합니다.*
+*Optimal separated management of structure-coupled and structure-independent documents ensures both system stability and efficiency.*

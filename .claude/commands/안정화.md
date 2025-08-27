@@ -1,10 +1,12 @@
-🔧 **안정화 (Structural Sustainability Protocol v2.0)**
+🔧 **안정화 (Structure-Coupled Documentation + Sustainability v3.0)**
+
+**🎯 핵심 역할**: 코드 구조와 밀접하게 연결된 문서들의 자동 동기화 + 구조적 안정성 확보
 
 **📚 컨텍스트 자동 로딩:**
-- project_rules.md 확인 (있으면 읽기)
+- docs/specs/project_rules.md 확인 (없으면 루트에서 찾기)
 - docs/CURRENT/test-report.md 확인 (이전 테스트 결과)
 
-**패러다임 전환:** 기능 중심 → **구조적 지속가능성** 중심
+**패러다임 전환:** 기능 중심 → **구조-문서 통합 안정성** 중심
 
 **6단계 통합 검증 루프:**
 
@@ -64,12 +66,36 @@
    - 메모리 사용량, CPU 사용률, 동시 사용자 처리 능력
    - PRD에서 정의한 성능 목표 대비 실제 측정값 비교
 
-5. **Documentation Sync & Organization (ZEDS 2.0)**
+5. **Structure-Coupled Documentation Sync (핵심 확장!)**
    
-   **5.1 코드 문서화 (기존)**
-   - CLAUDE.md 반영: 변경사항 문서화
-   - README 업데이트: 사용법, 설치법 최신화
-   - .gitignore 정리: 불필요한 파일 제외 규칙 정비
+   **5.1 자동 감지 및 업데이트**
+   - 코드 구조 변경 → 연관 문서 즉시 식별
+   - API 변경 → 문서 업데이트 필요성 감지
+   - 의존성 변경 → 설치/설정 문서 수정
+   
+   **5.2 구조-결합 문서 자동 동기화**
+   - **CLAUDE.md**: 프로젝트 구조 변경 시 자동 업데이트
+   - **README.md**: 설치법, 사용법, 디렉토리 구조 동기화
+   - **architecture.md**: 코드 아키텍처와 문서 일치성 보장
+   - **API 문서**: 코드와 문서 간 불일치 자동 수정
+   - **requirements.txt/package.json**: 의존성 문서화
+   
+   **5.3 순환 검증 루프**
+   ```python
+   while True:
+       structure_changes = detect_code_changes()
+       if structure_changes:
+           update_coupled_docs(structure_changes)
+           validate_consistency()
+           if inconsistencies_found():
+               continue  # 다시 수정
+       break  # 완전 동기화 달성
+   ```
+   
+   **5.4 제외 대상 (독립 문서)**
+   - 튜토리얼, 사용자 가이드, 블로그 포스트
+   - 회의록, 기획서, 순수 텍스트 문서
+   - → 이런 문서들은 `/문서정리`에서 처리
    
    **5.2 프로젝트 문서 자동 정리 (통합)**
    - 프로젝트 감지: projects/ 폴더 확인
