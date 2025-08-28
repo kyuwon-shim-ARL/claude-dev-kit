@@ -3,21 +3,20 @@
 ## Project Overview
 A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 
-## Current Status (v15.2.0 - Repository Cleanup Command)
-- ✅ **Phase 1-11**: Previous development phases completed
-- ✅ **Phase 12**: 완성도 체크리스트 `/전체사이클` 통합 완료 (v15.1.0)
+## Current Status (v15.3.0 - Global Command Parity)
+- ✅ **Phase 1-12**: Previous development phases completed
 - ✅ **Phase 13**: `/레포정리` 독립 명령어 구현 완료 (v15.2.0)
+- ✅ **Phase 14**: 영문 명령어 완전 지원 추가 (v15.3.0)
 - 🔄 **Current**: Phase 3 준비 - Advanced Automation
 
-### 🚀 Latest Achievement (v15.2.0)
-**독립적인 레포지토리 정리 시스템:**
-- **새로운 `/레포정리`**: 30번째 슬래시 커맨드로 추가 완료
-- **3단계 정리 프로세스**: Repository Analysis → Comprehensive Cleanup → Cleanup Verification
-- **정리 전용 체크리스트**: 구조/코드/문서/의존성 각 5개씩 총 20개 검증항목
-- **로드맵 연동**: project_rules.md와 PRD 기반 전략적 정리 보장
-- **단순한 아키텍처**: `/전체사이클`과 완전 독립, Over-Engineering 회피
-- **DRY 원칙**: 기존 `/안정화` 6단계 검증 루프 재사용
-- 해결: "그냥 레포정리만 하고 싶을 때" 사용자 니즈 완벽 충족
+### 🚀 Latest Achievement (v15.3.0)
+**글로벌 명령어 완전 지원:**
+- **영문 명령어 추가**: `/repoclean`, `/plan-safe` 추가로 완전한 이중 언어 지원
+- **32개 명령어 체계**: 16개 영문 + 16개 한글 완벽 매핑
+- **글로벌 접근성**: 비한국어 사용자 및 국제 협업 프로젝트 지원
+- **시스템 호환성**: SSH, Docker, CI/CD 환경에서 안정적 작동
+- **project_rules.md 준수**: "글로벌 슬래시 명령어" 원칙 완전 구현
+- 해결: 영문 명령어 누락으로 인한 글로벌 사용성 제한 문제
 
 ### 🔧 Previous Achievement (v10.1.0)
 **Git Hook 자동 트리거 수정:**
