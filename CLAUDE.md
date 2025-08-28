@@ -3,21 +3,21 @@
 ## Project Overview
 A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 
-## Current Status (v15.0.0 - Document Management Revolution)
-- ✅ **Phase 1-9**: Previous development phases completed
-- ✅ **Phase 10**: ZEDS 3.0 역할 분리 시스템 구현 완료 (v15.0.0)
-- ✅ **Phase 11**: 하이브리드 접근법 Phase 1 테스트 완료
-- 🔄 **Current**: Preparing for Phase 2 - Selective Automation
+## Current Status (v15.2.0 - Repository Cleanup Command)
+- ✅ **Phase 1-11**: Previous development phases completed
+- ✅ **Phase 12**: 완성도 체크리스트 `/전체사이클` 통합 완료 (v15.1.0)
+- ✅ **Phase 13**: `/레포정리` 독립 명령어 구현 완료 (v15.2.0)
+- 🔄 **Current**: Phase 3 준비 - Advanced Automation
 
-### 🚀 Latest Achievement (v15.0.0)
-**ZEDS 3.0 문서 관리 혁신:**
-- **구조-결합 문서**: `/안정화`로 자동 동기화 (CLAUDE.md, README.md, API 문서)
-- **구조-독립 문서**: `/문서정리`로 선택적 수동 관리 (튜토리얼, 회의록, 기획서)
-- **하이브리드 테스트**: 체크리스트 기반 완성도 검증 시스템 실증 완료
-- **성능 검증**: 4초 설치, 75% 완성도 정확 측정, 56개 파일 자동 생성
-- 해결: 사용자 요구 "수동으로 compact 가이드 얻고 싶을 때" 완벽 해결
-- 효과: 컨텍스트 관리의 사용자 주도성 100% 향상
-- 구현: 11개 슬래시 명령어로 확장, init.sh 자동 설치 지원
+### 🚀 Latest Achievement (v15.2.0)
+**독립적인 레포지토리 정리 시스템:**
+- **새로운 `/레포정리`**: 30번째 슬래시 커맨드로 추가 완료
+- **3단계 정리 프로세스**: Repository Analysis → Comprehensive Cleanup → Cleanup Verification
+- **정리 전용 체크리스트**: 구조/코드/문서/의존성 각 5개씩 총 20개 검증항목
+- **로드맵 연동**: project_rules.md와 PRD 기반 전략적 정리 보장
+- **단순한 아키텍처**: `/전체사이클`과 완전 독립, Over-Engineering 회피
+- **DRY 원칙**: 기존 `/안정화` 6단계 검증 루프 재사용
+- 해결: "그냥 레포정리만 하고 싶을 때" 사용자 니즈 완벽 충족
 
 ### 🔧 Previous Achievement (v10.1.0)
 **Git Hook 자동 트리거 수정:**
