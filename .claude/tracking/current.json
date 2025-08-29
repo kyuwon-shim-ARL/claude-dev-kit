@@ -1,0 +1,22 @@
+{
+  "id": "tr-20250829101922-88de13",
+  "timestamp": "2025-08-29T10:19:22.278286",
+  "command": "\ubb38\uc11c\uc815\ub9ac",
+  "parameters": [
+    "--with-timeline"
+  ],
+  "git": {
+    "commit": "2eb1f644",
+    "branch": "main",
+    "author": "kyuwon.shim@ip-korea.org"
+  },
+  "changes": {
+    "files_modified": 2,
+    "lines_added": 46,
+    "lines_removed": 1
+  },
+  "generated": {
+    "reports": [],
+    "metadata": []
+  }
+}

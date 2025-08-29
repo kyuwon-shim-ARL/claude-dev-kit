@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "entries": [
+    {
+      "id": "tr-20250829101921-ed29e3",
+      "timestamp": "2025-08-29T10:19:21.267073",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "2eb1f644",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 46,
+        "lines_removed": 1
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250829101922-88de13",
+      "timestamp": "2025-08-29T10:19:22.278286",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "2eb1f644",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 46,
+        "lines_removed": 1
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    }
+  ]
+}
