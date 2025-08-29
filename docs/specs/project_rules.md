@@ -1,8 +1,9 @@
 # claude-dev-kit Project Rules
 
 ## 🎯 Core Philosophy
+- **TADD-First Development**: 테스트 우선 작성이 기본값, Mock 사용률 20% 이하 필수
 - **중앙화된 프롬프트 관리**: prompts/api.json이 Single Source of Truth
-- **Mock 테스트 금지**: 실제 사용자 시나리오 검증 필수
+- **실제 검증 원칙**: Mock 테스트 금지, 실제 사용자 시나리오 검증 필수
 - **워크플로우 기반 개발**: /전체사이클 중심의 체계적 진행
 - **Zero-Effort Documentation**: 슬래시 커맨드 사용만으로 자동 문서화
 
@@ -11,6 +12,13 @@
 - **4단계 워크플로우**: 기획 → 구현 → 안정화 → 배포
 - **글로벌 슬래시 명령어**: 10개 명령어 표준화 (개별 5개 + 조합 5개)
 - **3층 문서화 구조**: project_rules.md / docs/CURRENT/ / sessions/
+
+## 🧪 TADD (Test-AI-Driven Development) Standards
+- **기본 워크플로우**: 인터페이스 정의 → 테스트 작성 → 구현 (3단계 필수)
+- **테스트 우선 원칙**: 모든 새 코드는 테스트가 먼저 작성되어야 함
+- **Mock 최소화**: 실제 로직 검증 우선, Mock 사용률 20% 이하 필수
+- **테스트 = 명세**: 테스트 코드가 가장 정확한 문서 역할
+- **레거시 모드**: `--legacy` 플래그로만 TADD 우회 가능 (비권장)
 
 ## 🔧 Development Standards
 - **배포 정의**: 배포 = 커밋 + 푸시 + 태깅 + 검증
