@@ -46,6 +46,276 @@
         "metadata": []
       },
       "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250829105831-372a8f",
+      "timestamp": "2025-08-29T10:58:31.283915",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 1,
+        "lines_added": 230,
+        "lines_removed": 10
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-125df3",
+      "timestamp": "2025-08-29T10:58:31.292854",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 296,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-9b1dc7",
+      "timestamp": "2025-08-29T10:58:31.302180",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 350,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-939db6",
+      "timestamp": "2025-08-29T10:58:31.310854",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 404,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-c65d78",
+      "timestamp": "2025-08-29T10:58:31.319193",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 458,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-560aa5",
+      "timestamp": "2025-08-29T10:58:31.327441",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 512,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-fb2b08",
+      "timestamp": "2025-08-29T10:58:31.335694",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 566,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-50853b",
+      "timestamp": "2025-08-29T10:58:31.344105",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 620,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-9e530b",
+      "timestamp": "2025-08-29T10:58:31.352320",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 674,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
+    },
+    {
+      "id": "tr-20250829105831-2d4042",
+      "timestamp": "2025-08-29T10:58:31.360415",
+      "command": "test_command",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "13bb52f2",
+        "branch": "main",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 728,
+        "lines_removed": 18
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 100
     }
   ]
 }

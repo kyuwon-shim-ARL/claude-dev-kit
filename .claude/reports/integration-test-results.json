@@ -1,0 +1,94 @@
+{
+  "summary": {
+    "total_tests": 14,
+    "passed": 14,
+    "success_rate": 100.0,
+    "timestamp": "2025-08-29T10:58:31.369095"
+  },
+  "results": [
+    {
+      "test": "v16_no_param",
+      "success": true,
+      "message": "No tracking by default: default behavior (v16.0 - opt-in only)",
+      "timestamp": "2025-08-29T10:58:31.279894"
+    },
+    {
+      "test": "v16_explicit_track",
+      "success": true,
+      "message": "Explicit tracking: explicit --track parameter",
+      "timestamp": "2025-08-29T10:58:31.279913"
+    },
+    {
+      "test": "v16_force_track",
+      "success": true,
+      "message": "Force tracking: programmatic force_track=True",
+      "timestamp": "2025-08-29T10:58:31.279918"
+    },
+    {
+      "test": "v17_git_detection",
+      "success": true,
+      "message": "Git auto-detection: Git repository detected",
+      "timestamp": "2025-08-29T10:58:31.283171"
+    },
+    {
+      "test": "v17_env_variable",
+      "success": true,
+      "message": "Environment variable: environment variable CLAUDE_TRACK_CHANGES=true",
+      "timestamp": "2025-08-29T10:58:31.283197"
+    },
+    {
+      "test": "v17_explicit_disable",
+      "success": true,
+      "message": "Explicit disable: explicit --no-track parameter",
+      "timestamp": "2025-08-29T10:58:31.283205"
+    },
+    {
+      "test": "v18_default_tracking",
+      "success": true,
+      "message": "Default tracking: default behavior (v18.0 - full integration)",
+      "timestamp": "2025-08-29T10:58:31.283213"
+    },
+    {
+      "test": "v18_legacy_mode",
+      "success": true,
+      "message": "Legacy mode: explicit disable parameter",
+      "timestamp": "2025-08-29T10:58:31.283216"
+    },
+    {
+      "test": "v18_no_track",
+      "success": true,
+      "message": "No-track parameter: explicit disable parameter",
+      "timestamp": "2025-08-29T10:58:31.283218"
+    },
+    {
+      "test": "v18_env_disable",
+      "success": true,
+      "message": "Environment disable: environment variable CLAUDE_TRACK_CHANGES=false",
+      "timestamp": "2025-08-29T10:58:31.283226"
+    },
+    {
+      "test": "analytics_structure",
+      "success": true,
+      "message": "Analytics keys present: True",
+      "timestamp": "2025-08-29T10:58:31.283629"
+    },
+    {
+      "test": "advanced_reporting",
+      "success": true,
+      "message": "Enhanced report generated: True",
+      "timestamp": "2025-08-29T10:58:31.283900"
+    },
+    {
+      "test": "performance_tracking",
+      "success": true,
+      "message": "Avg tracking time: 8.5ms (target: <200ms)",
+      "timestamp": "2025-08-29T10:58:31.368579"
+    },
+    {
+      "test": "performance_reporting",
+      "success": true,
+      "message": "Report generation: 0.4ms (target: <3000ms)",
+      "timestamp": "2025-08-29T10:58:31.368970"
+    }
+  ]
+}

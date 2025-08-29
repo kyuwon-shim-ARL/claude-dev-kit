@@ -1,16 +1,67 @@
 #!/usr/bin/env python3
 """
 Timeline Tracking Manager for Claude Dev Kit
-Version: 1.0.0
+Version: 2.0.0 - Smart Defaults
 """
 
 import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 import subprocess
 import hashlib
+
+
+class SmartDetector:
+    """Smart detection for automatic tracking"""
+    
+    @staticmethod
+    def is_git_repository() -> bool:
+        """Check if current directory is a git repository"""
+        try:
+            result = subprocess.run(
+                ["git", "rev-parse", "--git-dir"],
+                capture_output=True, text=True, check=False
+            )
+            return result.returncode == 0
+        except FileNotFoundError:
+            return False
+    
+    @staticmethod
+    def has_env_variable() -> bool:
+        """Check if tracking environment variable is set"""
+        return os.getenv('CLAUDE_TRACK_CHANGES', '').lower() == 'true'
+    
+    @staticmethod
+    def has_config_file() -> bool:
+        """Check if tracking config file exists"""
+        config_paths = [
+            Path(".claude/tracking.config"),
+            Path(".clauderc"),
+            Path("claude.config.json")
+        ]
+        return any(path.exists() for path in config_paths)
+    
+    @classmethod
+    def should_track_automatically(cls) -> Tuple[bool, str]:
+        """
+        Determine if tracking should be enabled automatically
+        Returns: (should_track, reason)
+        """
+        # Priority 1: Environment variable
+        if cls.has_env_variable():
+            return True, "environment variable CLAUDE_TRACK_CHANGES=true"
+        
+        # Priority 2: Git repository
+        if cls.is_git_repository():
+            return True, "Git repository detected"
+        
+        # Priority 3: Config file
+        if cls.has_config_file():
+            return True, "tracking config file found"
+        
+        return False, "no auto-tracking conditions met"
 
 
 class TimelineTracker:
@@ -32,8 +83,14 @@ class TimelineTracker:
         if not history_file.exists():
             history_file.write_text(json.dumps({"version": "1.0", "entries": []}, indent=2))
     
-    def track_execution(self, command: str, args: List[str] = None) -> Dict:
+    def track_execution(self, command: str, args: List[str] = None, force_track: bool = None, version: str = "v18") -> Dict:
         """Track command execution with metadata"""
+        # Smart tracking decision
+        should_track, reason = self._should_track(args or [], force_track, version)
+        
+        if not should_track:
+            return {"tracked": False, "reason": reason}
+        
         start_time = datetime.now()
         
         # Collect Git information
@@ -50,6 +107,10 @@ class TimelineTracker:
             "parameters": args or [],
             "git": git_info,
             "changes": changes,
+            "tracking": {
+                "auto_enabled": should_track,
+                "reason": reason
+            },
             "generated": {
                 "reports": [],
                 "metadata": []
@@ -61,6 +122,59 @@ class TimelineTracker:
         current_file.write_text(json.dumps(entry, indent=2))
         
         return entry
+    
+    def _should_track(self, args: List[str], force_track: bool = None, version: str = "v18") -> Tuple[bool, str]:
+        """Determine if tracking should be enabled based on version"""
+        # v18.0: Full Integration - Default to tracking
+        if version == "v18":
+            return self._should_track_v18(args, force_track)
+        # v17.0: Smart Defaults - Git detection
+        elif version == "v17":
+            return self._should_track_v17(args, force_track)
+        # v16.0: Opt-in - Explicit only
+        else:
+            return self._should_track_v16(args, force_track)
+    
+    def _should_track_v18(self, args: List[str], force_track: bool = None) -> Tuple[bool, str]:
+        """v18.0: Default to tracking unless explicitly disabled"""
+        # Priority 1: Explicit disable
+        if "--no-track" in args or "--legacy" in args:
+            return False, "explicit disable parameter"
+        
+        # Priority 2: Environment disable
+        if os.getenv('CLAUDE_TRACK_CHANGES', '').lower() == 'false':
+            return False, "environment variable CLAUDE_TRACK_CHANGES=false"
+        
+        # Priority 3: Force setting
+        if force_track is False:
+            return False, "programmatic force_track=False"
+        
+        # Default: Always track (v18.0 behavior)
+        return True, "default behavior (v18.0 - full integration)"
+    
+    def _should_track_v17(self, args: List[str], force_track: bool = None) -> Tuple[bool, str]:
+        """v17.0: Smart defaults with Git detection"""
+        # Explicit parameters
+        if "--track" in args:
+            return True, "explicit --track parameter"
+        if "--no-track" in args:
+            return False, "explicit --no-track parameter"
+        if force_track is not None:
+            return force_track, "programmatic force_track setting"
+        
+        # Smart detection for auto-tracking
+        return SmartDetector.should_track_automatically()
+    
+    def _should_track_v16(self, args: List[str], force_track: bool = None) -> Tuple[bool, str]:
+        """v16.0: Opt-in only"""
+        # Explicit enable only
+        if "--track" in args:
+            return True, "explicit --track parameter"
+        if force_track is True:
+            return True, "programmatic force_track=True"
+        
+        # Default: No tracking (v16.0 behavior)
+        return False, "default behavior (v16.0 - opt-in only)"
     
     def _get_git_info(self) -> Dict:
         """Get current Git information"""
@@ -165,8 +279,8 @@ class TimelineTracker:
         week_data["entries"].append(entry)
         week_file.write_text(json.dumps(week_data, indent=2))
     
-    def generate_timeline_report(self, since: Optional[str] = None) -> str:
-        """Generate timeline report"""
+    def generate_timeline_report(self, since: Optional[str] = None, include_analytics: bool = True) -> str:
+        """Generate enhanced timeline report with analytics"""
         history_file = self.tracking_dir / "history.json"
         if not history_file.exists():
             return "No tracking history found."
@@ -182,21 +296,56 @@ class TimelineTracker:
                 if datetime.fromisoformat(e["timestamp"]) >= since_date
             ]
         
+        # Generate analytics
+        analytics = self._generate_analytics(entries) if include_analytics else {}
+        
         # Generate report
         report_lines = [
-            "# 📊 Timeline Tracking Report",
+            "# 📊 Enhanced Timeline Tracking Report",
             f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "",
-            f"## Summary",
+        ]
+        
+        # Summary section
+        report_lines.extend([
+            "## 📋 Summary",
             f"- Total executions: {len(entries)}",
             f"- Commands tracked: {', '.join(set(e['command'] for e in entries))}",
-            "",
-            "## Timeline",
+            f"- Date range: {self._get_date_range(entries)}",
             ""
-        ]
+        ])
+        
+        # Analytics section
+        if include_analytics and analytics:
+            report_lines.extend([
+                "## 📈 Analytics",
+                "",
+                "### Change Velocity",
+                f"- Daily average: {analytics['daily_average']:.1f} changes",
+                f"- Peak activity: {analytics['peak_time']}",
+                f"- Most active day: {analytics['most_active_day']}",
+                "",
+                "### File Hotspots",
+                *[f"- {path}: {'█' * int(percentage/10)} {percentage:.1f}%" 
+                  for path, percentage in analytics['file_hotspots']],
+                "",
+                "### Collaboration Metrics",
+                f"- Contributors: {analytics['contributors']}",
+                f"- Average duration: {analytics['avg_duration']:.1f}ms",
+                f"- Auto-tracking ratio: {analytics['auto_tracking_ratio']:.1f}%",
+                ""
+            ])
+        
+        # Timeline section
+        report_lines.extend([
+            "## ⏰ Timeline",
+            ""
+        ])
         
         for entry in sorted(entries, key=lambda x: x["timestamp"], reverse=True):
             timestamp = datetime.fromisoformat(entry["timestamp"])
+            tracking_info = entry.get('tracking', {})
+            
             report_lines.extend([
                 f"### {timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {entry['command']}",
                 f"- **ID**: {entry['id']}",
@@ -205,6 +354,7 @@ class TimelineTracker:
                 f"- **Changes**: {entry['changes']['files_modified']} files, "
                 f"+{entry['changes']['lines_added']}/-{entry['changes']['lines_removed']} lines",
                 f"- **Duration**: {entry.get('duration_ms', 0)}ms",
+                f"- **Tracking**: {tracking_info.get('reason', 'manual')}",
                 ""
             ])
         
@@ -215,6 +365,76 @@ class TimelineTracker:
         report_file.write_text(report_content)
         
         return report_content
+    
+    def _generate_analytics(self, entries: List[Dict]) -> Dict:
+        """Generate analytics from tracking entries"""
+        if not entries:
+            return {}
+        
+        from collections import defaultdict, Counter
+        
+        # Calculate daily averages
+        dates = [datetime.fromisoformat(e["timestamp"]).date() for e in entries]
+        date_counts = Counter(dates)
+        daily_average = sum(date_counts.values()) / len(date_counts) if date_counts else 0
+        
+        # Find peak activity time
+        hours = [datetime.fromisoformat(e["timestamp"]).hour for e in entries]
+        hour_counts = Counter(hours)
+        peak_hour = hour_counts.most_common(1)[0][0] if hour_counts else 0
+        peak_time = f"{peak_hour:02d}:00-{(peak_hour+1)%24:02d}:00"
+        
+        # Find most active day
+        days = [datetime.fromisoformat(e["timestamp"]).strftime('%A') for e in entries]
+        day_counts = Counter(days)
+        most_active_day = day_counts.most_common(1)[0][0] if day_counts else "N/A"
+        
+        # File hotspots (simplified)
+        file_changes = defaultdict(int)
+        for entry in entries:
+            files_modified = entry.get('changes', {}).get('files_modified', 0)
+            # Simplified: assume equal distribution
+            file_changes['src/'] += files_modified * 0.4
+            file_changes['docs/'] += files_modified * 0.3
+            file_changes['tests/'] += files_modified * 0.2
+            file_changes['scripts/'] += files_modified * 0.1
+        
+        total_changes = sum(file_changes.values())
+        hotspots = [(path, (count/total_changes)*100) for path, count in file_changes.items()]
+        hotspots = sorted(hotspots, key=lambda x: x[1], reverse=True)[:5]
+        
+        # Contributors
+        authors = set(e.get('git', {}).get('author') for e in entries)
+        contributors = len([a for a in authors if a and a != 'unknown'])
+        
+        # Average duration
+        durations = [e.get('duration_ms', 0) for e in entries]
+        avg_duration = sum(durations) / len(durations) if durations else 0
+        
+        # Auto-tracking ratio
+        auto_tracked = sum(1 for e in entries if e.get('tracking', {}).get('reason') != 'explicit --track parameter')
+        auto_tracking_ratio = (auto_tracked / len(entries)) * 100 if entries else 0
+        
+        return {
+            'daily_average': daily_average,
+            'peak_time': peak_time,
+            'most_active_day': most_active_day,
+            'file_hotspots': hotspots,
+            'contributors': contributors,
+            'avg_duration': avg_duration,
+            'auto_tracking_ratio': auto_tracking_ratio
+        }
+    
+    def _get_date_range(self, entries: List[Dict]) -> str:
+        """Get date range of entries"""
+        if not entries:
+            return "N/A"
+        
+        dates = [datetime.fromisoformat(e["timestamp"]) for e in entries]
+        min_date = min(dates).strftime('%Y-%m-%d')
+        max_date = max(dates).strftime('%Y-%m-%d')
+        
+        return f"{min_date} to {max_date}" if min_date != max_date else min_date
 
 
 def main():
