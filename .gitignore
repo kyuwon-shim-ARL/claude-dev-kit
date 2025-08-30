@@ -58,6 +58,10 @@ temp/
 *.backup/
 .claude/commands.backup*/
 
+# Legacy/Archive
+archive/
+prompts/
+
 # Test coverage
 .coverage
 htmlcov/

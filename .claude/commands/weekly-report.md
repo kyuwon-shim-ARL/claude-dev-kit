@@ -257,7 +257,7 @@ def generate_pyramid_report(date, analysis, action_items):
 ```
 
 ### Claude Execution:
-1. **Git Data Collection**: Analyze last 2 weeks commit history
+1. **Git Data Collection**: Analyze last 1 week commit history
 2. **MECE Performance Classification**: Measure performance by strategic-tactical-operational levels  
 3. **Pyramid Structure Analysis**: Core insight → Detailed analysis → Action items
 4. **Start/Stop/Continue**: Specific improvement directions in Scrum style

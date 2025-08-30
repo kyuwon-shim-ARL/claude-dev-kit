@@ -45,8 +45,9 @@ declare -A COMMAND_MAPPING=(
     ["극한검증"]="extreme"
     ["컨텍스트"]="context"
     ["분석"]="analyze"
-    ["주간보고"]="weekly"
+    ["주간보고"]="weekly-report"
     ["문서정리"]="docsorg"
+    ["레포정리"]="repoclean"
 )
 
 # 명령어 다운로드 (하이브리드 방식)
@@ -58,15 +59,15 @@ for korean_cmd in "${!COMMAND_MAPPING[@]}"; do
     # Download from GitHub (English filename)
     if curl -s -o ".tmp_download" "$BASE_URL/$english_cmd.md"; then
         # Check if it's a valid file (not error page)
-        if ! grep -q "400 Bad request" ".tmp_download" && [ -s ".tmp_download" ]; then
-            # Create both Korean and English versions
+        if ! grep -q "400 Bad request" ".tmp_download" && ! grep -q "404: Not Found" ".tmp_download" && [ -s ".tmp_download" ]; then
+            # Force update: always overwrite existing files
             cp ".tmp_download" ".claude/commands/$korean_cmd.md"
             cp ".tmp_download" ".claude/commands/$english_cmd.md"
             rm -f ".tmp_download"
-            echo -e "${GREEN}✓ (both /$korean_cmd and /$english_cmd)${NC}"
+            echo -e "${GREEN}✓ (updated /$korean_cmd and /$english_cmd)${NC}"
         else
             rm -f ".tmp_download"
-            echo -e "${RED}✗ (GitHub file corrupted)${NC}"
+            echo -e "${RED}✗ (file not found or corrupted)${NC}"
         fi
     else
         echo -e "${RED}✗ (network error)${NC}"
