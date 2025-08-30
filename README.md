@@ -70,6 +70,24 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
   - **구조-독립 문서**: `/문서정리`로 **수동 아카이빙** (튜토리얼, 회의록, 기획서)
 - **순환 검증 루프**: 코드 변경 ↔ 문서 업데이트 자동 수렴
 
+## 🚀 TADD Enforcement System (v24)
+
+### 진정한 Test-AI-Driven Development 강제
+```bash
+# 로컬에서 TADD 검증
+./scripts/quick_tadd_check.sh
+
+# 상세 검증
+python scripts/verify_tadd_order.py   # 테스트-코드 순서 확인
+python scripts/detect_mock_usage.py   # Mock 사용률 분석
+
+# GitHub Actions 자동 강제
+- ✅ 테스트가 구현보다 먼저 작성되었는지 검증
+- ✅ Mock 사용률 20% 이하 강제
+- ✅ 테스트 커버리지 80% 이상 필수
+- ❌ 위반 시 PR 자동 차단
+```
+
 ## 📁 프로젝트 구조
 
 ```
@@ -77,6 +95,12 @@ claude-dev-kit/
 ├── init.sh                 # 🆕 Universal 설치 (권장)
 ├── install.sh              # 슬래시 명령어만 설치
 ├── install-web.sh          # 웹 확장 설치
+├── .github/workflows/      # 🆕 TADD 강제 CI/CD
+│   └── tadd-enforcement.yml
+├── scripts/                # 개발 도구
+│   ├── verify_tadd_order.py    # TADD 순서 검증
+│   ├── detect_mock_usage.py    # Mock 사용 분석
+│   └── quick_tadd_check.sh     # 빠른 로컬 검증
 ├── docs/
 │   ├── guides/             # 개발 가이드
 │   └── templates/          # 문서 템플릿
