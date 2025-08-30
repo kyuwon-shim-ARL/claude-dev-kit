@@ -48,6 +48,7 @@ declare -A COMMAND_MAPPING=(
     ["주간보고"]="weekly-report"
     ["문서정리"]="docsorg"
     ["레포정리"]="repoclean"
+    ["세션마감"]="session-closure"
 )
 
 # 명령어 다운로드 (하이브리드 방식)

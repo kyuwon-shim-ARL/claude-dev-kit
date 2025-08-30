@@ -87,6 +87,8 @@ declare -A commands=(
     ["분석"]="analyze"
     ["주간보고"]="weekly"
     ["문서정리"]="docsorg"
+    ["레포정리"]="repoclean"
+    ["세션마감"]="session-closure"
 )
 
 # Download each command
