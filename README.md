@@ -1,325 +1,240 @@
-# 🎯 Claude Code Development Kit
+# 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
-효율적인 Claude Code 개발 워크플로우를 위한 템플릿과 도구 모음입니다.
+[![Version](https://img.shields.io/badge/version-v24.0-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+[![TADD](https://img.shields.io/badge/TADD-Enforced-green)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/blob/main/.github/workflows/tadd-enforcement.yml)
+[![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
+
+**프롬프트 기반 개발과 엔터프라이즈 CI/CD를 완벽하게 통합한 AI-Native 개발 도구**
+
+## 🚀 핵심 혁신: TADD Enforcement System (v24)
+
+### 진정한 Test-AI-Driven Development
+```mermaid
+graph LR
+    A[프롬프트] --> B[테스트 생성]
+    B --> C[GitHub Actions]
+    C --> D[강제 검증]
+    D --> E[PR 차단/승인]
+```
+
+- **시스템적 강제**: AI도 회피 불가능한 품질 보증
+- **자동 검증**: 테스트-코드 순서, Mock 사용률, 커버리지
+- **즉각 피드백**: PR 코멘트로 상세 가이드 제공
 
 ## ⚡ 30초 설치
 
-### 🚀 Universal 설치 (Git 유무 자동 감지)
 ```bash
-# 새 프로젝트 또는 기존 프로젝트 모두 지원
-cd my-project
+# Universal 설치 (Git 유무 자동 감지)
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh | bash
 
-# 또는 직접 다운로드 후 실행
+# 또는 직접 다운로드
 wget https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh
 chmod +x init.sh
 ./init.sh "프로젝트명" "프로젝트 설명"
 ```
 
-**🌟 스마트 설치 특징:**
-- ✅ **Git 자동 감지**: 있으면 전체 기능 (hooks, push, tag)
-- ✅ **Git 없어도 OK**: 완벽 작동 (로컬 백업)
-- ✅ **제로 에러**: 비개발자도 에러 없이 자동 설치
-- ✅ **30초 완료**: 복잡한 설정 없이 바로 사용 가능
+## 🎯 TADD 로컬 검증
 
-### 웹 개발 확장 (선택사항)
 ```bash
-# 기본 설치 후 웹 스택 추가 (Playwright + FastAPI + uv)
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install-web.sh | bash
-```
-
-## 🔥 핵심 기능
-
-### 🆕 v15.2.0 레포지토리 정리 전용 명령어 (2024.08.28) 
-- **새로운 `/레포정리`**: 독립적인 레포지토리 종합 정리 명령어
-- **3단계 정리 프로세스**: Repository Analysis → Cleanup → Verification
-- **20개 항목 체크리스트**: 구조/코드/문서/의존성 정리율 정량 측정
-- **로드맵 연동**: project_rules.md와 PRD 기반 전략적 정리
-- **단순함**: `/전체사이클`과 독립적, 복잡성 없는 명확한 목적
-
-### ✅ 4단계 핵심 워크플로우 (ZEDS 3.0 - 역할 분리)
-- **/기획**: 구조화된 탐색-계획 루프 + 요구사항 분석
-- **/구현**: DRY 원칙 기반 구현 + 단위 테스트
-- **/안정화**: 구조적 지속가능성 + **구조-결합 문서 자동 동기화** ⭐ **v15.0 개선**
-- **/배포**: 최종 검증 + 자동 배포 + 버전 태깅
-
-### 🛠️ 보조 명령어 (필요시 개별 사용)
-- **/컨텍스트**: 스마트 컨텍스트 관리 - 언제든지 맞춤형 정리 가이드 
-- **/분석**: 분석 수행 및 자동 저장 (docs/analysis/)
-- **/문서정리**: **구조-독립 문서 전용 정리** (월 1회 권장) ⭐ **v15.0 역할 분리**
-- **/주간보고**: 전체 프로젝트 진행 상황 종합 보고
-- **/검증**: 심화 테스트 및 품질 보증
-- **/전체사이클**: 기획→구현→안정화→배포 완전 자동화
-- **/개발완료**: 구현→안정화→배포
-- **/품질보증**: 안정화→배포
-- **/기획구현**: 기획→구현
-- **/극한검증**: 자동 반복 개선 until 수렴
-
-### 🌐 웹 개발 확장
-- **Playwright**: E2E 테스트 + 웹 자동화
-- **FastAPI**: 고성능 웹 API 프레임워크  
-- **uv**: 초고속 Python 패키지 관리
-- **웹 기반 프레젠테이션**: reveal.js 통합
-
-### 🤖 ZEDS 3.0 혁신적 문서 관리 (v15.0 역할 분리)
-- **docs/specs/project_rules.md**: 프로젝트 헌법 (수동 관리)
-- **CLAUDE.md**: 실시간 코드 지도 (자동 업데이트)
-- **Git Hook**: 커밋시 자동 컨텍스트 갱신
-- **🔄 이중 문서 관리 체계**:
-  - **구조-결합 문서**: `/안정화`로 **자동 동기화** (CLAUDE.md, README.md, API문서)
-  - **구조-독립 문서**: `/문서정리`로 **수동 아카이빙** (튜토리얼, 회의록, 기획서)
-- **순환 검증 루프**: 코드 변경 ↔ 문서 업데이트 자동 수렴
-
-## 🚀 TADD Enforcement System (v24)
-
-### 진정한 Test-AI-Driven Development 강제
-```bash
-# 로컬에서 TADD 검증
+# 빠른 검증 (추천)
 ./scripts/quick_tadd_check.sh
 
-# 상세 검증
-python scripts/verify_tadd_order.py   # 테스트-코드 순서 확인
+# 상세 분석
+python scripts/verify_tadd_order.py   # 테스트-코드 순서
 python scripts/detect_mock_usage.py   # Mock 사용률 분석
-
-# GitHub Actions 자동 강제
-- ✅ 테스트가 구현보다 먼저 작성되었는지 검증
-- ✅ Mock 사용률 20% 이하 강제
-- ✅ 테스트 커버리지 80% 이상 필수
-- ❌ 위반 시 PR 자동 차단
 ```
 
-## 📁 프로젝트 구조
+## 🤖 슬래시 명령어 (v24 기준)
+
+### 핵심 워크플로우
+| 명령어 | 설명 | TADD 통합 |
+|--------|------|-----------|
+| `/기획` | 구조화된 탐색-계획 루프 | PRD 기반 테스트 시나리오 |
+| `/구현` | DRY 원칙 구현 | **테스트 먼저 작성 강제** |
+| `/안정화` | 구조적 지속가능성 | Mock < 20% 검증 |
+| `/배포` | 자동 배포 + 검증 | 품질 게이트 통과 필수 |
+
+### 통합 명령어
+- `/전체사이클`: 기획→구현→안정화→배포 (TADD 전 과정)
+- `/개발완료`: 구현→안정화→배포
+- `/품질보증`: 안정화→배포
+
+### 보조 도구
+- `/주간보고`: Git 기반 성과 측정
+- `/레포정리`: 구조/코드/문서 종합 정리
+- `/문서정리`: 프로젝트 문서 아카이빙
+
+## 📊 GitHub Actions 자동 강제
+
+### PR 머지 전 필수 체크
+```yaml
+✅ Test-First Development   # 테스트가 먼저 작성되었는가?
+✅ Mock Usage < 20%         # 실제 테스트인가?
+✅ Coverage >= 80%          # 충분한 커버리지인가?
+✅ All Tests Pass           # 모든 테스트 통과했는가?
+```
+
+### 실패 시 자동 피드백
+```markdown
+❌ TADD Violation Detected
+
+Tests must be written before implementation.
+Current mock usage: 45% (limit: 20%)
+
+Please fix and resubmit.
+```
+
+## 🏗️ 프로젝트 구조
 
 ```
 claude-dev-kit/
-├── init.sh                 # 🆕 Universal 설치 (권장)
-├── install.sh              # 슬래시 명령어만 설치
-├── install-web.sh          # 웹 확장 설치
-├── .github/workflows/      # 🆕 TADD 강제 CI/CD
-│   └── tadd-enforcement.yml
-├── scripts/                # 개발 도구
-│   ├── verify_tadd_order.py    # TADD 순서 검증
-│   ├── detect_mock_usage.py    # Mock 사용 분석
-│   └── quick_tadd_check.sh     # 빠른 로컬 검증
+├── .github/
+│   └── workflows/
+│       └── tadd-enforcement.yml    # TADD 강제 CI/CD
+├── scripts/
+│   ├── verify_tadd_order.py        # 순서 검증
+│   ├── detect_mock_usage.py        # Mock 분석
+│   └── quick_tadd_check.sh         # 빠른 검증
+├── .claude/
+│   └── commands/                   # 슬래시 명령어
 ├── docs/
-│   ├── guides/             # 개발 가이드
-│   └── templates/          # 문서 템플릿
-└── scripts/               # 개발 도구
+│   ├── CURRENT/                    # 현재 작업
+│   ├── guides/                     # 개발 가이드
+│   └── templates/                  # 문서 템플릿
+├── init.sh                         # Universal 설치
+├── CLAUDE.md                       # 프로젝트 문서
+└── README.md                       # 이 파일
 ```
 
-설치 후 생성되는 구조 (최적화 v14.0):
-```
-your-project/
-├── CLAUDE.md                   # 프로젝트 문서
-├── .claude/commands/          # 슬래시 명령어
-├── src/your-project/          # 핵심 구현
-│   ├── core/                 # 공통 모듈
-│   ├── models/               # 데이터 모델  
-│   └── services/             # 비즈니스 로직
-├── docs/
-│   ├── specs/                # 사양서 (영구 보관)
-│   │   ├── project_rules.md  # 프로젝트 헌법
-│   │   ├── PRD-v1.0.md      # 제품 요구사항
-│   │   ├── requirements.md  # 🤖 자동 생성
-│   │   └── architecture.md  # 🤖 자동 생성
-│   ├── CURRENT/              # 현재 작업 상태
-│   └── development/
-│       └── sessions/         # 세션 아카이브
-├── examples/                 # 사용 예제
-├── tests/                    # 테스트 코드
-└── scripts/                  # 자동화 스크립트
-```
+## 📈 성과 지표
 
-## 🚀 사용법
+### Before (프롬프트만)
+- TADD 준수: 30%
+- Mock 남발: 무제한
+- 회귀 테스트: 없음
+- AI 회피: 가능
 
-### 🎯 핵심 4단계 워크플로우 (권장)
+### After (시스템 강제)
+- TADD 준수: **100%**
+- Mock 제한: **20% 이하**
+- 회귀 테스트: **모든 PR**
+- AI 회피: **불가능**
+
+## 🔥 주요 기능
+
+### 1. TADD Enforcement (v24)
+- Git 히스토리 기반 순서 검증
+- AST 분석으로 Mock 패턴 검출
+- PR 자동 차단/승인
+- 상세 피드백 제공
+
+### 2. 슬래시 명령어 시스템
+- 4단계 개발 워크플로우
+- 프롬프트 템플릿 제공
+- 자동 문서화
+- Git 통합
+
+### 3. 시간 추적 (v18)
+- 자동 Git 감지
+- 변경 이력 추적
+- 성능 분석
+- 월별 리포트
+
+### 4. 문서 관리 (ZEDS 3.0)
+- 자동 동기화
+- 구조적 정리
+- 버전 관리
+- 아카이빙
+
+## 🚀 Quick Start Guide
+
+### 1. 새 프로젝트 시작
 ```bash
-# 1. 기획 단계
-/기획 "프로젝트 요구사항"
-# → 구조화된 탐색-계획 루프
-# → 요구사항 분석 및 작업 계획 수립
-# → docs/CURRENT/에 기획 문서 자동 생성
+mkdir my-project && cd my-project
+./init.sh "my-project" "AI-powered application"
+```
 
-# 2. 구현 단계
-/구현
-# → DRY 원칙 기반 체계적 구현
-# → 기존 코드 재사용 최우선
-# → 단위 테스트 및 기본 검증
+### 2. 개발 사이클
+```bash
+# 기획
+/기획 "사용자 인증 시스템"
 
-# 3. 안정화 단계 (ZEDS 3.0 - 구조-결합 문서 동기화!)
-/안정화
-# → 구조적 지속가능성 프로토콜
-# → 🔄 구조-결합 문서 자동 동기화 (CLAUDE.md, README.md, API문서)
-# → 📊 순환 검증 루프로 완전 일치성 보장
-# → ✅ 코드-문서 통합 품질 검증
+# 구현 (TADD 자동 적용)
+/구현 "로그인 기능"
+# → 테스트 먼저 생성
+# → CI 실패 확인
+# → 구현 코드 작성
+# → CI 성공 확인
 
-# 4. 배포 단계
+# 검증
+./scripts/quick_tadd_check.sh
+
+# 배포
 /배포
-# → 최종 검증 + Git Push
-# → 자동 버전 태깅
-# → 배포 완료 보고
 ```
 
-### ⚡ 단축 명령어 (고급 사용자)
+### 3. PR 생성
 ```bash
-/전체사이클 "요구사항"  # 1~4단계 완전 자동화
-/개발완료              # 2~4단계 (구현부터)
-/품질보증              # 3~4단계 (안정화부터)
+git checkout -b feature/login
+git add .
+git commit -m "test: Add login tests"
+git commit -m "feat: Implement login"
+git push origin feature/login
+# → GitHub Actions 자동 검증
+# → TADD 통과 시 머지 가능
 ```
 
-### 📊 보조 도구 (v15.0 역할 분리)
-```bash
-/컨텍스트             # 언제든지 맞춤형 컨텍스트 정리 가이드
-/분석 "주제"           # 분석 + 자동 저장
-/문서정리 "프로젝트명"  # ⭐ 구조-독립 문서 전용 정리 (튜토리얼, 회의록 등)
-/주간보고              # 프로젝트 현황 종합 보고
-```
+## 📚 문서
 
-**💡 문서 관리 역할 분리**:
-- **구조-결합**: `/안정화`가 자동 처리 (코드와 연결된 문서)
-- **구조-독립**: `/문서정리`로 수동 관리 (코드와 무관한 문서)
+- [CLAUDE.md](CLAUDE.md) - 프로젝트 상세 문서
+- [설치 가이드](docs/guides/installation.md)
+- [TADD 가이드](docs/guides/tadd-guide.md)
+- [슬래시 명령어](docs/guides/slash-commands.md)
+- [CI/CD 설정](docs/guides/cicd-setup.md)
 
-### 🎯 ZEDS 3.0 이중 문서 관리 시스템 (v15.0)
+## 🤝 기여하기
 
-**혁신적 역할 분리**: 구조-결합과 구조-독립 문서의 최적화된 분리 관리
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing`)
+3. **Write tests first** (`test: Add amazing tests`)
+4. Implement feature (`feat: Add amazing feature`)
+5. Run TADD check (`./scripts/quick_tadd_check.sh`)
+6. Create Pull Request
 
-#### 🔄 구조-결합 문서 (자동): `/안정화` 처리
-```bash
-# 코드 변경 시 자동 동기화되는 문서들
-CLAUDE.md           # 프로젝트 구조 및 상태
-README.md           # 설치법, 사용법  
-architecture.md     # 코드 아키텍처
-API documentation   # API 스펙과 코드 연동
-requirements.txt    # 의존성 정보
-```
+## 📊 프로젝트 상태
 
-#### 📁 구조-독립 문서 (수동): `/문서정리` 처리  
-```
-docs/projects/project-name/
-├── index.md            # 독립 문서 목록
-├── tutorials/          # 사용 가이드, 튜토리얼
-├── planning/           # 기획서, 회의록
-├── research/           # 조사 자료, 연구 노트
-├── communication/      # 발표, 보고서  
-├── knowledge/          # 학습 노트, 정리 자료
-└── archive/           # 과거 버전, deprecated
-```
+- **현재 버전**: v24.0.0
+- **최신 기능**: TADD Enforcement System
+- **테스트 커버리지**: 목표 80%
+- **Mock 사용률**: 제한 20%
+- **CI/CD**: GitHub Actions
 
-**💡 워크플로우 예시**:
-```bash
-# 개발 → 구조-결합 자동 처리 → 구조-독립 수동 정리 → 완료
-/구현 → /안정화 (자동) → /문서정리 (월1회) → /주간보고
-```
+## 🛠️ 기술 스택
 
-### 웹 개발 (확장 설치시)
-```bash
-# 개발 서버 시작
-./scripts/run-web.sh
+- **Languages**: Python, Bash, YAML
+- **CI/CD**: GitHub Actions
+- **Testing**: pytest, AST analysis
+- **Documentation**: Markdown, ZEDS 3.0
+- **Version Control**: Git, Semantic Versioning
 
-# E2E 테스트 실행  
-./scripts/test-web.sh
+## 📝 라이선스
 
-# 브라우저에서 확인
-open http://localhost:8000
-```
+MIT License - 자유롭게 사용, 수정, 배포 가능
 
-## 📚 문서 및 가이드
+## 🔗 링크
 
-### 🎓 시작하기
-- [설치 가이드](#-30초-설치): 30초 만에 설치 완료
-- [기본 사용법](#-사용법): 4단계 워크플로우 가이드
-- [ZEDS 2.0 문서 시스템](#-zeds-20-문서-관리-시스템-신규): 자동 문서 정리
+- [GitHub Repository](https://github.com/kyuwon-shim-ARL/claude-dev-kit)
+- [Releases](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+- [Issues](https://github.com/kyuwon-shim-ARL/claude-dev-kit/issues)
+- [Discussions](https://github.com/kyuwon-shim-ARL/claude-dev-kit/discussions)
 
-### 📋 개발 가이드
-- [Claude Code 개발 모범 사례](docs/guides/claude-code-best-practices.md)
-- [파일 명명 규칙](docs/guides/file-naming-standards.md)
-- [배포 가이드](docs/guides/distribute.md)
+## 🙏 감사의 말
 
-### 📝 템플릿 및 예제
-- [README 템플릿](docs/templates/README-TEMPLATE.md)
-- [프로젝트 구조 예제](docs/projects/claude-dev-kit-v10/)
-
-### 🔧 고급 설정
-- [Claude.me 웹 설정](docs/guides/claude-me-settings-minimal.md) (웹 전용 사용자)
-
-### 📊 프로젝트 문서
-- [전체 문서 구조](docs/README.md)
-- [개발 세션 로그](docs/development/sessions/)
-- [분석 결과](docs/analysis/)
-
-## 🆘 자주 묻는 질문 (FAQ)
-
-### Q: 기존 프로젝트에 설치해도 안전한가요?
-✅ **완전 안전합니다.** 기존 파일은 건드리지 않고 `.claude/` 폴더만 추가합니다.
-
-### Q: Git이 없어도 사용할 수 있나요?
-✅ **완벽하게 작동합니다.** Git 없으면 로컬 백업 시스템으로 동작합니다.
-
-### Q: 다른 프로젝트에서도 명령어를 쓸 수 있나요?
-📝 **프로젝트별 설치가 필요합니다.** 각 프로젝트마다 `init.sh` 실행 필요합니다.
-
-### Q: ZEDS 3.0 문서 관리는 어떻게 동작하나요?
-🔄 **이중 관리 체계입니다:** 
-- **구조-결합 문서**: `/안정화` 실행 시 자동 동기화 
-- **구조-독립 문서**: `/문서정리` 명령어로 필요시 수동 정리
-
-### Q: 컨텍스트가 길어졌는데 정리하고 싶다면?
-🎯 **`/컨텍스트` 명령어로 언제든지 맞춤형 가이드를 받을 수 있습니다.** ⭐ **v11.0 신규**
-
-### Q: 웹 확장을 설치해야 하나요?
-🔧 **선택사항입니다.** 웹 개발을 하는 경우에만 설치하세요.
-
-## 🔧 특수 상황 대응
-
-**⚠️ 특수 상황에서만 사용:**
-- [Claude.me 웹 설정](docs/guides/claude-me-settings-minimal.md) - claude.ai 웹 전용 사용자
-- [수동 업데이트](docs/UPDATE_GUIDE.md) - 자동 업데이트가 안 되는 경우
-- [문제 해결](docs/development/testing-reality-check.md) - 일반적인 문제 해결
-
-## 🎯 핵심 특징
-
-### 💡 개발 효율성
-- **즉시 사용**: 설치 후 바로 개발 시작 (30초 설치)
-- **검증된 워크플로우**: 실제 프로젝트에서 테스트된 4단계 개발 프로세스
-- **DRY 원칙**: 기존 코드 재사용 우선, 중복 제거
-
-### 📚 혁신적 문서 관리 (ZEDS 3.0 - v15.0)
-- **이중 관리**: 구조-결합(자동) + 구조-독립(수동) 최적 분리
-- **순환 동기화**: 코드 변경 ↔ 문서 업데이트 자동 수렴
-- **선택적 정리**: 필요한 문서만 필요한 방식으로 관리
-- **품질 보장**: 중복 제거, 최신성 유지, 격차 분석
-
-### 🚀 확장성 및 적응성
-- **프로젝트 무관**: 웹 개발부터 연구 프로젝트까지 모든 영역 지원
-- **Git 적응**: Git 있으면 풀 기능, 없어도 완벽 작동
-- **사용자 친화**: 비개발자도 쉽게 사용 가능
-- **점진적 도입**: 필요한 기능만 선택적으로 사용
-
-### 🤖 AI 협업 최적화
-- **컨텍스트 관리**: project_rules.md + CLAUDE.md 이중 구조
-- **Git Hook 자동화**: 커밋할 때마다 문서 자동 동기화
-- **지능형 프롬프트**: 각 단계별 최적화된 Claude 상호작용
-
-## 🔥 ZEDS 3.0 혁신 포인트 (v15.0)
-
-### 📈 Before vs After
-```
-📋 기존 방식 (ZEDS 2.0):
-모든 문서를 한 번에 자동 처리 → 불필요한 작업 + 분류 오류
-
-🚀 ZEDS 3.0 (역할 분리):
-구조-결합 문서 (자동) + 구조-독립 문서 (선택적 수동)
-→ 정확한 분류 + 효율적 관리 + 사용자 주도권
-```
-
-### 🎯 실제 효과  
-- **스마트 자동화**: 코드와 연결된 문서만 자동 동기화
-- **선택적 관리**: 독립 문서는 필요시에만 정리
-- **품질 향상**: 각 문서 유형에 최적화된 관리 방식
-- **사용자 주도**: 언제 무엇을 정리할지 사용자가 결정
+이 프로젝트는 Claude와의 협업으로 만들어졌습니다.
+AI-Native 개발의 미래를 함께 만들어가는 모든 개발자분들께 감사드립니다.
 
 ---
 
-**🎉 이제 어떤 프로젝트든 Claude Code와 ZEDS 3.0으로 스마트하고 체계적으로 개발하세요!**
+**"프롬프트는 권고, 시스템은 강제"** - TADD가 진정한 품질을 보증합니다.
 
-💫 **코드 문서는 자동으로, 독립 문서는 선택적으로!** 🚀
+Made with ❤️ by [Claude Dev Kit Team](https://github.com/kyuwon-shim-ARL)

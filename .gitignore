@@ -55,6 +55,8 @@ temp/
 .tmp/
 *.tmp
 *.bak
+*.backup/
+.claude/commands.backup*/
 
 # Test coverage
 .coverage
