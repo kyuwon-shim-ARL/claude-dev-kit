@@ -120,9 +120,28 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## 🔧 고급 사용법
 
-### TADD 품질 검증
+### TADD 강제 시스템 활성화 (중요!)
+
+**🚨 GitHub Actions 자동 강제 시스템:**
 ```bash
-# 로컬 빠른 체크
+# 1. GitHub에 프로젝트 푸시 (자동으로 TADD 강제 활성화)
+git remote add origin https://github.com/username/project.git
+git push -u origin main
+
+# 2. 이후 모든 PR이 자동으로 TADD 검증됨
+# → 테스트 우선 작성 안하면 PR 자동 차단
+# → Mock 20% 초과시 PR 자동 차단  
+# → 테스트 커버리지 80% 미만시 경고
+```
+
+**💡 시스템적 강제의 핵심:**
+- **AI도 회피 불가능**: GitHub Actions가 모든 PR을 자동 검증
+- **프롬프트 무시 불가**: 시스템 레벨에서 품질 강제
+- **팀 전체 적용**: 모든 개발자가 동일한 품질 기준 준수
+
+**📋 로컬 검증 (선택사항):**
+```bash
+# 빠른 체크
 ./scripts/quick_tadd_check.sh
 
 # 상세 분석

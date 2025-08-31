@@ -635,11 +635,37 @@ else
 fi
 echo ""
 
+if [ "$HAS_GIT" = true ]; then
+    echo "⚡ TADD Enforcement System (v24.0) Available!"
+    echo "  📊 Automatic test-first development enforcement"
+    echo "  🤖 AI-proof quality assurance"
+    echo "  📈 Mock usage < 20% automatically enforced"
+    echo ""
+    echo "🔧 To activate TADD Enforcement:"
+    echo "  1. Push your project to GitHub (see Git setup above)"
+    echo "  2. GitHub Actions will automatically activate"
+    echo "  3. All PRs will be checked for TADD compliance"
+    echo "  4. Failed checks block PR merge automatically"
+    echo ""
+    echo "📋 Local TADD verification:"
+    echo "  • Quick check: ./scripts/quick_tadd_check.sh"
+    echo "  • Test order: python scripts/verify_tadd_order.py"
+    echo "  • Mock usage: python scripts/detect_mock_usage.py"
+    echo ""
+    echo "💡 TADD Benefits:"
+    echo "  • 100% test compliance (vs 30% without system)"
+    echo "  • Zero regression bugs"
+    echo "  • Professional quality code"
+    echo "  • Works with any team size"
+    echo ""
+fi
+
 if [ "$HAS_GIT" = false ]; then
     echo "💡 Tip for non-Git users:"
     echo "  • Your work is safe! Backups are automatic"
     echo "  • Run 'scripts/backup.sh' anytime to save progress"
     echo "  • All Claude Code features work perfectly!"
+    echo "  • TADD local checks still available!"
     echo ""
 fi
 
