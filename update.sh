@@ -102,7 +102,84 @@ elif [ -f "docs/specs/project_rules.md" ]; then
     echo -e "${GREEN}✓ project_rules.md가 이미 docs/specs/에 있습니다${NC}"
 fi
 
-# 6. 선택적 업데이트
+# 6. GitHub Actions 업데이트 확인 (v25.3.0 신규)
+echo ""
+echo "🔍 GitHub Actions TADD 강제 시스템 확인 중..."
+
+GITHUB_ACTIONS_UPDATED=false
+TADD_SCRIPTS_UPDATED=false
+
+if [ -d ".github/workflows" ]; then
+    echo -e "${GREEN}✓ .github/workflows 디렉토리 발견${NC}"
+    
+    # TADD enforcement workflow 확인
+    if [ -f ".github/workflows/tadd-enforcement.yml" ]; then
+        echo "  📊 기존 TADD enforcement 워크플로우 발견"
+        echo "  ⚡ 최신 버전으로 업데이트하시겠습니까? (기존 파일은 백업됩니다)"
+        
+        if [ -t 0 ]; then
+            read -p "  GitHub Actions 업데이트? (y/n): " -n 1 -r
+            echo ""
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                # 백업 생성
+                cp ".github/workflows/tadd-enforcement.yml" ".github/workflows/tadd-enforcement.yml.backup.$(date +%Y%m%d_%H%M%S)"
+                echo "  📦 백업 완료"
+                
+                # 최신 버전 다운로드
+                curl -s -o ".github/workflows/tadd-enforcement.yml" \
+                    "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.github/workflows/tadd-enforcement.yml"
+                echo -e "  ${GREEN}✅ GitHub Actions 업데이트 완료${NC}"
+                GITHUB_ACTIONS_UPDATED=true
+            fi
+        fi
+    else
+        echo "  ⚠️  TADD enforcement 워크플로우가 없습니다"
+        echo "  💡 새로 설치하시겠습니까?"
+        
+        if [ -t 0 ]; then
+            read -p "  TADD 강제 시스템 설치? (y/n): " -n 1 -r
+            echo ""
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                curl -s -o ".github/workflows/tadd-enforcement.yml" \
+                    "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.github/workflows/tadd-enforcement.yml"
+                echo -e "  ${GREEN}✅ TADD 강제 시스템 설치 완료${NC}"
+                GITHUB_ACTIONS_UPDATED=true
+            fi
+        fi
+    fi
+else
+    echo "  ℹ️  .github/workflows 디렉토리가 없습니다"
+    echo "  💡 GitHub Actions를 사용하려면 GitHub에 푸시 후 자동 활성화됩니다"
+fi
+
+# TADD 검증 스크립트 업데이트
+echo ""
+echo "📋 TADD 검증 스크립트 확인 중..."
+
+# 스크립트 디렉토리 생성
+mkdir -p scripts
+
+# 각 스크립트 업데이트 또는 설치
+for script in "verify_tadd_order.py" "detect_mock_usage.py" "quick_tadd_check.sh"; do
+    if [ -f "scripts/$script" ]; then
+        echo "  ✓ scripts/$script 발견 - 최신 버전으로 업데이트"
+        cp "scripts/$script" "scripts/$script.backup.$(date +%Y%m%d_%H%M%S)"
+    else
+        echo "  + scripts/$script 새로 설치"
+    fi
+    
+    curl -s -o "scripts/$script" \
+        "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/$script"
+    
+    if [ "$script" = "quick_tadd_check.sh" ]; then
+        chmod +x "scripts/$script"
+    fi
+done
+
+echo -e "${GREEN}✅ TADD 검증 스크립트 업데이트 완료${NC}"
+TADD_SCRIPTS_UPDATED=true
+
+# 7. 선택적 업데이트
 echo ""
 echo -e "${YELLOW}📌 선택적 업데이트 항목:${NC}"
 echo ""
@@ -142,18 +219,57 @@ echo "========================================="
 echo -e "${GREEN}✅ 업데이트 완료!${NC}"
 echo "========================================="
 echo ""
-echo "📋 다음 기능이 추가되었습니다:"
-echo "  1. PRD 자동 분해 시스템 (v13.0)"
-echo "  2. docs/specs/ 통합 사양서 관리"
-echo "  3. project_rules.md 자동 마이그레이션"
-echo "  4. requirements.md, architecture.md 자동 생성"
+echo "📋 업데이트된 항목:"
+
+# 슬래시 명령어 업데이트 표시
+echo "  ✓ 슬래시 명령어 최신화"
+
+# GitHub Actions 업데이트 표시
+if [ "$GITHUB_ACTIONS_UPDATED" = true ]; then
+    echo "  ✓ GitHub Actions TADD 강제 시스템 업데이트"
+fi
+
+# TADD 스크립트 업데이트 표시
+if [ "$TADD_SCRIPTS_UPDATED" = true ]; then
+    echo "  ✓ TADD 검증 스크립트 최신화"
+fi
+
+# PRD 관련 기능
+echo "  ✓ PRD 자동 분해 시스템 (v13.0)"
+echo "  ✓ docs/specs/ 통합 사양서 관리"
 echo ""
 echo "💡 새로운 사용법:"
-echo '  1. PRD를 docs/specs/PRD-v1.0.md에 작성'
-echo '  2. /기획 실행 시 자동으로 requirements.md, architecture.md 생성'
+
+# GitHub Actions 관련 안내
+if [ "$GITHUB_ACTIONS_UPDATED" = true ]; then
+    echo "  🚀 TADD 강제 시스템:"
+    echo "     - GitHub에 푸시하면 자동으로 모든 PR 검증"
+    echo "     - 테스트 우선 작성 강제 (AI도 회피 불가)"
+    echo "     - Mock 사용률 20% 이하 자동 강제"
+    echo ""
+fi
+
+# TADD 스크립트 관련 안내
+if [ "$TADD_SCRIPTS_UPDATED" = true ]; then
+    echo "  📊 로컬 TADD 검증:"
+    echo "     - ./scripts/quick_tadd_check.sh (빠른 체크)"
+    echo "     - python scripts/verify_tadd_order.py (순서 검증)"
+    echo "     - python scripts/detect_mock_usage.py (Mock 분석)"
+    echo ""
+fi
+
+echo '  📝 PRD 기반 개발:'
+echo '     1. PRD를 docs/specs/PRD-v1.0.md에 작성'
+echo '     2. /기획 실행 시 자동으로 requirements.md, architecture.md 생성'
 echo ""
 echo "🔄 롤백이 필요한 경우:"
-echo "  cp -r $BACKUP_DIR/* .claude/commands/"
+echo "  - 슬래시 명령어: cp -r $BACKUP_DIR/* .claude/commands/"
+if [ "$GITHUB_ACTIONS_UPDATED" = true ]; then
+    echo "  - GitHub Actions: .github/workflows/*.backup.* 파일 복원"
+fi
+if [ "$TADD_SCRIPTS_UPDATED" = true ]; then
+    echo "  - TADD 스크립트: scripts/*.backup.* 파일 복원"
+fi
 echo ""
 echo "📖 자세한 내용:"
-echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/tag/v13.0.0"
+echo "  https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases/latest"

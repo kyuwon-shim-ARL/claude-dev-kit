@@ -21,11 +21,14 @@ chmod +x init.sh
 
 ### 기존 프로젝트 업데이트
 ```bash
-# 슬래시 명령어만 업데이트 (빠름)
+# 슬래시 명령어 + GitHub Actions + TADD 스크립트 업데이트 (v25.3.0+)
 curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/update.sh | bash
 
-# 백업 자동 생성 후 최신 명령어로 업데이트
-# 실패 시 자동 롤백 지원
+# 자동 업데이트 항목:
+# ✓ 슬래시 명령어 최신화
+# ✓ GitHub Actions TADD 강제 시스템 (선택적)
+# ✓ TADD 검증 스크립트 (자동)
+# ✓ 백업 자동 생성 및 롤백 지원
 ```
 
 ## ✨ 핵심 기능
