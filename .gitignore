@@ -49,23 +49,14 @@ Thumbs.db
 *.log
 logs/
 
+# Database
+*.db
+*.sqlite3
+
 # Temporary files
 tmp/
 temp/
 .tmp/
-*.tmp
-*.bak
-*.backup/
-.claude/commands.backup*/
-
-# Legacy/Archive
-archive/
-prompts/
-
-# Test coverage
-.coverage
-htmlcov/
-.pytest_cache/
 
 # Documentation builds
 _build/
@@ -73,6 +64,11 @@ _build/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
 
 # mypy
 .mypy_cache/
