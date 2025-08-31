@@ -3,14 +3,25 @@
 ## Project Overview
 A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 
-## Current Status (v24.0 - TADD Enforcement System)
+## Current Status (v25.0 - README 복원 및 문서 정리)
 - ✅ **Phase 1-18**: Timeline Tracking System 완료
 - ✅ **Phase 19-21**: TADD 방법론 통합 완료
 - ✅ **Phase 22-23**: GitHub Actions CI/CD 설계 완료
 - 🚀 **Phase 24**: TADD Enforcement System 구현 완료
-- 🎉 **Latest**: 진정한 테스트 주도 개발 시스템적 강제
+- ✅ **Phase 25**: README 복원 및 문서 체계 정리 완료
+- 🎉 **Latest**: init.sh/update.sh 사용법 중심의 완전한 문서 복원
 
-### 🎯 Major Achievement (v24.0 - TADD Enforcement)
+### 🎯 Major Achievement (v25.0 - 완전한 문서 복원)
+**실수로 초기화된 README를 완전 복원하고 사용성 극대화:**
+
+**핵심 복원 사항:**
+- ✅ init.sh/update.sh 상세 사용법 재작성
+- ✅ 30초 설치 가이드 복원
+- ✅ 슬래시 명령어 완전 문서화
+- ✅ Quick Start 가이드 개선
+- ✅ 버전 정보 v25.0으로 업데이트
+
+### 🎯 Previous Achievement (v24.0 - TADD Enforcement)
 **프롬프트가 아닌 시스템이 TADD를 강제하는 혁신:**
 
 **핵심 구현:**
