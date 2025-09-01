@@ -1,0 +1,16 @@
+[
+  {
+    "doc_id": "doc_002",
+    "from_status": "draft",
+    "to_status": "review",
+    "timestamp": "2025-09-01T19:13:01.449957",
+    "reason": "Ready for review"
+  },
+  {
+    "doc_id": "doc_001",
+    "from_status": "published",
+    "to_status": "deprecated",
+    "timestamp": "2025-09-01T19:13:01.450205",
+    "reason": "No updates for 30 days"
+  }
+]

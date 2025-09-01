@@ -1,0 +1,120 @@
+{
+  "doc_001": {
+    "type": "planning",
+    "status": "deprecated",
+    "created": "2025-07-18T19:13:01.449604",
+    "updated": "2025-09-01T19:13:01.450202"
+  },
+  "doc_002": {
+    "type": "tutorial",
+    "status": "review",
+    "created": "2025-08-27T19:13:01.449622",
+    "updated": "2025-09-01T19:13:01.449953"
+  },
+  "doc_003": {
+    "type": "test",
+    "status": "review",
+    "created": "2025-08-22T19:13:01.449625",
+    "updated": "2025-08-31T19:13:01.449627",
+    "triggers": [
+      "nonexistent.py"
+    ]
+  },
+  "doc_20250901_200511_test": {
+    "id": "doc_20250901_200511_test",
+    "type": "test",
+    "status": "draft",
+    "parent": null,
+    "triggers": [],
+    "created": "2025-09-01T20:05:11.050948",
+    "updated": "2025-09-01T20:05:11.050954",
+    "session": "test_session",
+    "context_hash": "eb63276d001f",
+    "file_path": "test.md",
+    "references": [],
+    "keywords": [
+      "test document"
+    ]
+  },
+  "doc_20250901_200518_document_tracking_sy": {
+    "context_hash": "220b45b4c048",
+    "created": "2025-09-01T20:05:18.900699",
+    "file_path": "docs/CURRENT/document_tracking_system.md",
+    "id": "doc_20250901_200518_document_tracking_sy",
+    "keywords": [
+      "\ubb38\uc11c \ucd94\uc801 \uc2dc\uc2a4\ud15c \uc124\uacc4 (document tracking system)",
+      "\ud83c\udfaf \ud575\uc2ec \ubb38\uc81c\uc640 \ud574\uacb0\ucc45",
+      "\ubb38\uc81c: \"\ud504\ub86c\ud504\ud2b8\ub9c8\ub2e4 \uc0c8\ub85c\uc6b4 \ub9e5\ub77d\uc73c\ub85c \ubb38\uc11c\uac00 \uc790\uc720\ub86d\uac8c \uc0dd\uc131\"",
+      "\ud574\uacb0: 3\ub2e8\uacc4 \uc790\ub3d9 \ucd94\uc801 \uc2dc\uc2a4\ud15c",
+      "\ud83d\udccb 1\ub2e8\uacc4: \uc0dd\uc131 \uc2dc\uc810 \uba54\ud0c0\ub370\uc774\ud130 \uc790\ub3d9 \uc0bd\uc785",
+      "\ud83d\udcca 2\ub2e8\uacc4: \uc2e4\uc2dc\uac04 \ucc38\uc870 \uadf8\ub798\ud504 \uad6c\ucd95",
+      "\ud83d\udd04 3\ub2e8\uacc4: \uc0c1\ud0dc \uc804\ud658 \uc790\ub3d9\ud654",
+      "\ud83c\udfa8 4\ub2e8\uacc4: \uc9c0\ub2a5\ud615 \ubb38\uc11c \uac80\uc0c9",
+      "\ud83d\ude80 5\ub2e8\uacc4: git hooks \ud1b5\ud569",
+      ".git/hooks/pre-commit"
+    ],
+    "parent": null,
+    "references": [],
+    "session": "git_commit_@1756724787 +0900",
+    "status": "draft",
+    "triggers": [
+      "docs/CURRENT/document_tracking_system.md"
+    ],
+    "type": "tutorial",
+    "updated": "2025-09-01T20:06:27.585302"
+  },
+  "doc_20250901_200627_README": {
+    "id": "doc_20250901_200627_README",
+    "type": "research",
+    "status": "draft",
+    "parent": null,
+    "triggers": [
+      "README.md"
+    ],
+    "created": "2025-09-01T20:06:27.480927",
+    "updated": "2025-09-01T20:06:27.480933",
+    "session": "git_commit_@1756724787 +0900",
+    "context_hash": "4c7dfe326225",
+    "file_path": "README.md",
+    "references": [],
+    "keywords": [
+      "\ud83c\udfaf claude dev kit - ai-native development toolkit",
+      "\ud83d\ude80 30\ucd08 \uc124\uce58 (\ubaa8\ub4e0 \uc0ac\uc6a9\uc790\uc6a9)",
+      "universal \uc124\uce58 (\uad8c\uc7a5)",
+      "git \uc720\ubb34 \uc790\ub3d9 \uac10\uc9c0\ud558\uc5ec \ucd5c\uc801 \uc124\uce58",
+      "\ub610\ub294 \uc9c1\uc811 \ub2e4\uc6b4\ub85c\ub4dc",
+      "\uae30\uc874 \ud504\ub85c\uc81d\ud2b8 \uc5c5\ub370\uc774\ud2b8",
+      "\uc2ac\ub798\uc2dc \uba85\ub839\uc5b4 + github actions + tadd \uc2a4\ud06c\ub9bd\ud2b8 \uc5c5\ub370\uc774\ud2b8 (v25.3.0+)",
+      "\uc790\ub3d9 \uc5c5\ub370\uc774\ud2b8 \ud56d\ubaa9:",
+      "\u2713 \uc2ac\ub798\uc2dc \uba85\ub839\uc5b4 \ucd5c\uc2e0\ud654",
+      "\u2713 github actions tadd \uac15\uc81c \uc2dc\uc2a4\ud15c (\uc120\ud0dd\uc801)"
+    ]
+  },
+  "doc_20250901_200627_weekly_report_202509": {
+    "id": "doc_20250901_200627_weekly_report_202509",
+    "type": "planning",
+    "status": "draft",
+    "parent": null,
+    "triggers": [
+      "docs/CURRENT/weekly_report_20250901.md"
+    ],
+    "created": "2025-09-01T20:06:27.691363",
+    "updated": "2025-09-01T20:06:27.691369",
+    "session": "git_commit_@1756724787 +0900",
+    "context_hash": "59ed211cfe73",
+    "file_path": "docs/CURRENT/weekly_report_20250901.md",
+    "references": [],
+    "keywords": [
+      "\ud83c\udfaf sprint review - git \uae30\ubc18 \uc2e4\uc99d \ubd84\uc11d",
+      "\ud83d\udcca executive summary",
+      "\ud83d\udd0d \ud575\uc2ec \uc778\uc0ac\uc774\ud2b8",
+      "\ud83c\udfaf sprint \uc885\ud569 \ud310\uc815: **success**",
+      "\ud83d\udcc8 as-is analysis (\ud604\uc7ac \uc0c1\ud0dc \uc815\ub7c9 \uce21\uc815)",
+      "velocity metrics",
+      "mece \uc131\uacfc \ubd84\ud574",
+      "\uc8fc\uc694 \uc131\uacfc\ubb3c",
+      "\ud83c\udfaf to-be targets (\ubaa9\ud45c \uc0c1\ud0dc)",
+      "next sprint goals"
+    ]
+  }
+}

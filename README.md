@@ -33,6 +33,25 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## ✨ 핵심 기능
 
+### 📊 Document Tracking System (v25.1) 🆕
+**모든 문서의 메타데이터와 관계를 자동으로 추적:**
+- **메타데이터 자동 삽입**: 문서 생성 시 ID, 타입, 상태, 참조 자동 기록
+- **참조 그래프 구축**: 문서 간 관계를 실시간으로 추적하고 시각화
+- **생명주기 관리**: draft → review → published → archived 자동 전환
+- **Git Hooks 통합**: 커밋 시 자동으로 메타데이터 업데이트
+
+#### 설치 및 사용
+```bash
+# Document Tracking System 설치
+./scripts/setup_document_tracking_hooks.sh
+
+# 시스템 테스트
+python3 scripts/test_document_tracking.py
+
+# 수동 메타데이터 업데이트
+python3 scripts/update_document_metadata.py docs/your-document.md
+```
+
 ### 🤖 슬래시 명령어 시스템 (v25)
 완전한 개발 워크플로우를 4단계로 자동화:
 
@@ -83,6 +102,11 @@ claude-dev-kit/
 │   ├── CURRENT/                    # 현재 작업 상태
 │   ├── guides/                     # 개발 가이드
 │   └── templates/                  # 문서 템플릿
+├── scripts/
+│   ├── document_metadata.py        # 🆕 메타데이터 관리
+│   ├── document_graph.py           # 🆕 참조 그래프 시스템
+│   ├── document_lifecycle.py       # 🆕 생명주기 자동화
+│   └── setup_document_tracking_hooks.sh  # 🆕 설치 스크립트
 └── CLAUDE.md                       # 프로젝트 상세 문서
 ```
 
