@@ -21,12 +21,12 @@ meta:
   - .git/hooks/pre-commit
   parent: null
   references: []
-  session: git_commit_unknown
+  session: git_commit_@1756724787 +0900
   status: draft
   triggers:
   - docs/CURRENT/document_tracking_system.md
   type: tutorial
-  updated: '2025-09-01T20:05:18.900705'
+  updated: '2025-09-01T20:06:27.585302'
 ---
 
 # 문서 추적 시스템 설계 (Document Tracking System)

@@ -1,3 +1,32 @@
+---
+meta:
+  context_hash: 4c7dfe326225
+  created: '2025-09-01T20:06:27.480927'
+  file_path: README.md
+  id: doc_20250901_200627_README
+  keywords:
+  - "\U0001F3AF claude dev kit - ai-native development toolkit"
+  - "\U0001F680 30\uCD08 \uC124\uCE58 (\uBAA8\uB4E0 \uC0AC\uC6A9\uC790\uC6A9)"
+  - "universal \uC124\uCE58 (\uAD8C\uC7A5)"
+  - "git \uC720\uBB34 \uC790\uB3D9 \uAC10\uC9C0\uD558\uC5EC \uCD5C\uC801 \uC124\uCE58"
+  - "\uB610\uB294 \uC9C1\uC811 \uB2E4\uC6B4\uB85C\uB4DC"
+  - "\uAE30\uC874 \uD504\uB85C\uC81D\uD2B8 \uC5C5\uB370\uC774\uD2B8"
+  - "\uC2AC\uB798\uC2DC \uBA85\uB839\uC5B4 + github actions + tadd \uC2A4\uD06C\uB9BD\
+    \uD2B8 \uC5C5\uB370\uC774\uD2B8 (v25.3.0+)"
+  - "\uC790\uB3D9 \uC5C5\uB370\uC774\uD2B8 \uD56D\uBAA9:"
+  - "\u2713 \uC2AC\uB798\uC2DC \uBA85\uB839\uC5B4 \uCD5C\uC2E0\uD654"
+  - "\u2713 github actions tadd \uAC15\uC81C \uC2DC\uC2A4\uD15C (\uC120\uD0DD\uC801\
+    )"
+  parent: null
+  references: []
+  session: git_commit_@1756724787 +0900
+  status: draft
+  triggers:
+  - README.md
+  type: research
+  updated: '2025-09-01T20:06:27.480933'
+---
+
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
 [![Version](https://img.shields.io/badge/version-v25.0-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
@@ -33,23 +62,18 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## ✨ 핵심 기능
 
-### 📊 Document Tracking System (v25.1) 🆕
-**모든 문서의 메타데이터와 관계를 자동으로 추적:**
-- **메타데이터 자동 삽입**: 문서 생성 시 ID, 타입, 상태, 참조 자동 기록
-- **참조 그래프 구축**: 문서 간 관계를 실시간으로 추적하고 시각화
-- **생명주기 관리**: draft → review → published → archived 자동 전환
-- **Git Hooks 통합**: 커밋 시 자동으로 메타데이터 업데이트
+### 📊 Claude Native Metadata System (v25.2) 🆕
+**Claude가 직접 문서 메타데이터를 관리 (Zero Installation):**
+- **메타데이터 자동 삽입**: 문서 생성 시 HTML 주석으로 메타데이터 자동 추가
+- **관계 추적**: Claude가 메모리에서 문서 간 관계 실시간 파악
+- **스마트 정리**: /문서정리 시 메타데이터 기반 자동 분류
+- **설치 불필요**: 추가 스크립트나 Git hooks 없이 바로 사용
 
-#### 설치 및 사용
+#### 사용법
 ```bash
-# Document Tracking System 설치
-./scripts/setup_document_tracking_hooks.sh
-
-# 시스템 테스트
-python3 scripts/test_document_tracking.py
-
-# 수동 메타데이터 업데이트
-python3 scripts/update_document_metadata.py docs/your-document.md
+# 그냥 평소처럼 사용하면 자동으로 작동!
+/구현 "새 기능"  # → 문서 생성 시 메타데이터 자동 삽입
+/문서정리        # → 메타데이터 분석하여 스마트 정리
 ```
 
 ### 🤖 슬래시 명령어 시스템 (v25)
@@ -102,11 +126,8 @@ claude-dev-kit/
 │   ├── CURRENT/                    # 현재 작업 상태
 │   ├── guides/                     # 개발 가이드
 │   └── templates/                  # 문서 템플릿
-├── scripts/
-│   ├── document_metadata.py        # 🆕 메타데이터 관리
-│   ├── document_graph.py           # 🆕 참조 그래프 시스템
-│   ├── document_lifecycle.py       # 🆕 생명주기 자동화
-│   └── setup_document_tracking_hooks.sh  # 🆕 설치 스크립트
+├── docs/CURRENT/
+│   └── claude_metadata_system.md  # 🆕 Claude 내장 메타데이터 설계문서
 └── CLAUDE.md                       # 프로젝트 상세 문서
 ```
 

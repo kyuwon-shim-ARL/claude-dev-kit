@@ -1,3 +1,31 @@
+---
+meta:
+  context_hash: 59ed211cfe73
+  created: '2025-09-01T20:06:27.691363'
+  file_path: docs/CURRENT/weekly_report_20250901.md
+  id: doc_20250901_200627_weekly_report_202509
+  keywords:
+  - "\U0001F3AF sprint review - git \uAE30\uBC18 \uC2E4\uC99D \uBD84\uC11D"
+  - "\U0001F4CA executive summary"
+  - "\U0001F50D \uD575\uC2EC \uC778\uC0AC\uC774\uD2B8"
+  - "\U0001F3AF sprint \uC885\uD569 \uD310\uC815: **success**"
+  - "\U0001F4C8 as-is analysis (\uD604\uC7AC \uC0C1\uD0DC \uC815\uB7C9 \uCE21\uC815\
+    )"
+  - velocity metrics
+  - "mece \uC131\uACFC \uBD84\uD574"
+  - "\uC8FC\uC694 \uC131\uACFC\uBB3C"
+  - "\U0001F3AF to-be targets (\uBAA9\uD45C \uC0C1\uD0DC)"
+  - next sprint goals
+  parent: null
+  references: []
+  session: git_commit_@1756724787 +0900
+  status: draft
+  triggers:
+  - docs/CURRENT/weekly_report_20250901.md
+  type: planning
+  updated: '2025-09-01T20:06:27.691369'
+---
+
 # 🎯 Sprint Review - Git 기반 실증 분석
 *2025-09-01 | 정량 데이터 기반 객관적 성과 측정*
 
