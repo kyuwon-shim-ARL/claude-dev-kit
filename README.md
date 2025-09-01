@@ -62,18 +62,19 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ## ✨ 핵심 기능
 
-### 📊 Claude Native Metadata System (v25.2) 🆕
-**Claude가 직접 문서 메타데이터를 관리 (Zero Installation):**
+### 📊 Claude Native Document Management (v25.3)
+**Claude가 직접 문서를 관리 (Zero Installation, No Python):**
 - **메타데이터 자동 삽입**: 문서 생성 시 HTML 주석으로 메타데이터 자동 추가
-- **관계 추적**: Claude가 메모리에서 문서 간 관계 실시간 파악
-- **스마트 정리**: /문서정리 시 메타데이터 기반 자동 분류
-- **설치 불필요**: 추가 스크립트나 Git hooks 없이 바로 사용
+- **세션마감 내장**: /세션마감으로 완료 문서 자동 아카이빙 (Python 불필요)
+- **스마트 정리**: 메타데이터 status 기반 자동 분류
+- **완전 내장**: 모든 기능이 Claude에 통합, 별도 설치 없음
 
 #### 사용법
 ```bash
 # 그냥 평소처럼 사용하면 자동으로 작동!
-/구현 "새 기능"  # → 문서 생성 시 메타데이터 자동 삽입
-/문서정리        # → 메타데이터 분석하여 스마트 정리
+/구현 "새 기능"  # 문서 생성 시 메타데이터 자동 삽입
+/문서정리        # 메타데이터 분석하여 스마트 정리
+/세션마감        # 완료된 문서 자동 아카이빙 (Python 불필요)
 ```
 
 ### 🤖 슬래시 명령어 시스템 (v25)
