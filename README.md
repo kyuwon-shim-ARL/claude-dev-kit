@@ -92,12 +92,12 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 - `/개발완료`: 구현→안정화→배포
 - `/품질보증`: 안정화→배포
 
-### 🎯 TADD Enforcement System (v24)
-**프롬프트가 아닌 시스템이 품질을 강제:**
-- Git 히스토리 기반 테스트-코드 순서 자동 검증
-- Mock 사용률 20% 이하 시스템적 강제
-- GitHub Actions PR 자동 차단/승인
-- AI도 회피 불가능한 품질 보증
+### 🎯 TADD Enforcement System (v28)
+**실제로 작동하는 3단계 강제 시스템:**
+- **Level 1**: Git hooks (로컬 검증) ✅ 구현됨
+- **Level 2**: GitHub Actions (CI/CD 검증) ✅ 버그 수정됨
+- **Level 3**: Branch Protection (머지 차단) ⚠️ 수동 설정 필요
+- **결과**: AI와 개발자 모두 TADD 회피 불가능
 
 ### 📊 완성도 체크리스트 (v15.1)
 배포 전 자동으로 20개 항목 검증:
@@ -171,24 +171,72 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ### TADD 강제 시스템 활성화 (중요!)
 
-**🚨 GitHub Actions 자동 강제 시스템:**
-```bash
-# 1. GitHub에 프로젝트 푸시 (자동으로 TADD 강제 활성화)
-git remote add origin https://github.com/username/project.git
-git push -u origin main
+#### 🚀 다른 레포지토리에 TADD 적용하기 (1분 설치)
 
-# 2. 이후 모든 PR이 자동으로 TADD 검증됨
-# → 테스트 우선 작성 안하면 PR 자동 차단
-# → Mock 20% 초과시 PR 자동 차단  
-# → 테스트 커버리지 80% 미만시 경고
+**Option 1: 원클릭 설치 (추천)**
+```bash
+# 어떤 레포지토리에서든 실행
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/tadd-enforce-installer.sh | bash
+
+# 또는 로컬 파일로 다운로드 후 실행
+wget https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/tadd-enforce-installer.sh
+chmod +x tadd-enforce-installer.sh
+./tadd-enforce-installer.sh
 ```
 
-**💡 시스템적 강제의 핵심:**
-- **AI도 회피 불가능**: GitHub Actions가 모든 PR을 자동 검증
-- **프롬프트 무시 불가**: 시스템 레벨에서 품질 강제
-- **팀 전체 적용**: 모든 개발자가 동일한 품질 기준 준수
+**Option 2: 이미 init.sh를 사용한 프로젝트**
+```bash
+# TADD는 자동으로 포함되어 있음
+# 추가 설정 필요 없음
+```
 
-**📋 로컬 검증 (선택사항):**
+**Option 3: 수동 설치 (세밀한 제어)**
+```bash
+# 1. Git hooks 설치
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/setup_tadd_hooks.sh | bash
+
+# 2. GitHub Actions 설정
+mkdir -p .github/workflows
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.github/workflows/tadd-enforcement.yml \
+     -o .github/workflows/tadd-enforcement.yml
+```
+
+#### ⚠️ 필수: Branch Protection 설정 (실제 강제를 위해)
+
+**TADD는 Branch Protection 없이는 의미가 없습니다!**
+
+1. **GitHub 설정 페이지 접속**
+   ```
+   https://github.com/[OWNER]/[REPO]/settings/branches
+   ```
+
+2. **Protection Rule 추가**
+   - Branch name: `main`
+   - ✅ Require status checks to pass
+   - ✅ Include administrators
+   - Required checks 선택:
+     - `TADD Enforcement / verify-test-first`
+     - `TADD Enforcement / check-mock-usage`
+     - `TADD Enforcement / quality-gate`
+
+3. **검증**
+   ```bash
+   # TADD 위반 코드로 테스트
+   echo "code without test" > feature.js
+   git add . && git commit -m "feat: no test"
+   git push  # ❌ 실패해야 정상
+   ```
+
+#### 📊 실제 강제력 수준
+
+| 설정 단계 | 강제력 | AI 회피 | 신뢰도 |
+|-----------|--------|---------|--------|
+| 프롬프트만 | ❌ 없음 | ✅ 가능 | 20% |
+| Git Hooks | ⚠️ 로컬만 | ⚠️ 어려움 | 50% |
+| + GitHub Actions | ⚠️ 경고만 | ⚠️ 어려움 | 70% |
+| + Branch Protection | ✅ 완전 강제 | ❌ 불가능 | 99% |
+
+**📋 로컬 검증 명령어:**
 ```bash
 # 빠른 체크
 ./scripts/quick_tadd_check.sh
