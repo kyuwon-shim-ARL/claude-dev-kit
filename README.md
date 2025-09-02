@@ -29,7 +29,7 @@ meta:
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
-[![Version](https://img.shields.io/badge/version-v25.0-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+[![Version](https://img.shields.io/badge/version-v30.1-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
 [![TADD](https://img.shields.io/badge/TADD-Enforced-green)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/blob/main/.github/workflows/tadd-enforcement.yml)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
@@ -48,19 +48,47 @@ chmod +x init.sh
 ./init.sh "my-project" "My AI project"
 ```
 
-### 기존 프로젝트 업데이트
+### 기존 프로젝트 업데이트 (v29.0+)
 ```bash
-# 슬래시 명령어 + GitHub Actions + TADD 스크립트 업데이트 (v25.3.0+)
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/update.sh | bash
+# 통합 설치 시스템으로 업데이트 (update.sh 통합됨)
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh -o init.sh
+chmod +x init.sh
+./init.sh --upgrade
+
+# 옵션별 설치:
+./init.sh --upgrade      # 전체 업그레이드
+./init.sh --tadd-only   # TADD Enforcement만 설치
+./init.sh --reinstall   # 완전 재설치
+./init.sh --check       # 설치 상태 확인
 
 # 자동 업데이트 항목:
 # ✓ 슬래시 명령어 최신화
-# ✓ GitHub Actions TADD 강제 시스템 (선택적)
-# ✓ TADD 검증 스크립트 (자동)
+# ✓ GitHub Actions TADD 강제 시스템
+# ✓ Branch Protection 자동 설정 (GitHub CLI 필요)
+# ✓ GitHub Actions 실시간 모니터링 (v30.1)
 # ✓ 백업 자동 생성 및 롤백 지원
 ```
 
 ## ✨ 핵심 기능
+
+### 🆕 GitHub Actions 실시간 모니터링 (v30.1)
+**"Push ≠ Success" - 진정한 배포 성공 확인:**
+- **실시간 모니터링**: 배포 시 GitHub Actions 상태를 실시간으로 추적
+- **자동 대기**: Push 후 All Pass까지 기다림 (최대 5분)
+- **실패 분석**: 실패 시 자동으로 원인 분석 및 해결방안 제시
+- **완벽한 통합**: `/배포` 명령어에 자동 통합
+
+```bash
+# 배포 시 자동으로 작동
+/배포
+# → git push
+# → GitHub Actions 모니터링 시작
+# → ✅ All Pass: "진정한 배포 성공!"
+# → ❌ 실패: 원인 분석 + 해결방안 제시
+
+# 또는 직접 모니터링
+./scripts/monitor_github_actions.sh
+```
 
 ### 📊 Claude Native Document Management (v25.3)
 **Claude가 직접 문서를 관리 (Zero Installation, No Python):**
@@ -77,27 +105,28 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 /세션마감        # 완료된 문서 자동 아카이빙 (Python 불필요)
 ```
 
-### 🤖 슬래시 명령어 시스템 (v25)
+### 🤖 슬래시 명령어 시스템 (v30.1)
 완전한 개발 워크플로우를 4단계로 자동화:
 
 | 명령어 | 설명 | 소요시간 |
 |--------|------|----------|
 | `/기획` | 구조화된 탐색-계획 루프 | 5-15분 |
 | `/구현` | DRY 원칙 기반 체계적 구현 | 10-60분 |
-| `/안정화` | 구조적 지속가능성 검증 | 5-20분 |
-| `/배포` | 자동 품질검증 + 원격배포 | 2-5분 |
+| `/안정화` | 구조적 지속가능성 + GitHub Actions 연동 검증 | 5-20분 |
+| `/배포` | **GitHub Actions 실시간 모니터링** → 진정한 배포 성공 | 2-5분 |
 
 #### 통합 워크플로우
 - `/전체사이클`: 기획→구현→안정화→배포 (완전 자동화)
 - `/개발완료`: 구현→안정화→배포
 - `/품질보증`: 안정화→배포
 
-### 🎯 TADD Enforcement System (v28)
-**실제로 작동하는 3단계 강제 시스템:**
+### 🎯 TADD Enforcement System (v30.1)
+**실제로 작동하는 진정한 CI/CD 통합 시스템:**
 - **Level 1**: Git hooks (로컬 검증) ✅ 구현됨
-- **Level 2**: GitHub Actions (CI/CD 검증) ✅ 버그 수정됨
-- **Level 3**: Branch Protection (머지 차단) ⚠️ 수동 설정 필요
-- **결과**: AI와 개발자 모두 TADD 회피 불가능
+- **Level 2**: GitHub Actions (CI/CD 검증) ✅ 실시간 모니터링 추가
+- **Level 3**: Branch Protection (머지 차단) ✅ 자동 설정 (GitHub CLI 사용 시)
+- **🆕 Real-time Monitoring**: 배포 시 GitHub Actions All Pass까지 대기
+- **결과**: "Push ≠ Success" - 진정한 배포 성공만 인정
 
 ### 📊 완성도 체크리스트 (v15.1)
 배포 전 자동으로 20개 항목 검증:
@@ -111,8 +140,7 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 
 ```
 claude-dev-kit/
-├── init.sh                         # ⭐ Universal 초기화 (누구나 30초)
-├── update.sh                       # ⭐ 기존 설치 업데이트 (10초)
+├── init.sh                         # ⭐ 통합 설치 시스템 (신규/업데이트/재설치)
 ├── .claude/
 │   └── commands/                   # 슬래시 명령어 (한/영 지원)
 │       ├── 기획.md (plan.md)
@@ -122,7 +150,8 @@ claude-dev-kit/
 ├── scripts/
 │   ├── verify_tadd_order.py        # TADD 순서 검증
 │   ├── detect_mock_usage.py        # Mock 사용률 분석
-│   └── quick_tadd_check.sh         # 빠른 품질 체크
+│   ├── quick_tadd_check.sh         # 빠른 품질 체크
+│   └── monitor_github_actions.sh   # 🆕 GitHub Actions 실시간 모니터링
 ├── docs/
 │   ├── CURRENT/                    # 현재 작업 상태
 │   ├── guides/                     # 개발 가이드
@@ -154,39 +183,45 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
 # 3. 빠른 품질 체크
 ./scripts/quick_tadd_check.sh
 
-# 4. 배포
+# 4. 배포 (v30.1 - GitHub Actions 연동)
 /배포
 # → 20개 완성도 체크
-# → 자동 커밋/푸시/태깅
-# → 원격 저장소 검증
+# → 자동 커밋/푸시
+# → 🆕 GitHub Actions 실시간 모니터링
+# → All Pass 확인 후 진정한 배포 성공
 ```
 
 ### 3. 기존 프로젝트 업그레이드
 ```bash
-# 현재 디렉토리에서 최신 명령어로 업데이트
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/update.sh | bash
+# 통합 설치 시스템으로 업데이트 (v29.0+)
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh -o init.sh
+chmod +x init.sh
+./init.sh --upgrade
 ```
 
 ## 🔧 고급 사용법
 
 ### TADD 강제 시스템 활성화 (중요!)
 
-#### 🚀 다른 레포지토리에 TADD 적용하기 (1분 설치)
+#### 🚀 다른 레포지토리에 TADD 적용하기 (통합 설치)
 
-**Option 1: 원클릭 설치 (추천)**
+**전체 시스템 설치 (권장):**
 ```bash
-# 어떤 레포지토리에서든 실행
-curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/tadd-enforce-installer.sh | bash
+# 어떤 레포지토리에서든 전체 시스템 설치
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh | bash -s "project_name" "description"
 
-# 또는 로컬 파일로 다운로드 후 실행
-wget https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/tadd-enforce-installer.sh
-chmod +x tadd-enforce-installer.sh
-./tadd-enforce-installer.sh
+# 또는 TADD만 설치
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh -o init.sh
+chmod +x init.sh
+./init.sh --tadd-only
 ```
 
-**Option 2: 이미 init.sh를 사용한 프로젝트**
+**GitHub Actions 모니터링만 추가:**
 ```bash
-# TADD는 자동으로 포함되어 있음
+# 간단한 실시간 모니터링만 원할 때
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/monitor_github_actions.sh -o monitor.sh
+chmod +x monitor.sh
+./monitor.sh
 # 추가 설정 필요 없음
 ```
 
@@ -201,31 +236,32 @@ curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/
      -o .github/workflows/tadd-enforcement.yml
 ```
 
-#### ⚠️ 필수: Branch Protection 설정 (실제 강제를 위해)
+#### ✅ Branch Protection 자동 설정 (v29.0+)
 
-**TADD는 Branch Protection 없이는 의미가 없습니다!**
+**GitHub CLI가 있으면 자동으로 설정됩니다:**
 
-1. **GitHub 설정 페이지 접속**
-   ```
-   https://github.com/[OWNER]/[REPO]/settings/branches
-   ```
+```bash
+# init.sh 실행 시 자동으로 Branch Protection 설정
+./init.sh "project_name"  # GitHub CLI 있으면 자동 설정
 
-2. **Protection Rule 추가**
-   - Branch name: `main`
-   - ✅ Require status checks to pass
-   - ✅ Include administrators
-   - Required checks 선택:
-     - `TADD Enforcement / verify-test-first`
-     - `TADD Enforcement / check-mock-usage`
-     - `TADD Enforcement / quality-gate`
+# 또는 수동으로 설정
+gh api repos/:owner/:repo/branches/main/protection \
+  --method PUT \
+  --field required_status_checks='{"strict":true,"contexts":["TADD Enforcement / verify-test-first","TADD Enforcement / check-mock-usage","TADD Enforcement / quality-gate"]}'
+```
 
-3. **검증**
-   ```bash
-   # TADD 위반 코드로 테스트
-   echo "code without test" > feature.js
-   git add . && git commit -m "feat: no test"
-   git push  # ❌ 실패해야 정상
-   ```
+**GitHub CLI가 없는 경우 수동 설정:**
+1. GitHub 설정 페이지: `https://github.com/[OWNER]/[REPO]/settings/branches`
+2. Protection Rule 추가 (Branch: `main`)
+3. Required status checks 선택
+
+**검증:**
+```bash
+# TADD 위반 코드로 테스트
+echo "code without test" > feature.js
+git add . && git commit -m "feat: no test"
+git push  # ❌ 실패해야 정상 (GitHub Actions가 차단)
+```
 
 #### 📊 실제 강제력 수준
 
