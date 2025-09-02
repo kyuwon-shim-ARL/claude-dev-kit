@@ -50,8 +50,8 @@ echo "📊 Checking mock usage..."
 
 # 3. Quick mock check
 if [ -d "tests" ] || [ -d "test" ]; then
-    MOCK_COUNT=$(grep -r "Mock\|mock\|@patch" tests test 2>/dev/null | wc -l || echo 0)
-    TEST_COUNT=$(grep -r "def test_" tests test 2>/dev/null | wc -l || echo 0)
+    MOCK_COUNT=$(grep -r "\bMock\b\|@mock\|@patch\|unittest\.mock" tests test --include="*.py" 2>/dev/null | wc -l || echo 0)
+    TEST_COUNT=$(grep -r "def test_" tests test --include="*.py" 2>/dev/null | wc -l || echo 0)
     
     if [ "$TEST_COUNT" -gt 0 ]; then
         MOCK_PERCENTAGE=$((MOCK_COUNT * 100 / TEST_COUNT))
