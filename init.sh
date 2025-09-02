@@ -525,6 +525,11 @@ install_uv_if_needed() {
 create_uv_config() {
     echo "  📝 Creating UV configuration..."
     
+    # Create .gitignore entry for UV
+    if ! grep -q ".venv" .gitignore 2>/dev/null; then
+        echo ".venv/" >> .gitignore
+    fi
+    
     # Create pyproject.toml if it doesn't exist
     if [ ! -f "pyproject.toml" ]; then
         cat > pyproject.toml << 'EOF'
