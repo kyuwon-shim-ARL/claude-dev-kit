@@ -11,7 +11,16 @@ A comprehensive toolkit that provides one-click installation of project structur
 - ✅ **Phase 25**: README 복원 및 문서 체계 정리 완료
 - 🎉 **Latest**: init.sh/update.sh 사용법 중심의 완전한 문서 복원
 
-### 🎯 Major Achievement (v25.0 - 완전한 문서 복원)
+### 🎯 Latest Achievement (v25.4 - 통합 메타데이터 시스템)
+**모든 ZEDS 문서화 작업에 메타데이터 자동 분류 통합:**
+
+**핵심 구현:**
+- ✅ 모든 문서 생성 시 자동 메타데이터 삽입
+- ✅ 메타데이터 없는 문서도 내용 분석으로 자동 분류
+- ✅ status 기반 문서 라이프사이클 관리 (draft → review → published)
+- ✅ /문서정리, /세션마감 등 모든 명령어에 통합
+
+### 🎯 Previous Achievement (v25.0 - 완전한 문서 복원)
 **실수로 초기화된 README를 완전 복원하고 사용성 극대화:**
 
 **핵심 복원 사항:**
@@ -250,7 +259,22 @@ project_rules.md      # Project constitution (manual)
 - All new features need tests
 - Integration tests for system components
 
-### Documentation
+### Documentation (통합 메타데이터 시스템)
+- 모든 문서 생성 시 자동 메타데이터 삽입:
+  ```markdown
+  <!--
+  @meta
+  id: [type]_[timestamp]_[feature]
+  type: [implementation|test_report|documentation]
+  status: draft  # draft → review → published
+  created: [date]
+  updated: [date]
+  -->
+  ```
+- 메타데이터 기반 자동 분류:
+  - `status: published/archived/deprecated` → 아카이빙 대상
+  - `status: draft/review` → 현재 작업 유지
+  - 메타데이터 없음 → Claude가 내용 분석 후 분류
 - Update CLAUDE.md for architectural changes
 - Include usage examples for new features
 
