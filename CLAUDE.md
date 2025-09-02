@@ -1,5 +1,40 @@
 # claude-dev-kit: Complete Development Kit for Claude Code
 
+## ⚠️ CRITICAL: Python Dependency Management Rules
+**MANDATORY: Use UV (Astral's package manager) for ALL Python operations**
+
+### 🚫 NEVER USE:
+- `pip install` → Use `uv pip install` instead
+- `pip3 install` → Use `uv pip install` instead  
+- `python -m pip` → Use `uv pip` instead
+- `requirements.txt` alone → Use `pyproject.toml` with UV
+
+### ✅ ALWAYS USE:
+```bash
+# Package installation
+uv pip install package_name       # NOT pip install
+uv pip install -r requirements.txt # NOT pip install -r
+
+# Virtual environment
+uv venv                           # NOT python -m venv
+uv pip sync                       # For dependency sync
+
+# Package management
+uv add package_name              # Add to pyproject.toml
+uv remove package_name           # Remove from pyproject.toml
+```
+
+### 📋 UV Quick Reference:
+- **Install UV**: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- **Create venv**: `uv venv`
+- **Activate**: `source .venv/bin/activate` (automatic with uv commands)
+- **Install deps**: `uv pip install -r requirements.txt` or `uv sync`
+- **Add package**: `uv add package_name`
+- **Speed**: 10-100x faster than pip
+
+**IMPORTANT**: If UV is not installed, install it FIRST before any Python operations.
+UV is MANDATORY for this project. No exceptions.
+
 ## Project Overview
 A comprehensive toolkit that provides one-click installation of project structure, slash commands, ZEDS documentation system, and workflow automation for Claude Code projects.
 

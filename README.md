@@ -29,7 +29,7 @@ meta:
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
-[![Version](https://img.shields.io/badge/version-v30.1-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+[![Version](https://img.shields.io/badge/version-v31.0-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
 [![TADD](https://img.shields.io/badge/TADD-Enforced-green)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/blob/main/.github/workflows/tadd-enforcement.yml)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
@@ -105,7 +105,14 @@ chmod +x init.sh
 /세션마감        # 완료된 문서 자동 아카이빙 (Python 불필요)
 ```
 
-### 🤖 슬래시 명령어 시스템 (v30.1)
+### 🆕 UV Package Manager 강제 시스템 (v31.0)
+**Python 프로젝트를 위한 고속 패키지 관리자 자동 설정:**
+- **자동 설치**: Python 감지 시 UV 자동 설치
+- **pip 차단**: `scripts/enforce_uv.sh`로 pip 명령어 차단
+- **10-100x 속도**: pip 대비 획기적인 성능 향상
+- **pyproject.toml**: 자동 생성 및 UV 설정 통합
+
+### 🤖 슬래시 명령어 시스템 (v31.0)
 완전한 개발 워크플로우를 4단계로 자동화:
 
 | 명령어 | 설명 | 소요시간 |

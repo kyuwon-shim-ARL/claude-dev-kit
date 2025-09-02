@@ -84,7 +84,14 @@ detect_environment() {
         HAS_PYTHON=true
     fi
     
-    echo -e "   Git: ${HAS_GIT} | Repo: ${IS_GIT_REPO} | GitHub CLI: ${HAS_GITHUB_CLI} | GitHub Auth: ${GITHUB_SETUP_AVAILABLE} | Python: ${HAS_PYTHON}"
+    # UV detection (critical for Python projects)
+    if command -v uv >/dev/null 2>&1; then
+        HAS_UV=true
+    else
+        HAS_UV=false
+    fi
+    
+    echo -e "   Git: ${HAS_GIT} | Repo: ${IS_GIT_REPO} | GitHub CLI: ${HAS_GITHUB_CLI} | GitHub Auth: ${GITHUB_SETUP_AVAILABLE} | Python: ${HAS_PYTHON} | UV: ${HAS_UV}"
 }
 
 # Show progress with visual progress bar
@@ -431,24 +438,142 @@ setup_branch_protection() {
         REPO=$(echo "$REPO_INFO" | python3 -c "import sys,json; print(json.load(sys.stdin)['name'])" 2>/dev/null)
         
         if [ -n "$OWNER" ] && [ -n "$REPO" ]; then
-            # Create Branch Protection rule
-            gh api "repos/$OWNER/$REPO/branches/main/protection" \
+            # Try to create Branch Protection rule
+            ERROR_MSG=$(gh api "repos/$OWNER/$REPO/branches/main/protection" \
                 --method PUT \
                 --field required_status_checks='{"strict":true,"contexts":["TADD Enforcement / verify-test-first","TADD Enforcement / check-mock-usage","TADD Enforcement / quality-gate"]}' \
                 --field enforce_admins=true \
                 --field required_pull_request_reviews=null \
                 --field restrictions=null \
-                2>/dev/null
+                2>&1)
             
             if [ $? -eq 0 ]; then
                 echo -e "    ${GREEN}✅ Branch Protection configured automatically!${NC}"
                 return 0
+            elif echo "$ERROR_MSG" | grep -q "Resource not accessible by personal access token"; then
+                echo -e "    ${YELLOW}⚠️ GitHub token lacks admin:repo permission${NC}"
+                echo ""
+                echo "    To enable automatic Branch Protection setup:"
+                echo "    1. For Classic tokens: Add 'admin:repo' scope"
+                echo "    2. For Fine-grained tokens: Add 'Administration: write' permission"
+                echo ""
+                echo "    Or manually configure Branch Protection in GitHub settings"
+                show_minimal_branch_protection_guide
+                return 1
+            elif echo "$ERROR_MSG" | grep -q "Upgrade to GitHub Pro"; then
+                echo -e "    ${YELLOW}ℹ️ Branch Protection requires GitHub Pro for private repositories${NC}"
+                echo ""
+                echo "    Options:"
+                echo "    1. Make repository public: gh repo edit --visibility public"
+                echo "    2. Upgrade to GitHub Pro ($4/month)"
+                echo "    3. Continue with local TADD enforcement only (Git hooks)"
+                echo ""
+                echo "    ${GREEN}✅ Local TADD enforcement is still active via Git hooks${NC}"
+                return 1
+            else
+                echo -e "    ${YELLOW}⚠️ Branch Protection setup failed${NC}"
+                echo "    Error: $ERROR_MSG"
+                show_manual_branch_protection_guide
+                return 1
             fi
         fi
     fi
     
-    echo -e "    ${YELLOW}⚠️ Automatic Branch Protection failed - see manual setup guide${NC}"
+    echo -e "    ${YELLOW}⚠️ Could not retrieve repository information${NC}"
     show_manual_branch_protection_guide
+}
+
+# Show minimal Branch Protection setup guide (for permission issues)
+show_minimal_branch_protection_guide() {
+    echo ""
+    echo "    Quick manual setup:"
+    echo "    1. Go to Settings → Branches in your GitHub repository"
+    echo "    2. Add rule → Branch name pattern: main"
+    echo "    3. Enable 'Require status checks' and select TADD checks"
+    echo "    4. Save changes"
+}
+
+# Install UV package manager if needed
+install_uv_if_needed() {
+    if [ "$HAS_PYTHON" = true ] && [ "$HAS_UV" = false ]; then
+        echo -e "${YELLOW}📦 Installing UV package manager (required for Python projects)...${NC}"
+        
+        # Install UV
+        if curl -LsSf https://astral.sh/uv/install.sh | sh 2>/dev/null; then
+            # Add UV to PATH for current session
+            export PATH="$HOME/.cargo/bin:$PATH"
+            
+            # Verify installation
+            if command -v uv >/dev/null 2>&1; then
+                echo -e "    ${GREEN}✅ UV installed successfully!${NC}"
+                HAS_UV=true
+                
+                # Create UV configuration
+                create_uv_config
+            else
+                echo -e "    ${YELLOW}⚠️ UV installation completed but not in PATH${NC}"
+                echo "    Add to your shell config: export PATH=\"\$HOME/.cargo/bin:\$PATH\""
+            fi
+        else
+            echo -e "    ${RED}❌ Failed to install UV. Please install manually:${NC}"
+            echo "    curl -LsSf https://astral.sh/uv/install.sh | sh"
+        fi
+    fi
+}
+
+# Create UV configuration for the project
+create_uv_config() {
+    echo "  📝 Creating UV configuration..."
+    
+    # Create pyproject.toml if it doesn't exist
+    if [ ! -f "pyproject.toml" ]; then
+        cat > pyproject.toml << 'EOF'
+[project]
+name = "PROJECT_NAME_PLACEHOLDER"
+version = "0.1.0"
+description = "PROJECT_DESC_PLACEHOLDER"
+requires-python = ">=3.8"
+dependencies = []
+
+[tool.uv]
+# UV-specific settings
+compile = true  # Compile bytecode for faster imports
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+EOF
+        
+        # Replace placeholders
+        sed -i "s/PROJECT_NAME_PLACEHOLDER/$PROJECT_NAME/g" pyproject.toml 2>/dev/null || \
+        sed -i '' "s/PROJECT_NAME_PLACEHOLDER/$PROJECT_NAME/g" pyproject.toml 2>/dev/null
+        
+        sed -i "s/PROJECT_DESC_PLACEHOLDER/$PROJECT_DESC/g" pyproject.toml 2>/dev/null || \
+        sed -i '' "s/PROJECT_DESC_PLACEHOLDER/$PROJECT_DESC/g" pyproject.toml 2>/dev/null
+        
+        echo "    ✅ pyproject.toml created with UV configuration"
+    fi
+    
+    # Create .env file for UV
+    if [ ! -f ".env" ]; then
+        cat > .env << 'EOF'
+# UV Package Manager Settings
+UV_SYSTEM_PYTHON=false
+UV_COMPILE_BYTECODE=true
+UV_LINK_MODE=copy
+EOF
+        echo "    ✅ .env file created for UV"
+    fi
 }
 
 # Show manual Branch Protection setup guide
@@ -574,7 +699,7 @@ EOF
 
 # Execute install mode (new project)
 execute_install() {
-    local steps=("Environment" "Structure" "Commands" "Git" "TADD" "Files" "Complete")
+    local steps=("Environment" "Structure" "Commands" "Git" "UV" "TADD" "Files" "Complete")
     local current=0
     local total=${#steps[@]}
     
@@ -594,6 +719,11 @@ execute_install() {
                 ;;
             "Commands")
                 install_slash_commands
+                ;;
+            "UV")
+                if [ "$HAS_PYTHON" = true ]; then
+                    install_uv_if_needed
+                fi
                 ;;
             "Git")
                 if [ "$HAS_GIT" = true ]; then
