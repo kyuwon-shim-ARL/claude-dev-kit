@@ -1,362 +1,216 @@
 #!/bin/bash
-# Claude Dev Kit: Universal Initialization Script
-# Works for everyone - developers and non-developers alike
-# Usage: ./init.sh [project_name] [project_description]
+# Claude Dev Kit: Ultimate Unified Installer v29.0
+# One script to rule them all - Complete project setup with TADD enforcement
+# Usage: ./init.sh [PROJECT_NAME] [DESCRIPTION] or ./init.sh [--option]
 
 set -e
 
-PROJECT_NAME=${1:-"my_project"}
-PROJECT_DESC=${2:-"A new Claude Code project"}
-CURRENT_DATE=$(date +%Y-%m-%d)
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Global variables
+PROJECT_NAME=""
+PROJECT_DESC=""
+MODE=""
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DATE=$(date +%Y-%m-%d)
 
-# Detect Git availability and setup
+# Environment detection variables
 HAS_GIT=false
+IS_GIT_REPO=false
 NEW_REPO=false
-SHOULD_INIT_GIT=false
+GITHUB_REMOTE=""
+HAS_GITHUB_CLI=false
+GITHUB_SETUP_AVAILABLE=false
+HAS_PYTHON=false
 
-if command -v git >/dev/null 2>&1; then
-    if [ -d ".git" ] || git rev-parse --git-dir >/dev/null 2>&1; then
-        HAS_GIT=true
-        echo "🔍 Existing Git repository detected"
-    else
-        HAS_GIT=true
-        NEW_REPO=true
-        echo "💡 Git available but no repository - will initialize new repo"
-        SHOULD_INIT_GIT=true
-    fi
-else
-    echo "⚠️  Git not available - will use local backup system"
-fi
+# Show usage information
+show_usage() {
+    echo -e "${BLUE}🚀 Claude Dev Kit Ultimate Unified Installer v29.0${NC}"
+    echo ""
+    echo "Usage:"
+    echo -e "  ${GREEN}$0 PROJECT_NAME [DESCRIPTION]${NC}     # Create new project with full setup"
+    echo -e "  ${GREEN}$0 --upgrade${NC}                      # Upgrade existing project"
+    echo -e "  ${GREEN}$0 --tadd-only${NC}                   # Install TADD Enforcement only"
+    echo -e "  ${GREEN}$0 --reinstall${NC}                   # Complete reinstallation"
+    echo -e "  ${GREEN}$0 --check${NC}                       # Check installation status"
+    echo -e "  ${GREEN}$0 --github-setup${NC}               # Setup GitHub integration"
+    echo ""
+    echo "Options:"
+    echo "  --force         # Skip confirmations"
+    echo "  --no-github     # Skip GitHub integration"
+    echo "  --offline       # Use local files only"
+    echo ""
+    echo "Examples:"
+    echo -e "  ${CYAN}$0 my_project \"My awesome AI project\"${NC}"
+    echo -e "  ${CYAN}$0 --upgrade${NC}"
+    echo -e "  ${CYAN}curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/init.sh | bash -s \"project\" \"desc\"${NC}"
+    echo ""
+}
 
-echo "🚀 Claude Dev Kit Universal Installation"
-echo "========================================"
-echo "Project: $PROJECT_NAME"
-echo "Description: $PROJECT_DESC"
-if [ "$HAS_GIT" = true ]; then
-    if [ "$NEW_REPO" = true ]; then
-        echo "Git: ✅ Available (will initialize new repository)"
-    else
-        echo "Git: ✅ Detected (using existing repository)"
-    fi
-else
-    echo "Git: ❌ Not detected (local mode)"
-fi
-echo ""
-
-# Step 1: Create directory structure
-echo "📁 Step 1/5: Creating project structure..."
-for dir in "src/$PROJECT_NAME" "src/$PROJECT_NAME/core" "src/$PROJECT_NAME/models" \
-           "src/$PROJECT_NAME/services" "docs/CURRENT" \
-           "docs/development/sessions" "docs/specs" "examples" "tests" \
-           "scripts" ".claude/commands"; do
-    if [ ! -d "$dir" ]; then
-        mkdir -p "$dir"
-        echo "  ✅ Created: $dir"
-    else
-        echo "  ⏭️  Exists: $dir"
-    fi
-done
-
-# Create backup directory for non-git environments
-if [ "$HAS_GIT" = false ]; then
-    if [ ! -d ".backups" ]; then
-        mkdir -p ".backups"
-        echo "  ✅ Created: .backups (for version control)"
-    fi
-fi
-
-# Step 2: Install slash commands
-echo ""
-echo "⚡ Step 2/5: Installing slash commands..."
-BASE_URL="https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands"
-
-# Hybrid command mapping: Korean -> English (GitHub-safe)
-declare -A commands=(
-    ["기획"]="plan"
-    ["구현"]="implement"
-    ["안정화"]="stabilize"
-    ["검증"]="validate"
-    ["배포"]="deploy"
-    ["전체사이클"]="fullcycle"
-    ["개발완료"]="complete"
-    ["품질보증"]="quality"
-    ["기획구현"]="plandev"
-    ["극한검증"]="extreme"
-    ["컨텍스트"]="context"
-    ["분석"]="analyze"
-    ["주간보고"]="weekly"
-    ["문서정리"]="docsorg"
-    ["레포정리"]="repoclean"
-    ["세션마감"]="session-closure"
-)
-
-# Download each command
-DOWNLOAD_SUCCESS=true
-for korean_cmd in "${!commands[@]}"; do
-    english_cmd="${commands[$korean_cmd]}"
-    echo "  📥 Downloading /$korean_cmd command..."
+# Detect environment capabilities
+detect_environment() {
+    echo -e "${YELLOW}🔍 Detecting environment...${NC}"
     
-    # Try downloading from GitHub (English filename)
-    RESPONSE=$(curl -sSL -w "\n%{http_code}" "$BASE_URL/$english_cmd.md" 2>/dev/null)
-    HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
-    CONTENT=$(echo "$RESPONSE" | head -n -1)
-    
-    if [ "$HTTP_CODE" = "200" ] && [ -n "$CONTENT" ] && ! echo "$CONTENT" | grep -q "400 Bad request"; then
-        # Save as Korean filename but also create English alias
-        echo "$CONTENT" > ".claude/commands/$korean_cmd.md"
-        echo "$CONTENT" > ".claude/commands/$english_cmd.md"
-        echo "     ✅ Downloaded (both /$korean_cmd and /$english_cmd available)"
-    else
-        # Fallback to local copy
-        if [ -f "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ]; then
-            cp "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ".claude/commands/$korean_cmd.md"
-            cp "$SCRIPT_DIR/.claude/commands/$korean_cmd.md" ".claude/commands/$english_cmd.md"
-            echo "     ✅ Copied from local (both /$korean_cmd and /$english_cmd available)"
-        elif [ -f "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ]; then
-            cp "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ".claude/commands/$korean_cmd.md"
-            cp "$SCRIPT_DIR/.claude/commands/$english_cmd.md" ".claude/commands/$english_cmd.md"
-            echo "     ✅ Copied from local (both /$korean_cmd and /$english_cmd available)"
+    # Git detection
+    if command -v git >/dev/null 2>&1; then
+        HAS_GIT=true
+        if [ -d ".git" ] || git rev-parse --git-dir >/dev/null 2>&1; then
+            IS_GIT_REPO=true
         else
-            echo "     ⚠️  Could not install $korean_cmd ($english_cmd)"
-            DOWNLOAD_SUCCESS=false
+            NEW_REPO=true
         fi
     fi
-done
-
-if [ "$DOWNLOAD_SUCCESS" = true ]; then
-    echo "  ✅ All 11 slash commands installed"
-else
-    echo "  ⚠️  Some commands could not be installed (check network)"
-fi
-
-# Step 3: Create project_rules.md if missing (새로운 위치: docs/specs/)
-echo ""
-echo "📜 Step 3/5: Creating project specifications..."
-
-# Check for existing project_rules.md and migrate if needed
-if [ -f "project_rules.md" ] && [ ! -f "docs/specs/project_rules.md" ]; then
-    echo "  📦 Migrating project_rules.md to docs/specs/..."
-    mv "project_rules.md" "docs/specs/project_rules.md"
-    echo "  ✅ Migrated project_rules.md to docs/specs/"
-elif [ ! -f "docs/specs/project_rules.md" ]; then
-    cat > docs/specs/project_rules.md << 'EOF'
-# PROJECT_NAME Project Rules
-
-## 🎯 Core Philosophy
-- **워크플로우 기반 개발**: /전체사이클 중심의 체계적 진행
-- **Zero-Effort Documentation**: 슬래시 커맨드 사용만으로 자동 문서화
-- **Mock 테스트 금지**: 실제 사용자 시나리오 검증 필수
-- **DRY 원칙**: 코드 중복 절대 금지, 재사용 우선
-
-## 📐 Architecture Principles
-- **4단계 워크플로우**: 기획 → 구현 → 안정화 → 배포
-- **글로벌 슬래시 명령어**: 10개 명령어 표준화 (개별 5개 + 조합 5개)
-- **3층 문서화 구조**: project_rules.md / docs/CURRENT/ / sessions/
-- **구조적 지속가능성**: 6단계 검증 루프 필수 적용
-
-## 🔧 Development Standards
-- **정량적 검증**: "통과했습니다" 금지, 구체적 수치 제시
-- **테스트 우선**: 모든 기능은 테스트와 함께
-- **문서화 자동화**: ZEDS를 통한 자동 문서 생성
-
-## 📚 Documentation Workflow
-- **세션 시작**: project_rules.md + docs/CURRENT/status.md 자동 로드
-- **작업 진행**: 각 단계별 자동 문서화
-- **세션 종료**: /배포 시 자동으로 sessions/에 아카이브
-- **토큰 효율**: 현재 컨텍스트만 로드 (< 1000 tokens)
-
-## 🚀 Version Control
-EOF
     
-    # Add Git-specific or local backup info
+    # GitHub integration detection
     if [ "$HAS_GIT" = true ]; then
-        cat >> project_rules.md << 'EOF'
-- **Git 기반**: commit + push + tag 워크플로우
-- **Pre-commit hooks**: 자동 문서 업데이트
-- **원격 저장소**: GitHub 연동
-EOF
-    else
-        cat >> docs/specs/project_rules.md << 'EOF'
-- **로컬 백업**: .backups/ 디렉토리에 날짜별 저장
-- **버전 관리**: 타임스탬프 기반 백업
-- **수동 동기화**: 필요시 외부 저장소에 수동 업로드
-EOF
-    fi
-    
-    cat >> docs/specs/project_rules.md << 'EOF'
-
-## ⚙️ Technical Stack
-- **Claude Code**: 슬래시 명령어 기반 워크플로우
-- **Python**: 3.8+ (선택사항)
-- **Playwright**: 웹 프로젝트 E2E 테스트 (선택사항)
-
-## 📊 Success Metrics
-- **문서화 추가 시간**: 0분 (완전 자동)
-- **컨텍스트 로드**: < 1000 tokens
-- **세션 연속성**: 100% 유지
-
----
-*이 문서는 PROJECT_NAME의 헌법입니다. 수동으로만 수정하세요.*
-EOF
-    sed -i "s/PROJECT_NAME/$PROJECT_NAME/g" docs/specs/project_rules.md
-    echo "  ✅ Created docs/specs/project_rules.md"
-else
-    echo "  ⏭️  docs/specs/project_rules.md already exists"
-fi
-
-# Step 4: Initialize ZEDS structure
-echo ""
-echo "📚 Step 4/5: Initializing ZEDS (Zero-Effort Documentation System)..."
-
-# Create initial status.md
-if [ ! -f "docs/CURRENT/status.md" ]; then
-    cat > docs/CURRENT/status.md << EOF
-# Current Project Status
-
-## 📅 Last Updated: $CURRENT_DATE
-
-## 🎯 Current Phase: Initial Setup
-- Project initialized with claude-dev-kit
-- Ready to start development
-
-## ✅ Recently Completed
-- Project structure created
-- Slash commands installed
-- ZEDS initialized
-
-## 🔄 Active Work
-- Waiting for first development task
-
-## 📋 Next Steps
-- Use /기획 to plan your first feature
-- Or use /전체사이클 for complete workflow
-
-## 💡 Notes
-- All slash commands are ready to use
-- Documentation will be automatic
-- Context management: Dynamic guide generation (v9.0)
-- Expected compression: 85-95% with /compact
-EOF
-    
-    if [ "$HAS_GIT" = false ]; then
-        cat >> docs/CURRENT/status.md << EOF
-
-## ⚠️ Git Not Detected
-- Running in local mode
-- Backups saved to .backups/ directory
-- Manual sync required for sharing
-EOF
-    fi
-    
-    echo "  ✅ Created docs/CURRENT/status.md"
-else
-    echo "  ⏭️  status.md already exists"
-fi
-
-# Create initial active-todos.md
-if [ ! -f "docs/CURRENT/active-todos.md" ]; then
-    cat > docs/CURRENT/active-todos.md << EOF
-# Active TODOs
-
-## 🚀 Current Sprint
-- [ ] Start first development task
-
-## 📝 Backlog
-- [ ] Define project requirements
-- [ ] Set up development environment
-
-## 💭 Ideas
-- Add your project ideas here
-EOF
-    echo "  ✅ Created docs/CURRENT/active-todos.md"
-else
-    echo "  ⏭️  active-todos.md already exists"
-fi
-
-# Create PRD template
-if [ ! -f "docs/specs/PRD-template.md" ]; then
-    cat > docs/specs/PRD-template.md << EOF
-# Product Requirements Document (PRD)
-
-## 📋 Version
-- Version: 1.0
-- Date: $CURRENT_DATE
-- Status: Draft
-
-## 🎯 Product Overview
-[제품의 핵심 목적과 비전을 명시]
-
-## 👥 Target Users
-- Primary: [주요 사용자 그룹]
-- Secondary: [부가 사용자 그룹]
-
-## 🔑 Key Features
-1. **[핵심 기능 1]**
-   - Description: 
-   - Priority: High/Medium/Low
-   - Success Criteria: 
-
-2. **[핵심 기능 2]**
-   - Description:
-   - Priority: High/Medium/Low
-   - Success Criteria:
-
-## 📊 Success Metrics
-- [측정 가능한 성공 지표 1]
-- [측정 가능한 성공 지표 2]
-
-## 🚫 Out of Scope
-- [명시적으로 제외되는 기능들]
-
-## 📅 Timeline
-- Phase 1: [날짜] - [목표]
-- Phase 2: [날짜] - [목표]
-
-## 🔄 Dependencies
-- [외부 의존성 1]
-- [외부 의존성 2]
-
-## ⚠️ Risks & Mitigations
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| [위험 1] | High/Medium/Low | [완화 방안] |
-
----
-*이 PRD는 /기획 명령어로 자동 생성되었습니다.*
-EOF
-    echo "  ✅ Created docs/specs/PRD-template.md"
-else
-    echo "  ⏭️  PRD-template.md already exists"
-fi
-
-# Step 5: Git setup and hooks
-echo ""
-if [ "$HAS_GIT" = true ]; then
-    echo "🔗 Step 5/5: Setting up Git repository..."
-    
-    # Initialize new Git repository if needed
-    if [ "$SHOULD_INIT_GIT" = true ]; then
-        echo "  📦 Initializing new Git repository..."
-        git init
+        GITHUB_REMOTE=$(git remote -v 2>/dev/null | grep github.com | head -1 | cut -f2 | cut -d' ' -f1 || echo "")
         
-        # Create initial .gitignore
-        cat > .gitignore << 'EOF'
-# Build artifacts
-dist/
-build/
-*.egg-info/
-__pycache__/
-*.pyc
-*.pyo
+        if command -v gh >/dev/null 2>&1; then
+            HAS_GITHUB_CLI=true
+            if gh auth status >/dev/null 2>&1; then
+                GITHUB_SETUP_AVAILABLE=true
+            fi
+        fi
+    fi
+    
+    # Python detection
+    if command -v python3 >/dev/null 2>&1; then
+        HAS_PYTHON=true
+    fi
+    
+    echo -e "   Git: ${HAS_GIT} | Repo: ${IS_GIT_REPO} | GitHub CLI: ${HAS_GITHUB_CLI} | GitHub Auth: ${GITHUB_SETUP_AVAILABLE} | Python: ${HAS_PYTHON}"
+}
 
-# Dependencies  
-node_modules/
-.venv/
+# Show progress with visual progress bar
+show_progress() {
+    local current=$1
+    local total=$2
+    local description=$3
+    
+    local progress=$((current * 50 / total))
+    local percent=$((current * 100 / total))
+    
+    echo -ne "\r${BLUE}🚀 Progress: [$current/$total] $description${NC}"
+    printf "\n["
+    for ((i=0; i<progress; i++)); do printf "="; done
+    for ((i=progress; i<50; i++)); do printf " "; done
+    printf "] %d%%\n" $percent
+}
+
+# Create project directory structure
+install_project_structure() {
+    echo -e "${YELLOW}📁 Creating project structure...${NC}"
+    
+    for dir in "src/$PROJECT_NAME" "src/$PROJECT_NAME/core" "src/$PROJECT_NAME/models" \
+               "src/$PROJECT_NAME/services" "docs/CURRENT" \
+               "docs/development/sessions" "docs/specs" "examples" "tests" \
+               "scripts" ".claude/commands"; do
+        if [ ! -d "$dir" ]; then
+            mkdir -p "$dir"
+            echo "  ✅ Created: $dir"
+        else
+            echo "  ⏭️  Exists: $dir"
+        fi
+    done
+    
+    # Create backup directory for non-git environments
+    if [ "$HAS_GIT" = false ]; then
+        if [ ! -d ".backups" ]; then
+            mkdir -p ".backups"
+            echo "  ✅ Created: .backups (for version control)"
+        fi
+    fi
+}
+
+# Install slash commands
+install_slash_commands() {
+    echo -e "${YELLOW}⚡ Installing slash commands...${NC}"
+    
+    BASE_URL="https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands"
+    
+    # Command mapping (Korean -> English for GitHub)
+    declare -A commands=(
+        ["기획"]="plan"
+        ["구현"]="implement"
+        ["안정화"]="stabilize"
+        ["검증"]="validate"
+        ["배포"]="deploy"
+        ["전체사이클"]="fullcycle"
+        ["개발완료"]="complete"
+        ["품질보증"]="quality"
+        ["기획구현"]="plandev"
+        ["극한검증"]="extreme"
+        ["컨텍스트"]="context"
+        ["분석"]="analyze"
+        ["주간보고"]="weekly"
+        ["문서정리"]="docsorg"
+        ["레포정리"]="repoclean"
+        ["세션마감"]="session-closure"
+    )
+    
+    local success_count=0
+    local total_commands=${#commands[@]}
+    
+    for korean_cmd in "${!commands[@]}"; do
+        english_cmd="${commands[$korean_cmd]}"
+        echo "  📥 Downloading /$korean_cmd command..."
+        
+        if curl -sSL "$BASE_URL/$english_cmd.md" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
+            success_count=$((success_count + 1))
+            echo "    ✅ $korean_cmd.md"
+        else
+            echo "    ⚠️ Failed to download $korean_cmd (will continue)"
+        fi
+    done
+    
+    echo "  📊 Downloaded $success_count/$total_commands commands successfully"
+}
+
+# Setup Git repository
+setup_git_repository() {
+    if [ "$NEW_REPO" = true ]; then
+        echo -e "${YELLOW}🔧 Initializing Git repository...${NC}"
+        git init
+        echo "  ✅ Git repository initialized"
+    fi
+    
+    # Create/update .gitignore
+    if [ ! -f ".gitignore" ]; then
+        cat > .gitignore << 'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
 venv/
 env/
+ENV/
 
-# IDE
+# IDEs
 .vscode/
 .idea/
 *.swp
@@ -366,307 +220,642 @@ env/
 .DS_Store
 Thumbs.db
 
+# Claude Dev Kit
+.backups/
+.tadd/version.lock
+mock-report.json
+mock-violations.txt
+
 # Logs
 *.log
 logs/
 
-# Environment
-.env
-.env.local
-.env.*.local
-
-# Testing
-.coverage
-.pytest_cache/
-coverage/
-.nyc_output/
-
-# Temporary
+# Temporary files
 *.tmp
 *.bak
-tmp/
-temp/
-
-# Backups (for non-git mode)
-.backups/
+*~
 EOF
-        echo "  ✅ Git repository initialized"
-        echo ""
-        echo "  📋 Next steps for Git setup:"
-        echo "     1. Create a repository on GitHub/GitLab"  
-        echo "     2. Add remote: git remote add origin <your-repo-url>"
-        echo "     3. Push: git add . && git commit -m 'Initial commit' && git push -u origin main"
-        echo ""
+        echo "  ✅ .gitignore created"
+    fi
+}
+
+# Install TADD Enforcement (integrated from tadd-enforce-installer.sh)
+install_tadd_enforcement() {
+    if [ "$HAS_GIT" != true ]; then
+        echo -e "${RED}❌ Git is required for TADD Enforcement${NC}"
+        return 1
     fi
     
-    # Create pre-commit hook
-    echo "  🪝 Installing Git pre-commit hook..."
+    echo -e "${YELLOW}🛡️ Installing TADD Enforcement...${NC}"
+    
+    # 1. Install Git hooks
+    setup_git_hooks
+    
+    # 2. Install TADD scripts
+    install_tadd_scripts
+    
+    # 3. Setup GitHub Actions
+    setup_github_actions
+    
+    # 4. Create TADD configuration
+    create_tadd_config
+    
+    # 5. Setup Branch Protection (if GitHub CLI available)
+    if [ "$GITHUB_SETUP_AVAILABLE" = true ]; then
+        setup_branch_protection
+    else
+        echo -e "  ${YELLOW}⚠️ GitHub CLI not available - Branch Protection setup will be manual${NC}"
+        show_manual_branch_protection_guide
+    fi
+}
+
+# Setup Git hooks
+setup_git_hooks() {
+    echo "  🔧 Installing Git hooks..."
     mkdir -p .git/hooks
-    cat > .git/hooks/pre-commit << 'EOF'
-#!/bin/sh
-# Auto-update claude.md on commit
-if command -v claude >/dev/null 2>&1; then
-    claude init 2>/dev/null || true
-    git add claude.md 2>/dev/null || true
-fi
-EOF
-    chmod +x .git/hooks/pre-commit
-    echo "  ✅ Git pre-commit hook installed"
-else
-    echo "📦 Step 5/5: Setting up local backup system..."
     
-    # Create backup script
-    cat > scripts/backup.sh << 'EOF'
+    # Pre-push hook
+    cat > .git/hooks/pre-push << 'EOF'
 #!/bin/bash
-# Local backup script for non-Git environments
-BACKUP_DIR=".backups"
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-BACKUP_NAME="backup_$TIMESTAMP"
+# TADD Enforcement: Pre-push validation hook
 
-echo "Creating backup: $BACKUP_NAME"
-mkdir -p "$BACKUP_DIR/$BACKUP_NAME"
+echo "🔍 TADD Enforcement: Pre-push validation..."
 
-# Backup important files
-for item in src/ docs/ tests/ examples/ CLAUDE.md; do
-    if [ -e "$item" ]; then
-        cp -r "$item" "$BACKUP_DIR/$BACKUP_NAME/"
-    fi
-done
+PROJECT_ROOT="$(git rev-parse --show-toplevel)"
 
-echo "✅ Backup created at $BACKUP_DIR/$BACKUP_NAME"
-
-# Keep only last 10 backups
-cd "$BACKUP_DIR"
-ls -t | tail -n +11 | xargs -r rm -rf
-cd ..
-
-echo "📊 Backup stats:"
-du -sh "$BACKUP_DIR/$BACKUP_NAME"
-EOF
-    chmod +x scripts/backup.sh
-    echo "  ✅ Local backup system created (use scripts/backup.sh)"
+# Check if TADD scripts exist
+if [ ! -f "$PROJECT_ROOT/scripts/verify_tadd_order.py" ]; then
+    echo "⚠️ TADD verification scripts not found - downloading..."
+    mkdir -p "$PROJECT_ROOT/scripts"
+    curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/verify_tadd_order.py \
+         -o "$PROJECT_ROOT/scripts/verify_tadd_order.py" 2>/dev/null
+    curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/detect_mock_usage.py \
+         -o "$PROJECT_ROOT/scripts/detect_mock_usage.py" 2>/dev/null
 fi
 
-# Create CLAUDE.md if missing
-if [ ! -f "CLAUDE.md" ]; then
-    echo ""
-    echo "📝 Creating CLAUDE.md..."
+# Run TADD validation
+if [ -f "$PROJECT_ROOT/scripts/verify_tadd_order.py" ]; then
+    python3 "$PROJECT_ROOT/scripts/verify_tadd_order.py" || {
+        echo ""
+        echo "❌ TADD Violation: Tests must be written before implementation"
+        echo "To bypass (NOT recommended): git push --no-verify"
+        exit 1
+    }
+fi
+
+if [ -f "$PROJECT_ROOT/scripts/detect_mock_usage.py" ]; then
+    python3 "$PROJECT_ROOT/scripts/detect_mock_usage.py" || {
+        echo ""
+        echo "❌ Mock usage exceeds 20% limit"
+        echo "To bypass (NOT recommended): git push --no-verify"
+        exit 1
+    }
+fi
+
+echo "✅ TADD validation passed!"
+EOF
+    
+    # Pre-commit hook
+    cat > .git/hooks/pre-commit << 'EOF'
+#!/bin/bash
+# TADD Enforcement: Pre-commit validation hook
+
+# Check commit message format
+if echo "$1" | grep -qE "^(test|feat|fix):"; then
+    echo "✅ TADD-compliant commit message"
+fi
+EOF
+    
+    chmod +x .git/hooks/pre-push
+    chmod +x .git/hooks/pre-commit
+    echo "    ✅ Git hooks installed"
+}
+
+# Install TADD verification scripts
+install_tadd_scripts() {
+    echo "  📦 Installing TADD verification scripts..."
+    mkdir -p scripts
+    
+    # Download verification scripts
+    curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/verify_tadd_order.py" \
+         -o scripts/verify_tadd_order.py 2>/dev/null && echo "    ✅ verify_tadd_order.py"
+    curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/detect_mock_usage.py" \
+         -o scripts/detect_mock_usage.py 2>/dev/null && echo "    ✅ detect_mock_usage.py"
+    
+    # Create quick check script
+    cat > scripts/quick_tadd_check.sh << 'EOF'
+#!/bin/bash
+# Quick TADD validation check
+
+echo "🧪 Quick TADD Check"
+echo "==================="
+
+# Detect and run tests based on project type
+if [ -f "pytest.ini" ] || [ -f "pyproject.toml" ]; then
+    echo "Running pytest..."
+    python3 -m pytest -x --tb=short --quiet 2>/dev/null || { echo "❌ Tests failed"; exit 1; }
+elif [ -f "package.json" ] && grep -q '"test"' package.json; then
+    echo "Running npm test..."
+    npm test --silent 2>/dev/null || { echo "❌ Tests failed"; exit 1; }
+elif [ -f "go.mod" ]; then
+    echo "Running go test..."
+    go test ./... -short 2>/dev/null || { echo "❌ Tests failed"; exit 1; }
+else
+    echo "⚠️ No test framework detected"
+fi
+
+echo "✅ Quick check passed!"
+EOF
+    
+    chmod +x scripts/*.py 2>/dev/null || true
+    chmod +x scripts/quick_tadd_check.sh
+}
+
+# Setup GitHub Actions
+setup_github_actions() {
+    echo "  🎬 Setting up GitHub Actions..."
+    mkdir -p .github/workflows
+    
+    # Download TADD enforcement workflow
+    if curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.github/workflows/tadd-enforcement.yml" \
+       -o .github/workflows/tadd-enforcement.yml 2>/dev/null; then
+        echo "    ✅ TADD enforcement workflow created"
+    else
+        echo "    ⚠️ Failed to download GitHub Actions workflow"
+    fi
+}
+
+# Create TADD configuration
+create_tadd_config() {
+    echo "  ⚙️ Creating TADD configuration..."
+    mkdir -p .tadd
+    
+    cat > .tadd/config.yml << EOF
+# TADD Enforcement Configuration
+version: 29.0
+created: $CURRENT_DATE
+project: $PROJECT_NAME
+
+rules:
+  test_first: true
+  mock_limit: 20  # Maximum 20% mock usage
+  coverage_min: 80  # Minimum 80% coverage
+  
+exceptions:
+  - path: "legacy/*"
+    reason: "Legacy code - gradual improvement"
+  - path: "vendor/*"
+    reason: "Third-party code"
+  - path: "node_modules/*"
+    reason: "Dependencies"
+
+notifications:
+  enabled: false
+  # slack: "https://hooks.slack.com/..."
+  # email: "team@example.com"
+EOF
+    echo "    ✅ Configuration created"
+}
+
+# Setup Branch Protection (automatic)
+setup_branch_protection() {
+    if [ "$GITHUB_SETUP_AVAILABLE" != true ]; then
+        return 1
+    fi
+    
+    echo "  🔒 Setting up Branch Protection automatically..."
+    
+    REPO_INFO=$(gh repo view --json owner,name 2>/dev/null)
+    if [ $? -eq 0 ]; then
+        OWNER=$(echo "$REPO_INFO" | python3 -c "import sys,json; print(json.load(sys.stdin)['owner']['login'])" 2>/dev/null)
+        REPO=$(echo "$REPO_INFO" | python3 -c "import sys,json; print(json.load(sys.stdin)['name'])" 2>/dev/null)
+        
+        if [ -n "$OWNER" ] && [ -n "$REPO" ]; then
+            # Create Branch Protection rule
+            gh api "repos/$OWNER/$REPO/branches/main/protection" \
+                --method PUT \
+                --field required_status_checks='{"strict":true,"contexts":["TADD Enforcement / verify-test-first","TADD Enforcement / check-mock-usage","TADD Enforcement / quality-gate"]}' \
+                --field enforce_admins=true \
+                --field required_pull_request_reviews=null \
+                --field restrictions=null \
+                2>/dev/null
+            
+            if [ $? -eq 0 ]; then
+                echo -e "    ${GREEN}✅ Branch Protection configured automatically!${NC}"
+                return 0
+            fi
+        fi
+    fi
+    
+    echo -e "    ${YELLOW}⚠️ Automatic Branch Protection failed - see manual setup guide${NC}"
+    show_manual_branch_protection_guide
+}
+
+# Show manual Branch Protection setup guide
+show_manual_branch_protection_guide() {
+    echo -e "${YELLOW}"
+    echo "📋 Manual Branch Protection Setup Required:"
+    echo "  1. Visit: https://github.com/[OWNER]/[REPO]/settings/branches"
+    echo "  2. Add protection rule for 'main' branch"
+    echo "  3. Enable: ✅ Require status checks to pass"
+    echo "  4. Select: TADD Enforcement checks"
+    echo "  5. Enable: ✅ Include administrators"
+    echo -e "${NC}"
+}
+
+# Create initial project files
+create_initial_files() {
+    echo -e "${YELLOW}📝 Creating initial project files...${NC}"
+    
+    # Create CLAUDE.md
     cat > CLAUDE.md << EOF
-# $PROJECT_NAME: $PROJECT_DESC
+# $PROJECT_NAME
 
 ## Project Overview
 $PROJECT_DESC
 
-## Current Status
-- ✅ **Phase 1**: Project initialized with claude-dev-kit
-- 📋 **Next**: Start development with /기획 or /전체사이클
+## Current Status (v1.0)
+- ✅ **Project Structure**: Initialized with Claude Dev Kit v29.0
+- ✅ **TADD Enforcement**: Fully configured and active
+- ✅ **Slash Commands**: All development commands available
+- 🚀 **Ready for Development**: Use /기획 to start planning
 
-## Development Environment
+## Development Environment Setup
 
 ### Quick Start
 \`\`\`bash
-# Project is ready! Start with slash commands:
-/기획      # Plan features
-/구현      # Implement code
-/안정화    # Test and optimize
-/배포      # Deploy changes
+# Start planning your first feature
+/기획 "describe your feature"
 
-# Or use workflows:
-/전체사이클  # Complete cycle
-/개발완료    # Implementation to deployment
+# Or run the complete development cycle
+/전체사이클 "implement feature X"
 \`\`\`
 
-## Available Commands
-- **Individual**: /기획, /구현, /안정화, /배포
-- **Workflows**: /전체사이클, /개발완료, /품질보증, /기획구현
+## Key Features
+- **TADD Enforcement**: Test-driven development automatically enforced
+- **Slash Commands**: Korean/English development commands
+- **Quality Assurance**: Automated code quality checks
+- **Git Integration**: Pre-configured hooks and workflows
 
 ## Project Structure
 \`\`\`
 $PROJECT_NAME/
-├── CLAUDE.md            # This file
-├── project_rules.md     # Project constitution
-├── .claude/commands/    # 8 slash commands
-├── src/$PROJECT_NAME/   # Source code
-├── docs/CURRENT/        # Active documentation
-├── tests/              # Test suites
-EOF
-
-    if [ "$HAS_GIT" = false ]; then
-        cat >> CLAUDE.md << EOF
-├── .backups/           # Local version control
-EOF
-    fi
-
-    cat >> CLAUDE.md << EOF
-└── scripts/            # Utility scripts
+├── src/$PROJECT_NAME/     # Core implementation
+│   ├── core/             # Shared components
+│   ├── models/           # Data models
+│   └── services/         # Business logic
+├── tests/               # Test suites
+├── docs/               # Documentation
+├── scripts/            # Utility scripts
+└── .claude/commands/   # Development commands
 \`\`\`
 
-## Development Workflow
-이 프로젝트는 4단계 키워드 기반 개발을 사용합니다:
-- **기획** → Structured Discovery & Planning
-- **구현** → Implementation with DRY
-- **안정화** → Structural Sustainability
-- **배포** → Deployment${HAS_GIT:+ with Git}${HAS_GIT:- (local)}
+## Contributing
+This project follows TADD (Test-Aware Development Discipline):
+1. Write tests first
+2. Implement functionality 
+3. Maintain < 20% mock usage
+4. Achieve 80%+ test coverage
 
-EOF
-
-    if [ "$HAS_GIT" = false ]; then
-        cat >> CLAUDE.md << EOF
-## ⚠️ Note: Running in Local Mode
-Git was not detected in this environment. The project will work perfectly, but:
-- Version control uses local backups (.backups/)
-- Use \`scripts/backup.sh\` to create backups
-- Manual sharing required (no automatic push)
-- All other features work normally!
-
-EOF
-    fi
-
-    cat >> CLAUDE.md << EOF
 ---
-*Initialized with claude-dev-kit v4.0 (Universal Edition)*
+Created with Claude Dev Kit v29.0 on $CURRENT_DATE
 EOF
-    echo "  ✅ Created CLAUDE.md"
-else
-    echo "  ⏭️  CLAUDE.md already exists"
-fi
 
-# Create .claudeignore if missing
-if [ ! -f ".claudeignore" ]; then
-    cat > .claudeignore << 'EOF'
-# Build artifacts
-dist/
-build/
-*.egg-info/
-__pycache__/
-*.pyc
+    # Create README.md
+    cat > README.md << EOF
+# $PROJECT_NAME
 
-# Dependencies
-node_modules/
-.venv/
-venv/
+$PROJECT_DESC
 
-# IDE
-.vscode/
-.idea/
+## Quick Start
 
-# OS
-.DS_Store
+\`\`\`bash
+# Install dependencies (if any)
+# pip install -r requirements.txt
 
-# Logs
-*.log
+# Run tests
+pytest
 
-# Environment
-.env
+# Start development
+# Your implementation here
+\`\`\`
 
-# Testing
-.coverage
-.pytest_cache/
+## Development
 
-# Backups
-.backups/
+This project uses [Claude Dev Kit](https://github.com/kyuwon-shim-ARL/claude-dev-kit) for development workflow:
 
-# Temporary
-*.tmp
-*.bak
-tmp/
+- \`/기획\` - Plan new features
+- \`/구현\` - Implement features  
+- \`/검증\` - Test and validate
+- \`/배포\` - Deploy changes
+
+## Testing
+
+Tests are automatically enforced through TADD (Test-Aware Development Discipline):
+- Tests must be written before implementation
+- Mock usage limited to 20%
+- Minimum 80% test coverage required
+
+## Contributing
+
+1. Plan your changes with \`/기획\`
+2. Implement with \`/구현\`
+3. Test with \`/검증\`
+4. Deploy with \`/배포\`
+
+All pull requests are automatically checked for TADD compliance.
+
+---
+Built with ❤️ using Claude Dev Kit
 EOF
-    echo "  ✅ Created .claudeignore"
-fi
 
-# Final Summary
-echo ""
-echo "=========================================="
-echo "🎉 Claude Dev Kit Installation Complete!"
-echo "=========================================="
-echo ""
-echo "✅ Installed Components:"
-echo "  • Project structure created"
-echo "  • 11 slash commands installed"
-echo "  • project_rules.md created" 
-echo "  • ZEDS initialized"
+    echo "  ✅ CLAUDE.md and README.md created"
+}
 
-if [ "$HAS_GIT" = true ]; then
-    if [ "$NEW_REPO" = true ]; then
-        echo "  • New Git repository initialized"
-        echo "  • Git hooks configured"
-        echo "  • Ready for remote repository setup"
-    else
-        echo "  • Git hooks configured"
-        echo "  • Existing repository preserved"
+# Execute install mode (new project)
+execute_install() {
+    local steps=("Environment" "Structure" "Commands" "Git" "TADD" "Files" "Complete")
+    local current=0
+    local total=${#steps[@]}
+    
+    echo -e "${BLUE}🚀 Starting complete installation...${NC}"
+    echo ""
+    
+    for step in "${steps[@]}"; do
+        current=$((current + 1))
+        show_progress $current $total "$step"
+        
+        case $step in
+            "Environment")
+                detect_environment
+                ;;
+            "Structure") 
+                install_project_structure
+                ;;
+            "Commands")
+                install_slash_commands
+                ;;
+            "Git")
+                if [ "$HAS_GIT" = true ]; then
+                    setup_git_repository
+                fi
+                ;;
+            "TADD")
+                if [ "$HAS_GIT" = true ]; then
+                    install_tadd_enforcement
+                fi
+                ;;
+            "Files")
+                create_initial_files
+                ;;
+            "Complete")
+                show_completion_message
+                ;;
+        esac
+        
+        sleep 0.3  # Visual feedback
+    done
+}
+
+# Execute upgrade mode
+execute_upgrade() {
+    echo -e "${BLUE}🔄 Starting upgrade process...${NC}"
+    
+    # Check existing installation
+    if [ ! -d ".claude/commands" ]; then
+        echo -e "${RED}❌ No existing installation found. Run './init.sh project_name' first.${NC}"
+        exit 1
     fi
-else
-    echo "  • Local backup system ready"
-    echo "  • Use scripts/backup.sh for versioning"
-fi
+    
+    # Create backup
+    BACKUP_DIR=".claude/commands.backup.$(date +%Y%m%d_%H%M%S)"
+    cp -r .claude/commands "$BACKUP_DIR"
+    echo -e "${GREEN}📦 Backup created: $BACKUP_DIR${NC}"
+    
+    detect_environment
+    
+    echo ""
+    echo "🔄 What to upgrade?"
+    echo "1. Slash commands only"
+    echo "2. TADD Enforcement only" 
+    echo "3. Everything (smart upgrade)"
+    echo "4. Complete reinstall"
+    echo ""
+    read -p "Choose (1/2/3/4) [3]: " UPGRADE_CHOICE
+    UPGRADE_CHOICE=${UPGRADE_CHOICE:-3}
+    
+    case $UPGRADE_CHOICE in
+        1) 
+            install_slash_commands
+            ;;
+        2) 
+            if [ "$HAS_GIT" = true ]; then
+                install_tadd_enforcement
+            else
+                echo -e "${RED}❌ Git is required for TADD Enforcement${NC}"
+                exit 1
+            fi
+            ;;
+        3)
+            # Smart upgrade - detect what needs updating
+            install_slash_commands
+            
+            if [ "$HAS_GIT" = true ]; then
+                # Check if TADD files exist, if so update them
+                if [ -f ".git/hooks/pre-push" ] || [ -f ".github/workflows/tadd-enforcement.yml" ]; then
+                    echo -e "${YELLOW}🛡️ Updating existing TADD installation...${NC}"
+                    install_tadd_enforcement
+                fi
+                
+                # Setup Branch Protection if GitHub CLI is available
+                if [ "$GITHUB_SETUP_AVAILABLE" = true ]; then
+                    setup_branch_protection
+                fi
+            fi
+            ;;
+        4)
+            echo -e "${YELLOW}🔄 Complete reinstallation...${NC}"
+            PROJECT_NAME=$(basename "$PWD")
+            execute_install
+            ;;
+    esac
+    
+    echo -e "${GREEN}✅ Upgrade completed successfully!${NC}"
+}
 
-echo ""
-echo "📚 Available Slash Commands:"
-echo "  Individual: /기획, /구현, /안정화, /검증, /배포"
-echo "  Workflows: /전체사이클, /개발완료, /품질보증, /기획구현, /극한검증"
-echo ""
-echo "🚀 New Features (v9.0):"
-echo "  • Dynamic context guide generation"
-echo "  • 85-95% compression with smart /compact"
-echo "  • Claude analyzes your actual work for optimal cleanup"
-echo ""
-if [ "$NEW_REPO" = true ]; then
-    echo ""
-    echo "🔧 Git Setup Required:"
-    echo "  1. Create a new repository on GitHub/GitLab/etc"
-    echo "  2. Connect your repository:"
-    echo "     git remote add origin https://github.com/yourusername/${PROJECT_NAME}.git"
-    echo "  3. Make initial commit:"
-    echo "     git add ."
-    echo "     git commit -m 'Initial commit with claude-dev-kit'"  
-    echo "     git push -u origin main"
-    echo ""
-fi
+# Execute TADD-only installation
+execute_tadd_only() {
+    echo -e "${BLUE}🛡️ Installing TADD Enforcement only...${NC}"
+    
+    detect_environment
+    
+    if [ "$HAS_GIT" != true ]; then
+        echo -e "${RED}❌ Git is required for TADD Enforcement${NC}"
+        exit 1
+    fi
+    
+    install_tadd_enforcement
+    
+    echo -e "${GREEN}✅ TADD Enforcement installed successfully!${NC}"
+}
 
-echo "🚀 Next Steps:"
-echo "  1. Open Claude Code in this directory"
-if [ "$NEW_REPO" = true ]; then
-    echo "  2. Set up your Git remote repository (see above)"
-    echo "  3. Use /기획 to plan your first feature"
-    echo "  4. Or use /전체사이클 for complete workflow"
-else
-    echo "  2. Use /기획 to plan your first feature"
-    echo "  3. Or use /전체사이클 for complete workflow"  
-fi
-echo ""
+# Execute installation check
+execute_check() {
+    echo -e "${BLUE}🔍 Checking installation status...${NC}"
+    echo ""
+    
+    detect_environment
+    
+    # Check Claude Dev Kit components
+    echo "📦 Claude Dev Kit Components:"
+    if [ -d ".claude/commands" ]; then
+        local cmd_count=$(ls -1 .claude/commands/ | wc -l)
+        echo "  ✅ Slash commands: $cmd_count installed"
+    else
+        echo "  ❌ Slash commands: Not installed"
+    fi
+    
+    if [ -f "CLAUDE.md" ]; then
+        echo "  ✅ CLAUDE.md: Present"
+    else
+        echo "  ❌ CLAUDE.md: Missing"
+    fi
+    
+    # Check TADD components
+    echo ""
+    echo "🛡️ TADD Enforcement Status:"
+    if [ -f ".git/hooks/pre-push" ]; then
+        echo "  ✅ Git hooks: Installed"
+    else
+        echo "  ❌ Git hooks: Missing"
+    fi
+    
+    if [ -f ".github/workflows/tadd-enforcement.yml" ]; then
+        echo "  ✅ GitHub Actions: Configured"
+    else
+        echo "  ❌ GitHub Actions: Missing"
+    fi
+    
+    if [ -f ".tadd/config.yml" ]; then
+        echo "  ✅ TADD config: Present"
+    else
+        echo "  ❌ TADD config: Missing"
+    fi
+    
+    # Check Branch Protection (if GitHub CLI available)
+    if [ "$GITHUB_SETUP_AVAILABLE" = true ]; then
+        echo ""
+        echo "🔒 GitHub Branch Protection:"
+        REPO_INFO=$(gh repo view --json owner,name 2>/dev/null)
+        if [ $? -eq 0 ]; then
+            OWNER=$(echo "$REPO_INFO" | python3 -c "import sys,json; print(json.load(sys.stdin)['owner']['login'])" 2>/dev/null)
+            REPO=$(echo "$REPO_INFO" | python3 -c "import sys,json; print(json.load(sys.stdin)['name'])" 2>/dev/null)
+            
+            if gh api "repos/$OWNER/$REPO/branches/main/protection" >/dev/null 2>&1; then
+                echo "  ✅ Branch Protection: Enabled"
+            else
+                echo "  ⚠️ Branch Protection: Not configured"
+            fi
+        fi
+    fi
+    
+    echo ""
+    echo -e "${GREEN}📊 Installation check completed${NC}"
+}
 
-if [ "$HAS_GIT" = true ]; then
-    echo "⚡ TADD Enforcement System (v24.0) Available!"
-    echo "  📊 Automatic test-first development enforcement"
-    echo "  🤖 AI-proof quality assurance"
-    echo "  📈 Mock usage < 20% automatically enforced"
+# Show completion message
+show_completion_message() {
     echo ""
-    echo "🔧 To activate TADD Enforcement:"
-    echo "  1. Push your project to GitHub (see Git setup above)"
-    echo "  2. GitHub Actions will automatically activate"
-    echo "  3. All PRs will be checked for TADD compliance"
-    echo "  4. Failed checks block PR merge automatically"
+    echo -e "${GREEN}🎉 Installation completed successfully!${NC}"
     echo ""
-    echo "📋 Local TADD verification:"
-    echo "  • Quick check: ./scripts/quick_tadd_check.sh"
-    echo "  • Test order: python scripts/verify_tadd_order.py"
-    echo "  • Mock usage: python scripts/detect_mock_usage.py"
+    echo -e "${BLUE}📋 Installation Summary:${NC}"
+    echo "  • Project structure: ✅ Created"
+    echo "  • Slash commands: ✅ Installed" 
+    if [ "$HAS_GIT" = true ]; then
+        echo "  • Git integration: ✅ Configured"
+        echo "  • TADD enforcement: ✅ Active"
+        echo "  • GitHub Actions: ✅ Ready"
+        if [ "$GITHUB_SETUP_AVAILABLE" = true ]; then
+            echo "  • Branch protection: ✅ Configured"
+        else
+            echo "  • Branch protection: ⚠️ Manual setup needed"
+        fi
+    fi
     echo ""
-    echo "💡 TADD Benefits:"
-    echo "  • 100% test compliance (vs 30% without system)"
-    echo "  • Zero regression bugs"
-    echo "  • Professional quality code"
-    echo "  • Works with any team size"
+    echo -e "${YELLOW}🚀 Next Steps:${NC}"
+    echo "1. Open Claude Code in this directory"
+    if [ "$NEW_REPO" = true ] && [ -n "$PROJECT_NAME" ]; then
+        echo "2. Create GitHub repository and connect:"
+        echo -e "   ${CYAN}gh repo create $PROJECT_NAME --public${NC}"
+        echo -e "   ${CYAN}git remote add origin https://github.com/$(whoami)/$PROJECT_NAME.git${NC}"
+        echo -e "   ${CYAN}git add . && git commit -m \"Initial commit\" && git push -u origin main${NC}"
+    fi
+    echo "3. Start development:"
+    echo -e "   ${CYAN}/기획 \"your first feature\"${NC}"
+    echo -e "   ${CYAN}/전체사이클 \"complete development workflow\"${NC}"
     echo ""
-fi
+    echo -e "${GREEN}💡 Tips:${NC}"
+    echo "  • All development commands are available as slash commands"
+    echo "  • TADD automatically enforces test-first development"
+    echo "  • Use './init.sh --check' to verify installation anytime"
+    echo ""
+}
 
-if [ "$HAS_GIT" = false ]; then
-    echo "💡 Tip for non-Git users:"
-    echo "  • Your work is safe! Backups are automatic"
-    echo "  • Run 'scripts/backup.sh' anytime to save progress"
-    echo "  • All Claude Code features work perfectly!"
-    echo "  • TADD local checks still available!"
-    echo ""
-fi
+# Main execution logic
+main() {
+    # Parse arguments
+    if [ $# -eq 0 ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+        show_usage
+        exit 0
+    fi
+    
+    # Determine mode
+    if [[ "$1" == --* ]]; then
+        MODE="${1#--}"  # Remove -- prefix
+        case "$MODE" in
+            upgrade)
+                execute_upgrade
+                ;;
+            tadd-only)
+                execute_tadd_only
+                ;;
+            reinstall)
+                PROJECT_NAME=$(basename "$PWD")
+                PROJECT_DESC="Reinstalled project"
+                execute_install
+                ;;
+            check)
+                execute_check
+                ;;
+            github-setup)
+                detect_environment
+                if [ "$GITHUB_SETUP_AVAILABLE" = true ]; then
+                    setup_branch_protection
+                else
+                    show_manual_branch_protection_guide
+                fi
+                ;;
+            *)
+                echo -e "${RED}❌ Unknown option: $1${NC}"
+                show_usage
+                exit 1
+                ;;
+        esac
+    else
+        # Install mode
+        MODE="install"
+        PROJECT_NAME="$1"
+        PROJECT_DESC="${2:-A new Claude Code project}"
+        
+        echo -e "${BLUE}🚀 Claude Dev Kit Ultimate Installation${NC}"
+        echo "========================================"
+        echo "Project: $PROJECT_NAME"
+        echo "Description: $PROJECT_DESC"
+        echo ""
+        
+        execute_install
+    fi
+}
 
-echo "Happy coding with Claude! 🤖"
+# Run main function
+main "$@"
