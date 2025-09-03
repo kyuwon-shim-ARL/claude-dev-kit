@@ -74,3 +74,13 @@ htmlcov/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+# Backup files
+*.bak
+*.backup
+*~
+*.orig
+
+# Test outputs
+test-results/
+test-output/

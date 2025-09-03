@@ -29,7 +29,7 @@ meta:
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
-[![Version](https://img.shields.io/badge/version-v31.1-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+[![Version](https://img.shields.io/badge/version-v30.5-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
 [![TADD](https://img.shields.io/badge/TADD-Enforced-green)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/blob/main/.github/workflows/tadd-enforcement.yml)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
