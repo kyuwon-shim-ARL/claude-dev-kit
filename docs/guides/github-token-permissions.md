@@ -1,5 +1,12 @@
 # GitHub Token Permissions Guide
 
+## 🔄 Slash Command Policy (v30.3+)
+
+**Korean-only Commands:** Starting from v30.3, the toolkit uses Korean slash commands exclusively:
+- `/기획`, `/구현`, `/안정화`, `/배포` 등
+- **Rationale:** Claude Code now fully supports Korean filenames
+- **Benefits:** Simplified codebase, no duplicate maintenance
+
 ## Overview
 This guide explains the GitHub token permissions required for full Claude Dev Kit functionality, especially Branch Protection setup.
 
