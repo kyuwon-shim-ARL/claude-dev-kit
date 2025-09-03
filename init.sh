@@ -84,14 +84,7 @@ detect_environment() {
         HAS_PYTHON=true
     fi
     
-    # UV detection (critical for Python projects)
-    if command -v uv >/dev/null 2>&1; then
-        HAS_UV=true
-    else
-        HAS_UV=false
-    fi
-    
-    echo -e "   Git: ${HAS_GIT} | Repo: ${IS_GIT_REPO} | GitHub CLI: ${HAS_GITHUB_CLI} | GitHub Auth: ${GITHUB_SETUP_AVAILABLE} | Python: ${HAS_PYTHON} | UV: ${HAS_UV}"
+    echo -e "   Git: ${HAS_GIT} | Repo: ${IS_GIT_REPO} | GitHub CLI: ${HAS_GITHUB_CLI} | GitHub Auth: ${GITHUB_SETUP_AVAILABLE} | Python: ${HAS_PYTHON}"
 }
 
 # Show progress with visual progress bar
@@ -493,93 +486,6 @@ show_minimal_branch_protection_guide() {
     echo "    4. Save changes"
 }
 
-# Install UV package manager if needed
-install_uv_if_needed() {
-    if [ "$HAS_PYTHON" = true ] && [ "$HAS_UV" = false ]; then
-        echo -e "${YELLOW}📦 Installing UV package manager (required for Python projects)...${NC}"
-        
-        # Install UV
-        if curl -LsSf https://astral.sh/uv/install.sh | sh 2>/dev/null; then
-            # Add UV to PATH for current session
-            export PATH="$HOME/.cargo/bin:$PATH"
-            
-            # Verify installation
-            if command -v uv >/dev/null 2>&1; then
-                echo -e "    ${GREEN}✅ UV installed successfully!${NC}"
-                HAS_UV=true
-                
-                # Create UV configuration
-                create_uv_config
-            else
-                echo -e "    ${YELLOW}⚠️ UV installation completed but not in PATH${NC}"
-                echo "    Add to your shell config: export PATH=\"\$HOME/.cargo/bin:\$PATH\""
-            fi
-        else
-            echo -e "    ${RED}❌ Failed to install UV. Please install manually:${NC}"
-            echo "    curl -LsSf https://astral.sh/uv/install.sh | sh"
-        fi
-    fi
-}
-
-# Create UV configuration for the project
-create_uv_config() {
-    echo "  📝 Creating UV configuration..."
-    
-    # Create .gitignore entry for UV
-    if ! grep -q ".venv" .gitignore 2>/dev/null; then
-        echo ".venv/" >> .gitignore
-    fi
-    
-    # Create pyproject.toml if it doesn't exist
-    if [ ! -f "pyproject.toml" ]; then
-        cat > pyproject.toml << 'EOF'
-[project]
-name = "PROJECT_NAME_PLACEHOLDER"
-version = "0.1.0"
-description = "PROJECT_DESC_PLACEHOLDER"
-requires-python = ">=3.8"
-dependencies = []
-
-[tool.uv]
-# UV-specific settings
-compile = true  # Compile bytecode for faster imports
-dev-dependencies = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "black>=23.0.0",
-    "ruff>=0.1.0",
-]
-
-[tool.ruff]
-line-length = 88
-target-version = "py38"
-
-[tool.black]
-line-length = 88
-target-version = ["py38"]
-EOF
-        
-        # Replace placeholders
-        sed -i "s/PROJECT_NAME_PLACEHOLDER/$PROJECT_NAME/g" pyproject.toml 2>/dev/null || \
-        sed -i '' "s/PROJECT_NAME_PLACEHOLDER/$PROJECT_NAME/g" pyproject.toml 2>/dev/null
-        
-        sed -i "s/PROJECT_DESC_PLACEHOLDER/$PROJECT_DESC/g" pyproject.toml 2>/dev/null || \
-        sed -i '' "s/PROJECT_DESC_PLACEHOLDER/$PROJECT_DESC/g" pyproject.toml 2>/dev/null
-        
-        echo "    ✅ pyproject.toml created with UV configuration"
-    fi
-    
-    # Create .env file for UV
-    if [ ! -f ".env" ]; then
-        cat > .env << 'EOF'
-# UV Package Manager Settings
-UV_SYSTEM_PYTHON=false
-UV_COMPILE_BYTECODE=true
-UV_LINK_MODE=copy
-EOF
-        echo "    ✅ .env file created for UV"
-    fi
-}
 
 # Show manual Branch Protection setup guide
 show_manual_branch_protection_guide() {
@@ -704,7 +610,7 @@ EOF
 
 # Execute install mode (new project)
 execute_install() {
-    local steps=("Environment" "Structure" "Commands" "Git" "UV" "TADD" "Files" "Complete")
+    local steps=("Environment" "Structure" "Commands" "Git" "TADD" "Files" "Complete")
     local current=0
     local total=${#steps[@]}
     
@@ -724,11 +630,6 @@ execute_install() {
                 ;;
             "Commands")
                 install_slash_commands
-                ;;
-            "UV")
-                if [ "$HAS_PYTHON" = true ]; then
-                    install_uv_if_needed
-                fi
                 ;;
             "Git")
                 if [ "$HAS_GIT" = true ]; then
@@ -938,14 +839,29 @@ show_completion_message() {
 
 # Main execution logic
 main() {
-    # Parse arguments
-    if [ $# -eq 0 ] || [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    # Handle help flag
+    if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
         show_usage
         exit 0
     fi
     
-    # Determine mode
-    if [[ "$1" == --* ]]; then
+    # No arguments: use defaults based on current directory
+    if [ $# -eq 0 ]; then
+        MODE="install"
+        PROJECT_NAME=$(basename "$PWD")
+        PROJECT_DESC="Claude Code project"
+        
+        echo -e "${BLUE}🚀 Claude Dev Kit Installation${NC}"
+        echo "========================================"
+        echo "Project: $PROJECT_NAME (auto-detected)"
+        echo "Description: $PROJECT_DESC"
+        echo ""
+        echo "Tip: Use './init.sh \"project-name\" \"description\"' for custom values"
+        echo ""
+        
+        execute_install
+    # Options mode (--upgrade, --check, etc.)
+    elif [[ "$1" == --* ]]; then
         MODE="${1#--}"  # Remove -- prefix
         case "$MODE" in
             upgrade)
@@ -977,12 +893,12 @@ main() {
                 ;;
         esac
     else
-        # Install mode
+        # Install mode with custom values
         MODE="install"
         PROJECT_NAME="$1"
-        PROJECT_DESC="${2:-A new Claude Code project}"
+        PROJECT_DESC="${2:-Claude Code project}"
         
-        echo -e "${BLUE}🚀 Claude Dev Kit Ultimate Installation${NC}"
+        echo -e "${BLUE}🚀 Claude Dev Kit Installation${NC}"
         echo "========================================"
         echo "Project: $PROJECT_NAME"
         echo "Description: $PROJECT_DESC"

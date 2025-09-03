@@ -31,34 +31,53 @@
 ### Claude Code Workflow (Korean Keywords)
 When user uses these keywords, IMMEDIATELY apply corresponding workflows:
 
-- **"기획"** → **STRUCTURED DISCOVERY-PLANNING LOOP**:
-  1. Discovery: Full codebase structure analysis, As-Is/To-Be/Gap identification
-  2. Planning: MECE work breakdown (WBS), priority matrix, feasibility check
-  3. Convergence: Discovery↔Planning iteration until PRD complete & consistent
-  4. TodoWrite structuring with MECE principles
+- **"기획"** → **STRUCTURED DISCOVERY-PLANNING LOOP with Intelligent Context Management**:
+  1. **Context Auto-Loading**: project_rules.md, PRD-v*.md, status.md, previous TODOs
+  2. **Intelligent Context Management**: Roadmap transition detection, impact-based classification (Strategic/Tactical/Operational)
+  3. **Discovery Phase**: Full structure analysis, As-Is/To-Be/Gap identification, stakeholder requirements
+  4. **Planning Phase**: MECE work breakdown, priority matrix, resource planning
+  5. **Convergence Phase**: Discovery↔Planning iteration until PRD complete
+  6. **Documentation Strategy**: Auto-generate specs, differentiated documentation by scale
 
-- **"구현"** → **IMPLEMENTATION WITH DRY**:
-  1. Existing code search: Grep/Glob tools for similar functionality
-  2. Reuse priority: Leverage existing libraries/modules/functions
-  3. Create if needed: Develop new components with reusability in mind
-  4. Quality assurance: Unit tests, basic validation, functionality check
+- **"구현"** → **IMPLEMENTATION WITH DRY & Context Loading**:
+  1. **Context Loading**: project_rules.md, active-todos.md
+  2. **DRY Application**: Grep/Glob extensive search for existing functionality
+  3. **Reuse Priority**: Leverage existing libraries/modules before creating new
+  4. **Systematic Progress**: TodoWrite-based step-by-step implementation
+  5. **Quality Assurance**: Unit testing, syntax check, type check, lint
+  6. **Auto Documentation**: Record progress in implementation.md
 
-- **"안정화"** → **STRUCTURAL SUSTAINABILITY PROTOCOL**:
-  1. Repository structure scan: Analyze directory structure, file purposes
-  2. Structural optimization: Logical grouping, hierarchy optimization
-  3. Dependency resolution: Fix imports, resolve circular references
-  4. User-centric testing: PRD-based real scenario testing (NO MOCKS)
-  5. Documentation sync: Update CLAUDE.md, README, .gitignore
-  6. Quality assurance: MECE analysis, performance benchmarks
+- **"안정화"** → **STRUCTURE-COUPLED DOCUMENTATION + SUSTAINABILITY v3.0**:
+  1. **Context Loading**: project_rules.md, test-report.md
+  2. **Repository Structure Scan**: Full file analysis, duplicate/temp file identification
+  3. **Structural Optimization**: Directory cleanup, logical grouping, naming standardization
+  4. **Dependency Resolution**: Import fixes, circular reference resolution
+  5. **TADD-Integrated Testing + GitHub Actions Integration**: 
+     - Pre-Push GitHub Actions compatibility check
+     - Real scenario testing (NO MOCKS)
+     - TADD validation with CI/CD integration
+  6. **Structure-Document Sync**: CLAUDE.md, README auto-update with code structure
+  7. **Quality Assurance**: MECE analysis, performance benchmarks with specific metrics
 
-- **"배포"** → **DEPLOYMENT**:
-  1. Final validation: Checklist completion, test passing
-  2. Structured commit: Meaningful commit messages, atomic changes
-  3. Remote deployment: MANDATORY git push to remote repository
-  4. Post-deployment verification: Remote repo access, endpoint testing
+- **"배포"** → **DEPLOYMENT WITH GITHUB ACTIONS REAL-TIME MONITORING**:
+  1. **Context Loading**: project_rules.md, all CURRENT/ status
+  2. **Auto Completion Checklist**: 20-item verification (code quality, documentation, structure, deployment readiness)
+  3. **Structured Commit**: Meaningful messages, atomic changes, issue linking
+  4. **Remote Deployment**: MANDATORY git push + GitHub Actions monitoring
+  5. **Real-time CI/CD Verification**: Wait for GitHub Actions "All Pass" before success declaration
+  6. **Post-deployment Verification**: Remote repository reflection, endpoint functionality
+  7. **Intelligent Session Closure**: Auto-archive completed documents when 5+ completion documents detected
 
 ### Mock Test Prohibition
 NEVER use mock data or fake testing. Always use real data and actual user scenarios.
+
+### Python Package Management
+**ALWAYS use UV instead of pip for Python projects:**
+- Use `uv pip install` instead of `pip install`
+- Use `uv venv` instead of `python -m venv` 
+- Use `uv add` to add dependencies
+- Use `uv sync` to sync dependencies
+Why: UV is 10-100x faster than pip and provides better dependency resolution.
 
 ### DRY Principle
 Before creating new code, always search for existing similar functionality first.
