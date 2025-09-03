@@ -148,10 +148,13 @@ install_slash_commands() {
         ["극한검증"]="extreme"
         ["컨텍스트"]="context"
         ["분석"]="analyze"
-        ["주간보고"]="weekly"
+        ["주간보고"]="주간보고"
         ["문서정리"]="docsorg"
         ["레포정리"]="repoclean"
-        ["세션마감"]="session-closure"
+        ["세션마감"]="세션마감"
+        ["실험시작"]="실험시작"
+        ["실험완료"]="실험완료"
+        ["보고서작업"]="보고서작업"
     )
     
     local success_count=0
