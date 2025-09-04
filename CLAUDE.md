@@ -252,6 +252,68 @@ project_rules.md      # Project constitution (manual)
 - ☐ **의존성 최소화**: 불필요한 결합이 없는가?
 - ☐ **명확한 네이밍**: 기능을 잘 나타내는 이름인가?
 
+## 🔄 자동 테스트 검증 프로토콜 (CRITICAL)
+
+**MANDATORY: 코드 변경 후 반드시 실행해야 할 검증 단계**
+
+### 1. 로컬 테스트 실행 (필수)
+```bash
+# Python 프로젝트
+pytest --cov=scripts --cov-report=term --cov-fail-under=20
+
+# JavaScript/TypeScript 프로젝트
+npm test || yarn test
+
+# 테스트 실패 시 즉시 수정 후 재실행 (무한 반복)
+```
+
+### 2. TADD 검증 (claude-dev-kit 프로젝트 필수)
+```bash
+# 빠른 로컬 체크
+./scripts/quick_tadd_check.sh
+
+# 상세 검증
+python scripts/verify_tadd_order.py    # 테스트-코드 순서 검증
+python scripts/detect_mock_usage.py    # Mock 사용률 검증
+python scripts/validate_test_quality.py tests/  # Theater Testing 검증
+```
+
+### 3. GitHub Actions 체크 (PR 생성 시)
+```bash
+# PR 체크 상태 확인
+gh pr checks [PR번호]
+
+# 실패 시 상세 로그 확인
+gh run view [run-id] --log-failed
+
+# 모든 체크가 통과할 때까지:
+# 1) 에러 분석 → 2) 코드 수정 → 3) git push → 4) 재확인
+# 반복 횟수 제한 없음
+```
+
+### 4. 실패 시 자동 수정 루프
+- **테스트 실패**: 에러 메시지 분석 → 코드 수정 → 재실행
+- **Coverage 부족**: 테스트 추가 (Real Testing) → 재실행
+- **Mock 과다**: Real Testing으로 대체 → 재실행
+- **Theater Testing 탐지**: 구체적 assertion으로 수정 → 재실행
+- **반복 횟수 제한 없음: 모든 체크가 통과할 때까지 계속**
+
+### 5. 성공 기준
+- ✅ 모든 테스트 통과
+- ✅ Coverage 20% 이상 (claude-dev-kit 기준)
+- ✅ Mock 사용률 20% 미만
+- ✅ Theater Testing 0개
+- ✅ GitHub Actions 모든 체크 통과 (권한 오류 제외)
+
+### 6. PR 머지 전 최종 확인
+```bash
+# Quality Gate 실패가 권한 문제인지 확인
+gh run view [run-id] --log-failed | grep "Resource not accessible"
+# 권한 오류면 무시하고 머지 가능
+
+# 실제 품질 문제면 반드시 수정
+```
+
 ## Contributing Guidelines
 
 ### Code Style
@@ -262,6 +324,8 @@ project_rules.md      # Project constitution (manual)
 ### Testing Requirements
 - All new features need tests
 - Integration tests for system components
+- Real Testing (구체적 값 검증) 필수
+- Mock 사용 최소화 (20% 미만)
 
 ### Documentation (통합 메타데이터 시스템)
 - 모든 문서 생성 시 자동 메타데이터 삽입:
