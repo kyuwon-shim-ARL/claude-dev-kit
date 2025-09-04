@@ -162,14 +162,32 @@ install_slash_commands() {
     local total_commands=${#commands[@]}
     
     for korean_cmd in "${!commands[@]}"; do
-        english_cmd="${commands[$korean_cmd]}"
         echo "  📥 Downloading /$korean_cmd command..."
         
-        if curl -sSL "$BASE_URL/$english_cmd.md" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
-            success_count=$((success_count + 1))
-            echo "    ✅ $korean_cmd.md"
+        # URL encode Korean filename for GitHub Raw access
+        encoded_filename=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$korean_cmd.md'))" 2>/dev/null)
+        
+        if [ -n "$encoded_filename" ]; then
+            # Try URL-encoded download first (GitHub Raw)
+            if curl -sSL "$BASE_URL/$encoded_filename" -o ".claude/commands/$korean_cmd.md" 2>/dev/null && 
+               [ -s ".claude/commands/$korean_cmd.md" ] && 
+               ! grep -q "html" ".claude/commands/$korean_cmd.md"; then
+                success_count=$((success_count + 1))
+                echo "    ✅ $korean_cmd.md ($(stat -c%s ".claude/commands/$korean_cmd.md") bytes)"
+            else
+                # Fallback to English mapping for backward compatibility
+                english_cmd="${commands[$korean_cmd]}"
+                if curl -sSL "$BASE_URL/$english_cmd.md" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
+                    success_count=$((success_count + 1))
+                    echo "    ✅ $korean_cmd.md (fallback)"
+                else
+                    echo "    ⚠️ Failed to download $korean_cmd (skipping)"
+                    # Create empty file to prevent errors
+                    echo "# $korean_cmd - 다운로드 실패" > ".claude/commands/$korean_cmd.md"
+                fi
+            fi
         else
-            echo "    ⚠️ Failed to download $korean_cmd (will continue)"
+            echo "    ⚠️ URL encoding failed for $korean_cmd (skipping)"
         fi
     done
     
