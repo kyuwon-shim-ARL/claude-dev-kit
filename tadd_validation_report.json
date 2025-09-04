@@ -1,0 +1,38 @@
+{
+  "coverage": {
+    "score": 0,
+    "status": "FAIL",
+    "details": "No coverage data found"
+  },
+  "e2e_tests": {
+    "count": 0,
+    "status": "FAIL",
+    "details": "Found 0 E2E test files: []"
+  },
+  "real_data": {
+    "real_data_ratio": 100.0,
+    "status": "PASS",
+    "details": "Real data usage: 100.0% (Mock: 0, Real: 61)"
+  },
+  "performance": {
+    "count": 3,
+    "status": "PASS",
+    "details": "Performance indicators: 3 (files: 1, keywords: 2)"
+  },
+  "ai_quality": {
+    "score": 40.0,
+    "status": "FAIL",
+    "details": "AI test quality: 40.0% (8/20 points)",
+    "breakdown": {
+      "descriptive_names": 1,
+      "assertions": 1,
+      "edge_cases": 1,
+      "documentation": 5
+    }
+  },
+  "overall": {
+    "score": 48.0,
+    "status": "FAIL",
+    "details": "Overall TADD compliance: 48.0%"
+  }
+}

@@ -340,11 +340,13 @@ install_tadd_scripts() {
     echo "  📦 Installing TADD verification scripts..."
     mkdir -p scripts
     
-    # Download verification scripts
+    # Download comprehensive verification scripts
     curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/verify_tadd_order.py" \
          -o scripts/verify_tadd_order.py 2>/dev/null && echo "    ✅ verify_tadd_order.py"
     curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/detect_mock_usage.py" \
          -o scripts/detect_mock_usage.py 2>/dev/null && echo "    ✅ detect_mock_usage.py"
+    curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/comprehensive_test_validator.py" \
+         -o scripts/comprehensive_test_validator.py 2>/dev/null && echo "    ✅ comprehensive_test_validator.py"
     
     # Create quick check script
     cat > scripts/quick_tadd_check.sh << 'EOF'
