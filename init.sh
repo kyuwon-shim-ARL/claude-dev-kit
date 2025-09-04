@@ -155,6 +155,7 @@ install_slash_commands() {
         ["실험시작"]="실험시작"
         ["실험완료"]="실험완료"
         ["보고서작업"]="보고서작업"
+        ["TADD강화"]="TADD강화"
     )
     
     local success_count=0
