@@ -1,0 +1,112 @@
+{
+  "entries": [
+    {
+      "id": "tr-20250904161849-e2fe5d",
+      "timestamp": "2025-09-04T16:18:49.465127",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "3fe167c9",
+        "branch": "feat/real-testing-integration",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 0,
+        "lines_added": 0,
+        "lines_removed": 0
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250904161850-67410b",
+      "timestamp": "2025-09-04T16:18:50.491032",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "3fe167c9",
+        "branch": "feat/real-testing-integration",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 35,
+        "lines_removed": 8
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250904162201-1468da",
+      "timestamp": "2025-09-04T16:22:01.231751",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "3fe167c9",
+        "branch": "feat/real-testing-integration",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 63,
+        "lines_removed": 9
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250904162202-c2e828",
+      "timestamp": "2025-09-04T16:22:02.256692",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "3fe167c9",
+        "branch": "feat/real-testing-integration",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 89,
+        "lines_removed": 8
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    }
+  ]
+}
