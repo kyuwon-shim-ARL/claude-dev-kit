@@ -29,7 +29,7 @@ meta:
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit
 
-[![Version](https://img.shields.io/badge/version-v30.5-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
+[![Version](https://img.shields.io/badge/version-v30.7-blue)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/releases)
 [![TADD](https://img.shields.io/badge/TADD-Enforced-green)](https://github.com/kyuwon-shim-ARL/claude-dev-kit/blob/main/.github/workflows/tadd-enforcement.yml)
 [![License](https://img.shields.io/badge/license-MIT-yellow)](LICENSE)
 
@@ -68,6 +68,80 @@ chmod +x init.sh
 # ✓ GitHub Actions 실시간 모니터링 (v30.1)
 # ✓ 백업 자동 생성 및 롤백 지원
 ```
+
+## 🔥 v30.7 하이브리드 TADD 업그레이드
+
+**기존 claude-dev-kit 사용자를 위한 v30.7 하이브리드 TADD 시스템 업그레이드 가이드**
+
+### 🎯 v30.7의 혁신 사항
+- **💯 100% 작동 보장**: 네트워크 없어도 기본 검증 (3단계 폴백)
+- **🎯 포괄적 검증**: 커버리지, E2E, 실제 데이터, 성능, AI 품질 (5가지 지표)
+- **🧠 지능형 우회**: Infrastructure 커밋 자동 감지 (`infra:`, `docs:`, `chore:`)
+- **📚 명확한 정의**: `docs/TADD_PHILOSOPHY.md`로 Test-AI-Driven Development 정립
+
+### 🚀 빠른 업그레이드 (권장)
+```bash
+# 자동 업그레이드 (권장)
+./init.sh --upgrade
+# → 3가지 옵션 선택:
+# 1. Slash commands only
+# 2. TADD Enforcement only  
+# 3. Everything (smart upgrade) ⭐ 권장
+# 4. Complete reinstall
+
+# 또는 새 TADD 시스템만 업그레이드
+/TADD강화
+```
+
+### 🔧 수동 업그레이드
+```bash
+# 1. 새 슬래시 커맨드 설치
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands/TADD강화.md \
+  -o .claude/commands/TADD강화.md
+
+# 2. 포괄적 검증 스크립트 설치
+mkdir -p scripts
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/comprehensive_test_validator.py \
+  -o scripts/comprehensive_test_validator.py
+
+# 3. TADD 철학 문서 설치
+mkdir -p docs
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/docs/TADD_PHILOSOPHY.md \
+  -o docs/TADD_PHILOSOPHY.md
+
+# 4. 시스템 활성화
+/TADD강화
+```
+
+### ✅ 업그레이드 후 확인
+```bash
+# 필수 파일 확인
+ls .claude/commands/TADD강화.md
+ls scripts/comprehensive_test_validator.py  
+ls docs/TADD_PHILOSOPHY.md
+
+# 시스템 테스트
+/TADD강화 setup-only  # 설정만 테스트
+python scripts/comprehensive_test_validator.py  # 포괄적 검증 테스트
+```
+
+### 🆕 새로운 기능 사용법
+```bash
+# 하이브리드 TADD 검증 (3단계 폴백)
+/TADD강화                    # 전체 설정 + 검증
+/TADD강화 local             # 로컬만 설정
+/TADD강화 github            # GitHub 설정만
+/TADD강화 setup-only        # 설정만 (검증 스킵)
+
+# 포괄적 테스트 품질 검증
+python scripts/comprehensive_test_validator.py
+# → 5가지 지표: 커버리지(80%+), E2E테스트, 실제데이터(80%+), 성능, AI품질
+
+# TADD 철학 이해
+cat docs/TADD_PHILOSOPHY.md
+```
+
+**📖 상세 가이드**: [docs/UPGRADE_TO_v30.7.md](docs/UPGRADE_TO_v30.7.md)
 
 ## ✨ 핵심 기능
 
@@ -121,13 +195,15 @@ chmod +x init.sh
 - `/개발완료`: 구현→안정화→배포
 - `/품질보증`: 안정화→배포
 
-### 🎯 TADD Enforcement System (v30.1)
-**실제로 작동하는 진정한 CI/CD 통합 시스템:**
-- **Level 1**: Git hooks (로컬 검증) ✅ 구현됨
-- **Level 2**: GitHub Actions (CI/CD 검증) ✅ 실시간 모니터링 추가
-- **Level 3**: Branch Protection (머지 차단) ✅ 자동 설정 (GitHub CLI 사용 시)
-- **🆕 Real-time Monitoring**: 배포 시 GitHub Actions All Pass까지 대기
-- **결과**: "Push ≠ Success" - 진정한 배포 성공만 인정
+### 🎯 TADD Enforcement System (v30.7 하이브리드)
+**100% 작동 보장하는 3단계 폴백 시스템:**
+- **Level 1**: Git hooks (로컬 검증) ✅ 하이브리드 폴백
+- **Level 2**: GitHub Actions (CI/CD 검증) ✅ 포괄적 5가지 지표
+- **Level 3**: Branch Protection (머지 차단) ✅ 자동 설정
+- **🆕 3단계 폴백**: 로컬 스크립트 → 자동 다운로드 → 임베디드
+- **🆕 지능형 우회**: Infrastructure 커밋 자동 감지 (`infra:`, `docs:`, `chore:`)
+- **🆕 포괄적 검증**: 커버리지(80%+), E2E테스트, 실제데이터(80%+), 성능, AI품질
+- **결과**: 어떤 환경에서도 품질 보증
 
 ### 📊 완성도 체크리스트 (v15.1)
 배포 전 자동으로 20개 항목 검증:
@@ -330,11 +406,12 @@ python scripts/detect_mock_usage.py   # Mock 패턴 분석
 
 ## 📊 현재 상태
 
-- **버전**: v25.0.0
+- **버전**: v30.7 (하이브리드 TADD)
 - **설치**: init.sh (Universal)
-- **업데이트**: update.sh (10초)
-- **명령어**: 16개 (한/영 지원)
-- **검증**: TADD Enforcement
+- **업데이트**: ./init.sh --upgrade (90초)
+- **명령어**: 16개+ (한/영 지원) + /TADD강화
+- **검증**: 3단계 폴백 시스템 (100% 보장)
+- **품질**: 포괄적 5가지 지표
 - **커버리지**: 95%+
 
 ## 🎯 주요 사용 사례
