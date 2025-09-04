@@ -134,7 +134,8 @@ jobs:
           fi
           
           if [ "${{ needs.test-coverage.result }}" != "success" ]; then
-            echo "⚠️  Test Coverage: WARNING"
+            echo "❌ Test Coverage: FAILED"
+            exit 1
           else
             echo "✅ Test Coverage: PASSED"
           fi
