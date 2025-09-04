@@ -1,19 +1,19 @@
 {
-  "id": "tr-20250829105831-2d4042",
-  "timestamp": "2025-08-29T10:58:31.360415",
-  "command": "test_command",
+  "id": "tr-20250904162202-c2e828",
+  "timestamp": "2025-09-04T16:22:02.256692",
+  "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
-    "--track"
+    "--with-timeline"
   ],
   "git": {
-    "commit": "13bb52f2",
-    "branch": "main",
+    "commit": "3fe167c9",
+    "branch": "feat/real-testing-integration",
     "author": "kyuwon.shim@ip-korea.org"
   },
   "changes": {
-    "files_modified": 4,
-    "lines_added": 728,
-    "lines_removed": 18
+    "files_modified": 2,
+    "lines_added": 89,
+    "lines_removed": 8
   },
   "tracking": {
     "auto_enabled": true,
