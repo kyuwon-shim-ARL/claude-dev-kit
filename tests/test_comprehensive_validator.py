@@ -14,7 +14,7 @@ def test_comprehensive_validator_imports():
     """모듈이 import 가능한지 확인"""
     try:
         import scripts.comprehensive_test_validator as ctv
-        assert ctv is not None
+        assert hasattr(ctv, 'main')
         # Check for main function instead
         assert hasattr(ctv, 'main') or True  # Module exists is enough
     except (ImportError, AttributeError):
@@ -27,7 +27,7 @@ def test_validate_test_quality_imports():
     from scripts.validate_test_quality import TestQualityAnalyzer
     
     analyzer = TestQualityAnalyzer()
-    assert analyzer is not None
+    assert hasattr(analyzer, 'analyze_directory')
     assert hasattr(analyzer, 'visit')
     assert hasattr(analyzer, 'tests')
     assert hasattr(analyzer, 'theater_patterns')
@@ -37,7 +37,7 @@ def test_detect_mock_usage_imports():
     """detect_mock_usage 모듈이 import 가능한지 확인"""
     try:
         import scripts.detect_mock_usage as dmu
-        assert dmu is not None
+        assert hasattr(dmu, 'analyze_mock_patterns')
         assert hasattr(dmu, 'MockDetector')
     except ImportError:
         pass
@@ -47,7 +47,7 @@ def test_verify_tadd_order_imports():
     """verify_tadd_order 모듈이 import 가능한지 확인"""
     try:
         import scripts.verify_tadd_order as vto
-        assert vto is not None
+        assert hasattr(vto, 'analyze_commit_order')
         assert hasattr(vto, 'get_pr_commits')
     except ImportError:
         pass
