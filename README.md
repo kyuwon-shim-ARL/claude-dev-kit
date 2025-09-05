@@ -36,7 +36,7 @@ meta:
   triggers:
   - README.md
   type: research
-  updated: '2025-09-01T20:06:27.480933'
+  updated: 2025-09-05
 ---
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit

@@ -35,7 +35,7 @@ meta:
   triggers:
   - docs/CURRENT/weekly_report_20250901.md
   type: planning
-  updated: '2025-09-01T20:06:27.691369'
+  updated: 2025-09-05
 ---
 
 # 🎯 Sprint Review - Git 기반 실증 분석

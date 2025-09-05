@@ -38,7 +38,7 @@ meta:
   triggers:
   - docs/CURRENT/document_tracking_system.md
   type: tutorial
-  updated: '2025-09-01T20:06:27.585302'
+  updated: 2025-09-05
 ---
 
 # 문서 추적 시스템 설계 (Document Tracking System)
