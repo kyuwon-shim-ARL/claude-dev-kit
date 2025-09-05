@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README-balanced
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: balanced, README, analysis, README-balanced.md
+related: 
+-->
+
 # 분석 문서화 체계 v3.0 (Balanced)
 
 ## 📊 균형잡힌 구조

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_planning-bioinformatics-workflow
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: claude-dev-kit-v10, 01-hypothesis, projects, planning-bioinformatics-workflow.md, planning
+related: 
+-->
+
 # PRD: 바이오인포매틱스 결과 해석 및 보고서 자동화 시스템
 
 ## 1. 제품 개요

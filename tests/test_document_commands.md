@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_test_document_commands
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: document, test_document_commands.md, commands, test, tests
+related: 
+-->
+
 # 문서 관리 명령어 테스트 시나리오
 
 ## 테스트 대상

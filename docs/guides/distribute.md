@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_distribute
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: guides, distribute, distribute.md
+related: 
+-->
+
 # Claude Code Template Distribution Plan
 
 ## 배포 방법들

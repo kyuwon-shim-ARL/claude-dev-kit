@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_project-based-documentation
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: project-based-documentation.md, claude-dev-kit-v10, projects, 06-documentation, project
+related: 
+-->
+
 # PRD: 연구 프로젝트 중심 문서 관리 시스템
 
 ## 1. 핵심 문제

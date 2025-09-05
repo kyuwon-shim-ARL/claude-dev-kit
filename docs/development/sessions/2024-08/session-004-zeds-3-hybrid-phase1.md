@@ -1,3 +1,15 @@
+<!--
+@meta
+id: phase_20250905_1110_session-004-zeds-3-hybrid-phase1
+type: phase
+scope: tactical
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: hybrid, sessions, 004, 2024-08, session-004-zeds-3-hybrid-phase1.md
+related: 
+-->
+
 # Session 004: ZEDS 3.0 문서 관리 혁신 + 하이브리드 접근법 Phase 1
 
 ## 📅 세션 정보

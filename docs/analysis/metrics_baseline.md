@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_metrics_baseline
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: metrics, metrics_baseline.md, baseline, analysis
+related: 
+-->
+
 # 📊 전체사이클 개선 테스트 - 베이스라인 메트릭
 
 ## 테스트 날짜: 2024-08-27

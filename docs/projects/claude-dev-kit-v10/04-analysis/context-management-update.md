@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_context-management-update
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 04-analysis, context-management-update.md, claude-dev-kit-v10, management, projects
+related: 
+-->
+
 # 컨텍스트 관리 시스템 v8.0 업데이트
 
 ## 📋 변경사항 요약

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_planning
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: claude-dev-kit-v10, 01-hypothesis, projects, planning, planning.md
+related: 
+-->
+
 # 컨텍스트 자동 정리 시스템 재설계 v1.1
 
 ## 📋 문제 상황

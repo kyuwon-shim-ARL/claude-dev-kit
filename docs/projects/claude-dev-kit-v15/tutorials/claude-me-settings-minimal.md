@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_claude-me-settings-minimal
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: claude-me-settings-minimal.md, settings, claude, projects, tutorials
+related: 
+-->
+
 # Claude.me 설정 (백업/고급 옵션)
 
 > ⚠️ **주의**: 이 설정은 Claude Code를 사용할 수 없는 특수 상황에서만 사용하세요.

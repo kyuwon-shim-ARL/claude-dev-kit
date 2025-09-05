@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_requirements
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: requirements, specs, requirements.md
+related: 
+-->
+
 # Requirements Specification (Extracted from v16)
 Generated: 2025-08-29 11:26:46
 

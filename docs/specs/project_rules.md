@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_project_rules
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: project, specs, project_rules.md, rules
+related: 
+-->
+
 # claude-dev-kit Project Rules
 
 ## 🎯 Core Philosophy

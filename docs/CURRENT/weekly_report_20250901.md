@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_weekly_report_20250901
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, 20250901, weekly, weekly_report_20250901.md, report
+related: 
+-->
+
 ---
 meta:
   context_hash: 59ed211cfe73
@@ -23,7 +35,7 @@ meta:
   triggers:
   - docs/CURRENT/weekly_report_20250901.md
   type: planning
-  updated: '2025-09-01T20:06:27.691369'
+  updated: 2025-09-05
 ---
 
 # 🎯 Sprint Review - Git 기반 실증 분석

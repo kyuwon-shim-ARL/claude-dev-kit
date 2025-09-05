@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, legacy-init, README.md
+related: 
+-->
+
 # Legacy Init Scripts Archive
 
 ## 📁 아카이브된 파일들

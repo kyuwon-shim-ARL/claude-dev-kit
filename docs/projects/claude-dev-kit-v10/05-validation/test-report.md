@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_test-report
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 05-validation, test-report.md, claude-dev-kit-v10, projects, test
+related: 
+-->
+
 # 테스트 보고서: 분석 자동 저장 시스템
 
 ## 테스트 일시

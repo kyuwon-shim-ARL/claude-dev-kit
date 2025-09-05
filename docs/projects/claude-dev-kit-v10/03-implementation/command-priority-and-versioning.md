@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_command-priority-and-versioning
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: priority, claude-dev-kit-v10, 03-implementation, projects, versioning
+related: 
+-->
+
 # 명령어 우선순위 및 문서 버전 관리 가이드
 
 ## 1. 명령어 우선순위 체계

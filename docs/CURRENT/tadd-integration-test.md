@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_tadd-integration-test
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, test, tadd-integration-test.md, tadd, integration
+related: 
+-->
+
 # TADD 통합 테스트 결과
 
 ## 🧪 테스트 목적

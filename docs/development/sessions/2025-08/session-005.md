@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_session-005
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 005, sessions, session, 2025-08, development
+related: 
+-->
+
 # Session Archive - 2025-08-29 14:01
 
 ## 아카이브된 완료 문서들

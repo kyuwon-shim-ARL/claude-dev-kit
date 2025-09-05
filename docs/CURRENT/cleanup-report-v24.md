@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_cleanup-report-v24
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, cleanup, cleanup-report-v24.md, v24, report
+related: 
+-->
+
 # 📊 레포지토리 정리 완성도 리포트 v24
 
 *생성일: 2025-08-31*

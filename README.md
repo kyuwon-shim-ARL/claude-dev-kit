@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, README.md
+related: 
+-->
+
 ---
 meta:
   context_hash: 4c7dfe326225
@@ -24,7 +36,7 @@ meta:
   triggers:
   - README.md
   type: research
-  updated: '2025-09-01T20:06:27.480933'
+  updated: 2025-09-05
 ---
 
 # 🎯 Claude Dev Kit - AI-Native Development Toolkit

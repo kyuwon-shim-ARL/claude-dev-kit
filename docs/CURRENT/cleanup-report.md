@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_cleanup-report
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, report, cleanup, cleanup-report.md
+related: 
+-->
+
 # 📊 Repository Cleanup Report - v30.5
 Generated: 2025-09-04
 

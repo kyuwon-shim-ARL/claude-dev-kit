@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_ARCHIVE_NOTE
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: prompts-v1-central-management, NOTE, ARCHIVE_NOTE.md, legacy, ARCHIVE
+related: 
+-->
+
 # 📦 Archive Note: Prompts v1 Central Management System
 
 **Archived Date**: 2025-08-31

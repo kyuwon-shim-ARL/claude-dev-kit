@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_session-003-universal-kit-planning
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: sessions, session-003-universal-kit-planning.md, session, 2025-08, development
+related: 
+-->
+
 # Planning: Universal Claude Dev Kit v4.0
 
 ## 📅 Date: 2025-08-19

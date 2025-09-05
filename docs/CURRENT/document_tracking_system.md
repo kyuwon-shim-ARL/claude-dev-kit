@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_document_tracking_system
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, document, tracking, document_tracking_system.md, system
+related: 
+-->
+
 ---
 meta:
   context_hash: 220b45b4c048
@@ -26,7 +38,7 @@ meta:
   triggers:
   - docs/CURRENT/document_tracking_system.md
   type: tutorial
-  updated: '2025-09-01T20:06:27.585302'
+  updated: 2025-09-05
 ---
 
 # 문서 추적 시스템 설계 (Document Tracking System)

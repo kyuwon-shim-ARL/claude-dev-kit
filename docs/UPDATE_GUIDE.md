@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_UPDATE_GUIDE
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: GUIDE, UPDATE_GUIDE.md, UPDATE
+related: 
+-->
+
 # 기존 프로젝트 업데이트 가이드
 
 ## 🚀 빠른 업데이트 (1분)

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: strategy_20250905_1110_installation-strategy-and-workflow
+type: strategy
+scope: strategic
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: installation, installation-strategy-and-workflow.md, claude-dev-kit-v10, 03-implementation, projects
+related: 
+-->
+
 # 설치 전략 및 문서화 워크플로우 결정
 
 ## 1. 현재 상황 분석
