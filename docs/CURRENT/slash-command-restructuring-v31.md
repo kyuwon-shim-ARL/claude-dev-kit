@@ -173,7 +173,7 @@ id: [type]_[timestamp]_[feature]
 type: [implementation|test_report|documentation|analysis|planning]
 status: draft|review|published|archived
 created: [date]
-updated: [date]
+updated: 2025-09-05
 scope: strategic|tactical|operational
 tags: [relevant-tags]
 related: [linked-documents]
