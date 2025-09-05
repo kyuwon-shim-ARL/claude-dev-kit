@@ -48,11 +48,8 @@ jobs:
     
     - name: Check Test Quality
       run: |
-        # Theater Testing 패턴 검사 (실제 assertion만 검사)
-        if find . -name "test*.py" -exec grep -l "^\s*assert.*is not None$\|^\s*assert True$" {} \; | head -1; then
-          echo "::error::Theater Testing 패턴 감지!"
-          exit 1
-        fi
+        # Theater Testing 패턴 검사 (Python AST 기반 정확한 검사)
+        python scripts/check_theater_testing.py
     
     - name: Analyze Mock Usage
       run: |
