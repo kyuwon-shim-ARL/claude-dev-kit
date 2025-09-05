@@ -27,17 +27,17 @@ def test_validate_test_quality_imports():
     from scripts.validate_test_quality import TestQualityAnalyzer
     
     analyzer = TestQualityAnalyzer()
-    assert hasattr(analyzer, 'analyze_directory')
-    assert hasattr(analyzer, 'visit')
+    assert hasattr(analyzer, 'visit')  # AST visitor method
     assert hasattr(analyzer, 'tests')
     assert hasattr(analyzer, 'theater_patterns')
+    assert hasattr(analyzer, 'quality_issues')
 
 
 def test_detect_mock_usage_imports():
     """detect_mock_usage 모듈이 import 가능한지 확인"""
     try:
         import scripts.detect_mock_usage as dmu
-        assert hasattr(dmu, 'analyze_mock_patterns')
+        assert hasattr(dmu, 'analyze_test_file')  # Actual function
         assert hasattr(dmu, 'MockDetector')
     except ImportError:
         pass
@@ -47,7 +47,7 @@ def test_verify_tadd_order_imports():
     """verify_tadd_order 모듈이 import 가능한지 확인"""
     try:
         import scripts.verify_tadd_order as vto
-        assert hasattr(vto, 'analyze_commit_order')
+        assert hasattr(vto, 'verify_test_first')  # Actual function
         assert hasattr(vto, 'get_pr_commits')
     except ImportError:
         pass
