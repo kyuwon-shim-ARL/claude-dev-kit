@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_file-naming-standards
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: standards, file, guides, file-naming-standards.md, naming
+related: 
+-->
+
 # 📋 파일명 표준화 정책 (File Naming Standards)
 
 ## 🎯 목적

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, claude-dev-kit-v10, README.md, projects
+related: 
+-->
+
 # Claude Dev Kit v10.0 Project Documentation
 
 ## Project Overview

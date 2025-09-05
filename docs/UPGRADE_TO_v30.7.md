@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_UPGRADE_TO_v30.7
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: UPGRADE, v30.7, UPGRADE_TO_v30.7.md
+related: 
+-->
+
 # 📈 Upgrade to v30.7 - Hybrid TADD Enforcement System
 
 **기존 claude-dev-kit을 사용 중인 프로젝트를 v30.7로 업그레이드하는 가이드**

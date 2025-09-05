@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_weekly_report_20250901
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, 20250901, weekly, weekly_report_20250901.md, report
+related: 
+-->
+
 ---
 meta:
   context_hash: 59ed211cfe73

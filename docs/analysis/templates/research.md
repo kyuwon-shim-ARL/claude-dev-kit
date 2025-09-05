@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_research
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: research, research.md, templates, analysis
+related: 
+-->
+
 # 연구 분석 템플릿
 
 ```markdown

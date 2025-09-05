@@ -1,8 +1,54 @@
+<!--
+@meta
+id: document_20250905_1110_project_rules
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: project, project_rules.md, rules
+related: 
+-->
+
 # Project Rules - Claude Dev Kit
 
-## 🚀 Core Principles
-This document defines the immutable rules and principles for the Claude Dev Kit project.
-These rules override any auto-generated documentation and must be followed at all times.
+## 🎯 목표 (Goals)
+**Primary Mission**: 모든 Claude Code 프로젝트에서 즉시 사용 가능한 포괄적 개발 도구킷 제공
+- 30초 내 완전한 개발환경 구축
+- TADD(Test-AI-Driven Development) 방법론 자동 강제
+- 문서화 및 컨텍스트 관리 자동화
+- 코드 품질 및 테스트 품질 보증
+
+## 📜 원칙 (Principles)  
+1. **Zero Configuration**: 사용자 설정 없이 즉시 작동
+2. **System Enforcement**: 프롬프트가 아닌 시스템이 품질 강제
+3. **Comprehensive Coverage**: 개발 전 과정을 하나의 도구킷으로 해결
+4. **AI-Human Collaboration**: AI 개발 워크플로우 최적화
+
+## 🔧 규칙 (Rules)
+
+### 필수 준수사항
+1. **TADD 방법론 강제**: 테스트 우선 작성, Mock 20% 이하 유지
+2. **Quality Gate 통과**: 모든 PR은 자동 품질 검증 통과 필수
+3. **Documentation Sync**: 코드 변경 시 문서 자동 동기화
+4. **컨텍스트 관리**: 3층 컨텍스트 시스템 유지 (Strategic/Tactical/Operational)
+
+### 코딩 스타일
+- Type hints 필수
+- 함수별 docstring 작성
+- Clean Code 원칙 준수
+
+## 📋 가이드라인 (Guidelines)
+
+### 개발 워크플로우
+1. **기획** → 구조적 발견 및 계획 루프
+2. **구현** → DRY 원칙 기반 체계적 개발
+3. **안정화** → ZEDS 2.0 통합 구조적 지속가능성 프로토콜
+4. **배포** → 최종검증 후 구조화 커밋
+
+### 슬래시 명령어 활용
+- `/비전수립`, `/전략기획`, `/로드맵관리` 등 10개 명령어 활용
+- 메타데이터 기반 문서 관리 시스템 활용
 
 ## 📦 Python Package Management
 

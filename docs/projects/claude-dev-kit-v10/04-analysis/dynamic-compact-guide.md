@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_dynamic-compact-guide
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 04-analysis, claude-dev-kit-v10, projects, dynamic-compact-guide.md, compact
+related: 
+-->
+
 # 동적 컨텍스트 가이드 시스템 v9.0
 
 ## 📊 패러다임 전환: 템플릿 → 동적 생성

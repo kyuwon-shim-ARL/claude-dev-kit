@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_document_tracking_system
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, document, tracking, document_tracking_system.md, system
+related: 
+-->
+
 ---
 meta:
   context_hash: 220b45b4c048

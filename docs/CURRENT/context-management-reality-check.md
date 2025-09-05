@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_context-management-reality-check
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, reality, management, context, check
+related: 
+-->
+
 # 컨텍스트 관리 시스템 현실 점검
 
 ## 🎭 환상 vs 현실

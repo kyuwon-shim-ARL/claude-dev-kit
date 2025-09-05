@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_TADD강화
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: commands, TADD강화.md, .claude, TADD강화
+related: 
+-->
+
 🛡️ **TADD강화 (Test-Assured Development Discipline Enforcement)**
 
 **📚 컨텍스트 자동 로딩:**

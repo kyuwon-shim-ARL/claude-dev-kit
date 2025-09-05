@@ -1,3 +1,15 @@
+<!--
+@meta
+id: strategy_20250905_1110_rollout_strategy
+type: strategy
+scope: strategic
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: strategy, archives, rollout, rollout_strategy.md
+related: 
+-->
+
 # 컨텍스트 관리 시스템 점진적 확대 전략
 
 ## 🎯 확대 원칙

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_TRUST-v28-reality-check
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: reality, TRUST, TRUST-v28-reality-check.md, specs, check
+related: 
+-->
+
 # 신뢰성 검증: TADD 강제의 진실 (v28.0)
 
 ## 1. 정직한 현실 인정

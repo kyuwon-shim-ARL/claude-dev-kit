@@ -1,0 +1,93 @@
+{
+  "analysis_timestamp": "2025-09-05T11:49:56.705039",
+  "project_root": ".",
+  "overall_quality": {
+    "total_score": 70.8,
+    "grade": "C",
+    "status": "acceptable",
+    "breakdown": {
+      "strategic": {
+        "score": 40.0,
+        "weight": 0.4
+      },
+      "tactical": {
+        "score": 85.0,
+        "weight": 0.35
+      },
+      "operational": {
+        "score": 100,
+        "weight": 0.25
+      }
+    }
+  },
+  "context_hierarchy": {
+    "strategic": {
+      "status": "found",
+      "path": "project_rules.md",
+      "score": 40.0,
+      "size": 2331,
+      "last_modified": "2025-09-05T11:10:23.216687",
+      "days_since_update": 0,
+      "issues": [
+        "필수 섹션 부족: 4개 누락"
+      ],
+      "recommendations": [
+        "누락된 필수 섹션 추가"
+      ]
+    },
+    "tactical": {
+      "status": "found",
+      "path": "CLAUDE.md",
+      "score": 85.0,
+      "size": 9831,
+      "last_modified": "2025-09-04T17:07:38.959373",
+      "sync_status": "outdated",
+      "issues": [
+        "Git 커밋과 동기화되지 않음"
+      ],
+      "recommendations": [
+        "claude init 실행으로 동기화"
+      ]
+    },
+    "operational": {
+      "status": "found",
+      "path": "docs/CURRENT",
+      "score": 100,
+      "file_count": 18,
+      "recent_file_count": 18,
+      "files": [
+        "status.md",
+        "active-todos.md",
+        "context-management-reality-check.md",
+        "improved-planning-prompt.md",
+        "completion-report-session-closure-v20.md",
+        "session-closure-v2-design.md",
+        "tadd-integration-test.md",
+        "weekly_report_2025-08-30.md",
+        "cleanup-report-v24.md",
+        "weekly_report_20250901.md",
+        "document_tracking_system.md",
+        "claude_metadata_system.md",
+        "test_metadata_example.md",
+        "test_published.md",
+        "test_draft.md",
+        "implementation-github-actions-integration.md",
+        "cleanup-report.md",
+        "test-report.md"
+      ],
+      "issues": [],
+      "recommendations": []
+    }
+  },
+  "issues": [
+    "Strategic: 필수 섹션 부족: 4개 누락",
+    "Tactical: Git 커밋과 동기화되지 않음"
+  ],
+  "recommendations": [
+    "Strategic: 누락된 필수 섹션 추가",
+    "Tactical: claude init 실행으로 동기화"
+  ],
+  "next_actions": [
+    "⚙️ 자동 동기화 시스템 설정"
+  ]
+}

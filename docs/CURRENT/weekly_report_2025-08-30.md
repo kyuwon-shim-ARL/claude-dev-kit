@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_weekly_report_2025-08-30
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: 2025, CURRENT, weekly_report_2025-08-30.md, weekly, report
+related: 
+-->
+
 # 🎯 Sprint Review - 성과 중심 실증 분석
 *2025-08-30 | 🚀 활발개발 단계 | 적응형 측정*
 

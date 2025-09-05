@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_implementation-github-actions-integration
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, actions, implementation, github, integration
+related: 
+-->
+
 # GitHub Actions 연동 배포 시스템 구현 완료
 
 ## 📊 구현 결과

@@ -669,6 +669,7 @@ execute_install() {
                 create_initial_files
                 ;;
             "Complete")
+                install_test_integrity
                 show_completion_message
                 ;;
         esac
@@ -823,6 +824,42 @@ execute_check() {
     echo -e "${GREEN}📊 Installation check completed${NC}"
 }
 
+# Install Test Integrity System (optional)
+install_test_integrity() {
+    echo ""
+    echo -e "${YELLOW}🛡️ Test Integrity System (AI 테스트 우회 방지)${NC}"
+    echo "  이 시스템은 AI가 테스트를 조작하거나 우회하는 것을 방지합니다:"
+    echo "  • 테스트 삭제 차단"
+    echo "  • Theater Testing 패턴 감지"
+    echo "  • Mock 사용률 제한"
+    echo "  • GitHub Actions 강제 검증"
+    echo ""
+    read -p "설치하시겠습니까? [Y/n]: " -n 1 -r
+    echo
+    
+    if [[ $REPLY =~ ^[Yy]$ ]] || [[ -z $REPLY ]]; then
+        echo -e "${BLUE}📦 Test Integrity System 설치 중...${NC}"
+        
+        # 로컬 스크립트가 있으면 사용, 없으면 원격에서 다운로드
+        if [ -f "$SCRIPT_DIR/install-test-integrity.sh" ]; then
+            bash "$SCRIPT_DIR/install-test-integrity.sh"
+        else
+            curl -fsSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/install-test-integrity.sh | bash
+        fi
+        
+        if [ $? -eq 0 ]; then
+            echo -e "  ${GREEN}✅ Test Integrity System 설치 완료${NC}"
+            TEST_INTEGRITY_INSTALLED=true
+        else
+            echo -e "  ${YELLOW}⚠️ Test Integrity System 설치 실패 (나중에 수동 설치 가능)${NC}"
+            TEST_INTEGRITY_INSTALLED=false
+        fi
+    else
+        echo "  ⏭️ Test Integrity System 설치 건너뜀"
+        TEST_INTEGRITY_INSTALLED=false
+    fi
+}
+
 # Show completion message
 show_completion_message() {
     echo ""
@@ -839,6 +876,9 @@ show_completion_message() {
             echo "  • Branch protection: ✅ Configured"
         else
             echo "  • Branch protection: ⚠️ Manual setup needed"
+        fi
+        if [ "$TEST_INTEGRITY_INSTALLED" = true ]; then
+            echo "  • Test Integrity: ✅ AI 우회 방지 활성화"
         fi
     fi
     echo ""

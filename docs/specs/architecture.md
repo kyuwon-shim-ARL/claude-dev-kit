@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_architecture
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: specs, architecture.md, architecture
+related: 
+-->
+
 # Architecture Specification (Extracted from v16)
 Generated: 2025-08-29 11:26:46
 

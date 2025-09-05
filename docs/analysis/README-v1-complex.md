@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README-v1-complex
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, README-v1-complex.md, complex, analysis
+related: 
+-->
+
 # 분석 기반 문서화 체계 v1.0
 
 ## 📊 문서 분류 체계

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_improved-planning-prompt
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, improved, planning, improved-planning-prompt.md, prompt
+related: 
+-->
+
 # 개선된 기획 프롬프트 v2.0
 
 ## 🚨 핵심 수정사항

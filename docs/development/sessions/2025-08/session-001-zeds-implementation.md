@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_session-001-zeds-implementation
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: sessions, session-001-zeds-implementation.md, session, 2025-08, development
+related: 
+-->
+
 # Session 001: ZEDS Implementation
 **Date**: 2025-08-18  
 **Duration**: ~45 minutes  

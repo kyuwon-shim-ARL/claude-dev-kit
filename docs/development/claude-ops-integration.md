@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_claude-ops-integration
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: claude-ops-integration.md, claude, development, integration, ops
+related: 
+-->
+
 # Claude-Ops 텔레그램 통합 가이드
 
 ## 📱 텔레그램 버튼식 컨텍스트 관리

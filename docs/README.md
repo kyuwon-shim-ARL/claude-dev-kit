@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, README.md
+related: 
+-->
+
 # Claude Dev Kit Documentation
 
 ## 📁 Documentation Structure

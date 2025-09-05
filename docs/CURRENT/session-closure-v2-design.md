@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_session-closure-v2-design
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: CURRENT, design, session, closure, session-closure-v2-design.md
+related: 
+-->
+
 # 세션마감 시스템 v2.0 설계 문서
 
 ## 🎯 핵심 교훈: "완료"는 생각보다 훨씬 복잡하다
