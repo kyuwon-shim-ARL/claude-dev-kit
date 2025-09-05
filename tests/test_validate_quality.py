@@ -81,7 +81,7 @@ def test_quality_score_calculation():
     analyzer_bad = TestQualityAnalyzer()
     analyzer_bad.tests = [{
         'name': 'test_bad',
-        'assert result  # 예시: Theater Testing 방지용 주석'],
+        'content': 'assert result  # 예시: Theater Testing 방지용 주석',
         'mocks': ['mock1', 'mock2', 'mock3'],
         'has_error_case': False,
         'has_specific_values': False,
@@ -119,7 +119,7 @@ def test_with_mock():
         
         assert result  # 예시: Theater Testing 방지용 주석, "Should analyze file successfully"
         assert result['total_tests'] == 2, "Should find 2 tests"
-        assert len(result['theater_patterns']) > 0, "Should detect theater pattern"
+        assert len(result['theater_patterns']) == 1, "Should detect exactly 1 theater pattern"
         
     finally:
         # Cleanup

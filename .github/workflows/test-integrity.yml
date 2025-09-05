@@ -1,4 +1,4 @@
-name: Test Integrity Enforcement
+name: TADD Test-First Integrity Enforcement
 on:
   push:
     branches: [ main, develop ]
@@ -22,7 +22,7 @@ jobs:
     
     - name: Install Dependencies
       run: |
-        pip install pytest pytest-cov
+        pip install pytest pytest-cov coverage
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
     
