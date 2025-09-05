@@ -53,8 +53,8 @@ def test_good_example():
     analyzer.visit(tree)
     
     # Should recognize good patterns
-    assert analyzer.tests[0]['has_specific_values'] == True
-    assert analyzer.tests[0]['has_error_case'] == True
+    assert analyzer.tests[0]['has_specific_values'] is True
+    assert analyzer.tests[0]['has_error_case'] is True
     assert len(analyzer.theater_patterns) == 0, "No theater patterns"
 
 
@@ -167,7 +167,7 @@ def test_error_handling():
     analyzer.visit(tree)
     
     # Should detect error handling
-    assert analyzer.tests[0]['has_error_case'] == True, "Should detect error case testing"
+    assert analyzer.tests[0]['has_error_case'] is True, "Should detect error case testing"
 
 
 def test_specific_value_detection():
