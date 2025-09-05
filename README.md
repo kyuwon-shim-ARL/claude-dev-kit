@@ -416,12 +416,51 @@ python scripts/detect_mock_usage.py   # Mock 패턴 분석
 5. Run quality check (`./scripts/quick_tadd_check.sh`)
 6. Create Pull Request
 
+## 🚀 외부 레포 배포 (v31.0 NEW!)
+
+### 재구조화된 9개 커맨드를 기존 프로젝트에 배포
+
+**1️⃣ 원클릭 배포 (권장)**
+```bash
+curl -sSL https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/deploy_to_external_repo.sh | bash -s -- . --with-tadd --legacy-redirect
+```
+
+**2️⃣ 로컬 배포**
+```bash
+git clone https://github.com/kyuwon-shim-ARL/claude-dev-kit.git
+cd claude-dev-kit
+./scripts/deploy_to_external_repo.sh /path/to/your/project --with-tadd --legacy-redirect
+```
+
+### 🔄 25→9 재구조화 (60% 효율 향상)
+
+| **새로운 9개 커맨드** | **기존 25개에서 통합** | **주요 혁신** |
+|----------------------|----------------------|---------------|
+| 🔍 `/분석` | 스펙분석, 요구분석 → | 5단계 완전 워크플로우 |
+| 🔍 `/찾기` | 문서찾기, 컨텍스트 → | 통합 검색 시스템 |
+| 🔍 `/보고` | 주간보고, 보고서작업 → | 자동 진행 추적 |
+| 🛠️ `/기획` | 시작, 설계, 계획, 아키텍처 → | **LLM 지능형 라우팅** |
+| 🛠️ `/테스트` | 실험, 검증, 디버깅 → | **TADD 강제 시스템** |
+| 🛠️ `/구현` | 구현, 최적화, 리팩토링 → | **Real Testing 기반** |
+| 🛠️ `/배포` | 완료, 안정화, 배치 → | **6단계 통합 프로세스** |
+| 🎯 `/전체사이클` | - | **완전 자동화 워크플로우** |
+| 🎯 `/문서정리` | 문서정리, 세션마감 → | **3-Layer 자동화** |
+
+### 🎯 핵심 혁신사항
+
+- **LLM 지능형 라우팅**: 키워드 매칭 → 컨텍스트 기반 자동 모드 선택
+- **TADD 품질 보증**: Theater Testing 차단, Real Testing 강제
+- **자동 호환성**: 기존 25개 커맨드는 자동 리다이렉트
+- **3-Layer 문서화**: 실시간 → 주기적 → 세션별 자동 정리
+
+📖 **상세 가이드**: [DEPLOYMENT.md](DEPLOYMENT.md)
+
 ## 📊 현재 상태
 
-- **버전**: v30.7 (하이브리드 TADD)
+- **버전**: v31.0 (재구조화 + 외부 배포)
 - **설치**: init.sh (Universal)
 - **업데이트**: ./init.sh --upgrade (90초)
-- **명령어**: 16개+ (한/영 지원) + /TADD강화
+- **명령어**: 9개 핵심 (60% 효율 향상) + 외부 배포
 - **검증**: 3단계 폴백 시스템 (100% 보장)
 - **품질**: 포괄적 5가지 지표
 - **커버리지**: 95%+
