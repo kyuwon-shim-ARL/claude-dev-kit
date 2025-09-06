@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_github-token-permissions
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: guides, github, github-token-permissions.md, token, permissions
+related: 
+-->
+
 # GitHub Token Permissions Guide
 
 ## 🔄 Slash Command Policy (v30.3+)

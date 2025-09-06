@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_test_analysis_autosave
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: analysis, test, tests, autosave, test_analysis_autosave.md
+related: 
+-->
+
 # 분석 자동 저장 테스트 시나리오
 
 ## 테스트 목적

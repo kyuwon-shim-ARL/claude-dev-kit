@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_TADD_PHILOSOPHY
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: PHILOSOPHY, TADD_PHILOSOPHY.md, TADD
+related: 
+-->
+
 # TADD: Test-AI-Driven Development Philosophy
 
 ## 🎯 정의

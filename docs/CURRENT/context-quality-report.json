@@ -1,0 +1,87 @@
+{
+  "analysis_timestamp": "2025-09-05T15:26:14.426642",
+  "project_root": ".",
+  "overall_quality": {
+    "total_score": 94.8,
+    "grade": "A",
+    "status": "excellent",
+    "breakdown": {
+      "strategic": {
+        "score": 100,
+        "weight": 0.4
+      },
+      "tactical": {
+        "score": 85.0,
+        "weight": 0.35
+      },
+      "operational": {
+        "score": 100,
+        "weight": 0.25
+      }
+    }
+  },
+  "context_hierarchy": {
+    "strategic": {
+      "status": "found",
+      "path": "project_rules.md",
+      "score": 100,
+      "size": 3074,
+      "last_modified": "2025-09-05T13:50:43.810611",
+      "days_since_update": 0,
+      "issues": [],
+      "recommendations": []
+    },
+    "tactical": {
+      "status": "found",
+      "path": "CLAUDE.md",
+      "score": 85.0,
+      "size": 9831,
+      "last_modified": "2025-09-04T17:07:38.959373",
+      "sync_status": "outdated",
+      "issues": [
+        "Git 커밋과 동기화되지 않음"
+      ],
+      "recommendations": [
+        "claude init 실행으로 동기화"
+      ]
+    },
+    "operational": {
+      "status": "found",
+      "path": "docs/CURRENT",
+      "score": 100,
+      "file_count": 18,
+      "recent_file_count": 18,
+      "files": [
+        "status.md",
+        "active-todos.md",
+        "context-management-reality-check.md",
+        "document_tracking_system.md",
+        "weekly_report_20250901.md",
+        "improved-planning-prompt.md",
+        "completion-report-session-closure-v20.md",
+        "session-closure-v2-design.md",
+        "tadd-integration-test.md",
+        "weekly_report_2025-08-30.md",
+        "cleanup-report-v24.md",
+        "claude_metadata_system.md",
+        "test_metadata_example.md",
+        "test_published.md",
+        "test_draft.md",
+        "implementation-github-actions-integration.md",
+        "cleanup-report.md",
+        "test-report.md"
+      ],
+      "issues": [],
+      "recommendations": []
+    }
+  },
+  "issues": [
+    "Tactical: Git 커밋과 동기화되지 않음"
+  ],
+  "recommendations": [
+    "Tactical: claude init 실행으로 동기화"
+  ],
+  "next_actions": [
+    "⚙️ 자동 동기화 시스템 설정"
+  ]
+}

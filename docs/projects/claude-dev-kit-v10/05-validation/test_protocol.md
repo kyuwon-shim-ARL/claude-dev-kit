@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_test_protocol
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 05-validation, protocol, claude-dev-kit-v10, projects, test_protocol.md
+related: 
+-->
+
 # 컨텍스트 관리 시스템 테스트 프로토콜
 
 ## 🎯 테스트 목표

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, README.md, analysis
+related: 
+-->
+
 # 분석 문서화 체계 v2.0 (Simplified)
 
 ## 📊 심플한 폴더 구조

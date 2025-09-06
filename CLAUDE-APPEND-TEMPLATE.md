@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_CLAUDE-APPEND-TEMPLATE
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: TEMPLATE, CLAUDE, APPEND, CLAUDE-APPEND-TEMPLATE.md
+related: 
+-->
+
 # Claude Code 4단계 개발 워크플로우
 
 ## 개발 워크플로우

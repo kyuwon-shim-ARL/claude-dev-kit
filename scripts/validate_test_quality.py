@@ -81,7 +81,7 @@ class TestQualityAnalyzer(ast.NodeVisitor):
     
     def _is_theater_assertion(self, node) -> bool:
         """Theater Testing 패턴인지 확인"""
-        # assert result is not None
+        # Theater patterns like 'assert x is not None'
         if isinstance(node, ast.Compare):
             if len(node.ops) == 1 and isinstance(node.ops[0], (ast.IsNot, ast.NotEq)):
                 if len(node.comparators) == 1:

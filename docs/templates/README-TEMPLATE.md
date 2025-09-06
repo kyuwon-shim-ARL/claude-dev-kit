@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README-TEMPLATE
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: README, TEMPLATE, templates, README-TEMPLATE.md
+related: 
+-->
+
 # 🎯 Claude Code Development Template
 
 이 템플릿을 사용하여 새로운 레포에서도 **PaperFlow에서 사용한 효율적인 개발 방식**을 그대로 재현할 수 있습니다.

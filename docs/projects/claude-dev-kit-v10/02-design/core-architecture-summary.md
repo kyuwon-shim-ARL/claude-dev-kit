@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_core-architecture-summary
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: summary, claude-dev-kit-v10, projects, core, architecture
+related: 
+-->
+
 # claude-dev-kit 핵심 구조 분석
 
 ## 🎯 핵심 구성요소 (2가지만)

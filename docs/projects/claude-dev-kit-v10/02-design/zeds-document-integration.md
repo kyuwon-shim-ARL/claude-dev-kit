@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_zeds-document-integration
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: document, claude-dev-kit-v10, projects, zeds-document-integration.md, zeds
+related: 
+-->
+
 # ZEDS와 문서정리 통합 계획
 
 ## 1. 문제 인식

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_compact-optimization
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: 04-analysis, compact-optimization.md, claude-dev-kit-v10, projects, optimization
+related: 
+-->
+
 # /compact 최적화 가이드 v1.0
 
 ## 📊 실측 데이터

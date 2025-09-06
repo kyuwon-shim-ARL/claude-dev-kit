@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_command-scope-analysis
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: command-scope-analysis.md, analysis, claude-dev-kit-v10, projects, 06-documentation
+related: 
+-->
+
 # 슬래시 명령어 관리 범위 분석
 
 ## 현재 상황 정리

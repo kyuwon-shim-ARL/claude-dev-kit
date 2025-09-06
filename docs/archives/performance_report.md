@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_performance_report
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: performance_report.md, performance, report, archives
+related: 
+-->
+
 # 컨텍스트 관리 시스템 성능 리포트
 
 ## 📅 리포트 생성일: 2025-08-20 20:44:12

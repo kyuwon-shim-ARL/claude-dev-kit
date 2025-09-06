@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_test_zeds_integration
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: test, test_zeds_integration.md, zeds, tests, integration
+related: 
+-->
+
 # ZEDS 2.0 통합 테스트 시나리오
 
 ## 테스트 목적

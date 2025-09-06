@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_active-todos
+type: document
+scope: operational
+status: active
+created: 2025-09-05
+updated: 2025-09-05
+tags: active, CURRENT, todos, active-todos.md
+related: 
+-->
+
 # Active TODOs
 
 ## 🚀 Current Sprint

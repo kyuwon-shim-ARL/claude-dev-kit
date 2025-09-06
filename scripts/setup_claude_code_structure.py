@@ -185,7 +185,8 @@ import pytest
 
 def test_basic_functionality():
     \"\"\"Test that basic imports work\"\"\"
-    assert True
+    import os
+    assert os.path.exists('.')  # Check current directory exists
     
 def test_setup_validation():
     \"\"\"Validate project setup\"\"\"

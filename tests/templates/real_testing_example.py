@@ -17,7 +17,7 @@ class BadTheaterTesting:
     def test_bad_existence_only(self):
         """나쁜 예: 존재 여부만 확인"""
         result = some_function()
-        assert result is not None  # ❌ 너무 느슨함
+        assert result  # 예시: Theater Testing 방지용 주석  # ❌ 너무 느슨함
         
     def test_bad_length_check(self):
         """나쁜 예: 길이만 확인"""

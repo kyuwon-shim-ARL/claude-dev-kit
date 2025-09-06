@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_branch-protection-setup
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-05
+tags: guides, branch, branch-protection-setup.md, setup, protection
+related: 
+-->
+
 # Branch Protection 설정 가이드: TADD 강제 적용
 
 ## 🎯 목적
