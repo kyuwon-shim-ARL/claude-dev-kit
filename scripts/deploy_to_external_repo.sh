@@ -114,8 +114,8 @@ deploy_new_commands() {
         "테스트.md"
         "구현.md"
         "배포.md"
-        "전체사이클.md"
-        "문서정리.md"
+        "실험.md"
+        "검증.md"
     )
     
     for cmd in "${commands[@]}"; do
@@ -258,7 +258,7 @@ verify_installation() {
     local failed=0
     
     # 9개 핵심 커맨드 확인
-    local core_commands=("분석" "찾기" "보고" "기획" "테스트" "구현" "배포" "전체사이클" "문서정리")
+    local core_commands=("분석" "찾기" "보고" "기획" "테스트" "구현" "배포" "실험" "검증")
     
     for cmd in "${core_commands[@]}"; do
         if [ ! -f "$TARGET_DIR/.claude/commands/$cmd.md" ]; then
@@ -312,8 +312,8 @@ generate_usage_guide() {
 - **`/배포`**: 검증 + 배포 + 자동 정리
 
 ### 🎯 특수 트랙 (Special) - 2개
-- **`/전체사이클`**: 완전한 개발 사이클 자동화
-- **`/문서정리`**: 3-Layer 자동 문서화 시스템
+- **`/실험`**: 실험적 기능 테스트 및 POC
+- **`/검증`**: 품질 검증 및 최종 확인
 
 ## 주요 혁신사항
 
