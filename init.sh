@@ -366,6 +366,10 @@ install_tadd_scripts() {
     curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/comprehensive_test_validator.py" \
          -o scripts/comprehensive_test_validator.py 2>/dev/null && echo "    ✅ comprehensive_test_validator.py"
     
+    # Download auto report generator for /보고 command
+    curl -sSL "https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/scripts/auto_report_generator.py" \
+         -o scripts/auto_report_generator.py 2>/dev/null && echo "    ✅ auto_report_generator.py"
+    
     # Create quick check script
     cat > scripts/quick_tadd_check.sh << 'EOF'
 #!/bin/bash
