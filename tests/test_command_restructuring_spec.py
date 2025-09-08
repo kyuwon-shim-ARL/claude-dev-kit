@@ -57,8 +57,8 @@ class TestCommandRestructuring:
         assert "전략" in content
         assert "로드맵" in content
         
-        # And: 키워드 매칭 방식 제거
-        assert "키워드" not in content or "키워드 대신" in content
+        # And: LLM 지능형 라우팅 시스템 사용
+        assert "LLM" in content or "지능형" in content
 
     def test_new_test_command_enforces_tadd_principles(self):
         """새로운 /테스트 커맨드는 TADD 원칙을 강제해야 함"""

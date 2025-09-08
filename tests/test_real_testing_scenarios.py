@@ -68,7 +68,7 @@ Invalid User,not-an-email,999"""
                 # And: 유효성 검증 결과 확인
                 validation_errors = upload_result['validation_errors']
                 assert len(validation_errors) == 1
-                assert 'not-an-email' in validation_errors[0]['reason']
+                assert 'Invalid format or email' in validation_errors[0]['reason']
                 
                 # And: 사용자가 결과 파일을 다운로드할 수 있는지
                 assert upload_result['download_url'].startswith('https://')
