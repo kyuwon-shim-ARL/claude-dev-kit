@@ -298,7 +298,7 @@ class TestInputValidationAndSecurity:
         assert "신약개발" in project_id or "2025" in project_id  # 일부 보존
         
         # And: 실제 디렉토리 생성 확인
-        created_dirs = list(Path(self.temp_dir).glob("*"))
+        created_dirs = [d for d in Path(self.temp_dir).glob("*") if d.is_dir()]
         assert len(created_dirs) == 1  # 정확히 하나의 프로젝트 디렉토리 생성
 
 
