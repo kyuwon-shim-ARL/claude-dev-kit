@@ -647,6 +647,168 @@
         "metadata": []
       },
       "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250909184329-22773e",
+      "timestamp": "2025-09-09T18:43:29.808757",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "b7262a30",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 0,
+        "lines_added": 0,
+        "lines_removed": 0
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250909184330-2e6ca0",
+      "timestamp": "2025-09-09T18:43:30.821108",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "b7262a30",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 3,
+        "lines_added": 62,
+        "lines_removed": 8
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250909184819-b44e5e",
+      "timestamp": "2025-09-09T18:48:19.862998",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "3cd1017c",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 3,
+        "lines_added": 111,
+        "lines_removed": 3
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250909184820-287f13",
+      "timestamp": "2025-09-09T18:48:20.878472",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "3cd1017c",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 3,
+        "lines_added": 169,
+        "lines_removed": 7
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250909184905-6a8535",
+      "timestamp": "2025-09-09T18:49:05.859276",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "3cd1017c",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 222,
+        "lines_removed": 6
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250909184906-cabf98",
+      "timestamp": "2025-09-09T18:49:06.874807",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "3cd1017c",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 279,
+        "lines_removed": 9
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
     }
   ]
 }

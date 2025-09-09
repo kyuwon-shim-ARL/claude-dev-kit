@@ -299,7 +299,7 @@ class TestInputValidationAndSecurity:
         
         # And: 실제 디렉토리 생성 확인
         created_dirs = list(Path(self.temp_dir).glob("*"))
-        assert len(created_dirs) > 0
+        assert len(created_dirs) == 1  # 정확히 하나의 프로젝트 디렉토리 생성
 
 
 class TestRecursiveDirectorySearch:
