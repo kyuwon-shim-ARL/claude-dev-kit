@@ -84,3 +84,7 @@ dmypy.json
 # Test outputs
 test-results/
 test-output/
+
+# Compact summaries
+.claude/compact/
+.claude/backups/

@@ -1,19 +1,19 @@
 {
-  "id": "tr-20250909181230-38e4ad",
-  "timestamp": "2025-09-09T18:12:30.614427",
+  "id": "tr-20250909182041-b9a1cf",
+  "timestamp": "2025-09-09T18:20:41.238107",
   "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
     "--with-timeline"
   ],
   "git": {
-    "commit": "2bfb8578",
+    "commit": "13d36015",
     "branch": "feat/tadd-command-restructure",
     "author": "kyuwon.shim@ip-korea.org"
   },
   "changes": {
-    "files_modified": 73,
-    "lines_added": 169,
-    "lines_removed": 1775
+    "files_modified": 3,
+    "lines_added": 62,
+    "lines_removed": 8
   },
   "tracking": {
     "auto_enabled": true,
