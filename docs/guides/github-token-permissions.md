@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: guides, github, github-token-permissions.md, token, permissions
 related: 
 -->

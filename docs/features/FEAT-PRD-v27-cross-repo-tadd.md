@@ -5,7 +5,7 @@ type: feature
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: PRD, v27, FEAT-PRD-v27-cross-repo-tadd.md, FEAT, repo
 related: 
 -->

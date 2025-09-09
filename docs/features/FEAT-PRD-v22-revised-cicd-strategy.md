@@ -5,7 +5,7 @@ type: strategy
 scope: strategic
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: PRD, FEAT-PRD-v22-revised-cicd-strategy.md, v22, cicd, FEAT
 related: 
 -->

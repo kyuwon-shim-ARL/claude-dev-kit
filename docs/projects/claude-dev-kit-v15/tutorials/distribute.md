@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: distribute.md, projects, tutorials, distribute, claude-dev-kit-v15
 related: 
 -->

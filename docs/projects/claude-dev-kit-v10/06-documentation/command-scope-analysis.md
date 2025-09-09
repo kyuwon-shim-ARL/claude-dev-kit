@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: command-scope-analysis.md, analysis, claude-dev-kit-v10, projects, 06-documentation
 related: 
 -->

@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: active
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: CURRENT, document, tracking, document_tracking_system.md, system
 related: 
 -->
@@ -38,7 +38,7 @@ meta:
   triggers:
   - docs/CURRENT/document_tracking_system.md
   type: tutorial
-  updated: 2025-09-05
+  updated: 2025-09-09
 ---
 
 # 문서 추적 시스템 설계 (Document Tracking System)

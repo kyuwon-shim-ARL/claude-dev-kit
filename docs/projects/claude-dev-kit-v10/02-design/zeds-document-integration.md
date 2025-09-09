@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: document, claude-dev-kit-v10, projects, zeds-document-integration.md, zeds
 related: 
 -->

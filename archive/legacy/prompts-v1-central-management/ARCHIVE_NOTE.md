@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: prompts-v1-central-management, NOTE, ARCHIVE_NOTE.md, legacy, ARCHIVE
 related: 
 -->

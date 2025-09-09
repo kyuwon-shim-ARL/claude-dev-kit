@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: test, test_zeds_integration.md, zeds, tests, integration
 related: 
 -->

@@ -5,7 +5,7 @@ type: test
 parent: claude_metadata_system
 status: draft
 created: 2025-09-01
-updated: 2025-09-01
+updated: 2025-09-09
 triggers: claude_metadata_system.md
 -->
 

@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: README, TEMPLATE, templates, README-TEMPLATE.md
 related: 
 -->

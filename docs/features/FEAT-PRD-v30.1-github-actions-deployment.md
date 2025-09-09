@@ -5,7 +5,7 @@ type: feature
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: PRD, v30.1, actions, github, FEAT
 related: 
 -->

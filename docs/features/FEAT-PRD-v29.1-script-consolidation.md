@@ -5,7 +5,7 @@ type: feature
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: v29.1, PRD, consolidation, script, FEAT
 related: 
 -->

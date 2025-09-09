@@ -5,7 +5,7 @@ type: feature
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: PRD, actions, FEAT-PRD-v23-test-actions-bridge.md, bridge, test
 related: 
 -->

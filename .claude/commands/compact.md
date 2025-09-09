@@ -5,7 +5,7 @@ type: command
 scope: operational
 status: published
 created: 2025-09-08
-updated: 2025-09-08
+updated: 2025-09-09
 tags: commands, compact, context-management
 related: compact-context-strategy.md
 -->

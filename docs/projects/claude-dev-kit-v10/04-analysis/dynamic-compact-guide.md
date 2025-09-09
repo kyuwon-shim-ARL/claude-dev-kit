@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: 04-analysis, claude-dev-kit-v10, projects, dynamic-compact-guide.md, compact
 related: 
 -->

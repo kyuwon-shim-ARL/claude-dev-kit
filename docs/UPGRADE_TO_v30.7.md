@@ -5,7 +5,7 @@ type: document
 scope: operational
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: UPGRADE, v30.7, UPGRADE_TO_v30.7.md
 related: 
 -->

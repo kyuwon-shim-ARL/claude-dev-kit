@@ -5,7 +5,7 @@ type: phase
 scope: tactical
 status: archived
 created: 2025-09-05
-updated: 2025-09-05
+updated: 2025-09-09
 tags: hybrid, sessions, 004, 2024-08, session-004-zeds-3-hybrid-phase1.md
 related: 
 -->
