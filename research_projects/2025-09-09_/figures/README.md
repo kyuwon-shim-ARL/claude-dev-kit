@@ -1,0 +1,3 @@
+# Figures
+
+Visualizations and plots

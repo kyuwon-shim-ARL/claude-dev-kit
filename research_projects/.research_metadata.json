@@ -1,0 +1,76 @@
+{
+  "projects": {
+    "2025-09-09_test_drug_discovery": {
+      "name": "test_drug_discovery",
+      "description": "Testing drug discovery research workflow",
+      "created": "2025-09-09T13:19:21.621095",
+      "status": "active",
+      "checkpoints": [],
+      "milestones": [
+        {
+          "name": "Data Preparation",
+          "description": "All molecular descriptors calculated",
+          "timestamp": "2025-09-09T13:19:33.058576",
+          "status": "reached"
+        }
+      ]
+    },
+    "2025-09-09_integration_test": {
+      "name": "integration_test",
+      "description": "Full integration test",
+      "created": "2025-09-09T15:54:03.356530",
+      "status": "active",
+      "checkpoints": [
+        {
+          "id": "20250909_155448",
+          "description": "Need advanced analysis tool",
+          "timestamp": "2025-09-09T15:54:48.771395",
+          "project_state": "research_paused",
+          "context": {
+            "last_action": "checkpoint_created",
+            "next_action": "tool_development_needed"
+          }
+        }
+      ],
+      "milestones": [],
+      "hypotheses": [
+        {
+          "hypothesis": "Data size correlates with processing time",
+          "timestamp": "2025-09-09T15:54:15.550284",
+          "status": "active",
+          "tests": [],
+          "results": []
+        }
+      ],
+      "experiments": [
+        {
+          "name": "baseline_model",
+          "description": "Simple linear regression baseline",
+          "started": "2025-09-09T15:54:21.401211",
+          "status": "running",
+          "parameters": {},
+          "results": {},
+          "notebook": "experiments/20250909_1554_baseline_model/experiment.ipynb"
+        }
+      ]
+    },
+    "2025-09-09_": {
+      "name": "",
+      "description": "",
+      "created": "2025-09-09T16:40:56.407131",
+      "status": "active",
+      "checkpoints": [],
+      "milestones": []
+    },
+    "2025-09-09_\ud504\ub85c\uc81d\ud2b8/\ud14c\uc2a4\ud2b8\\&\ud2b9\uc218\ubb38\uc790": {
+      "name": "\ud504\ub85c\uc81d\ud2b8/\ud14c\uc2a4\ud2b8\\&\ud2b9\uc218\ubb38\uc790",
+      "description": "\ud2b9\uc218\ubb38\uc790@#$%^&*()\ud3ec\ud568\ub41c \uc124\uba85",
+      "created": "2025-09-09T16:41:04.405213",
+      "status": "active",
+      "checkpoints": [],
+      "milestones": []
+    }
+  },
+  "active_project": "2025-09-09_\ud504\ub85c\uc81d\ud2b8/\ud14c\uc2a4\ud2b8\\&\ud2b9\uc218\ubb38\uc790",
+  "created": "2025-09-09T13:19:21.085203"
+}
