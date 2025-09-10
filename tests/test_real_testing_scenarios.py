@@ -99,8 +99,8 @@ Invalid User,not-an-email,999"""
             """로그인 테스트 (Theater Testing)"""
             response = {"token": "abc123"}
             
-            # 단순 존재 확인
-            assert response is not None
+            # 단순 존재 확인 (Theater Testing 예시 - 피해야 할 패턴)
+            assert response == {"token": "abc123"}  # 더 구체적으로 변경
             assert 'token' in response  # 키만 있으면 통과
             assert len(response['token']) > 0  # 길이만 확인
             
@@ -178,7 +178,7 @@ Invalid User,not-an-email,999"""
         def theater_test_security():
             """보안 테스트 (Theater Testing)"""
             result = self.mock_get_user_data(user_id="user1", requester="user1")
-            assert result is not None  # 뭔가 반환되면 통과
+            assert result == {"user": "user1", "data": "secret"}  # 구체적인 값으로 변경
             return True
         
         # ✅ Real Testing
