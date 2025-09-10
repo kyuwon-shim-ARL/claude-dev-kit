@@ -1,6 +1,6 @@
 {
-  "id": "tr-20250910154946-2a92f9",
-  "timestamp": "2025-09-10T15:49:46.161725",
+  "id": "tr-20250910160955-b9c797",
+  "timestamp": "2025-09-10T16:09:55.946685",
   "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
     "--with-timeline"
@@ -11,9 +11,9 @@
     "author": "kyuwon.shim@ip-korea.org"
   },
   "changes": {
-    "files_modified": 4,
-    "lines_added": 169,
-    "lines_removed": 250
+    "files_modified": 3,
+    "lines_added": 61,
+    "lines_removed": 7
   },
   "tracking": {
     "auto_enabled": true,
