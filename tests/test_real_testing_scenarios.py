@@ -178,7 +178,7 @@ Invalid User,not-an-email,999"""
         def theater_test_security():
             """보안 테스트 (Theater Testing)"""
             result = self.mock_get_user_data(user_id="user1", requester="user1")
-            assert result == {"user": "user1", "data": "secret"}  # 구체적인 값으로 변경
+            assert result == {"status": "success", "data": {"id": "user1"}}  # 실제 반환값으로 수정
             return True
         
         # ✅ Real Testing
@@ -263,10 +263,10 @@ Invalid User,not-an-email,999"""
             # 구체적인 Theater 패턴들
             theater_indicators = [
                 'assert.*is not None',
-                'assert.*\.exists\(',
-                'assert len\(.+\) > 0',
+                r'assert.*\.exists\(',
+                r'assert len\(.+\) > 0',
                 'assert True$',
-                "assert '\\w+' in \\w+$",  # 단순 키 존재만 확인
+                r"assert '\w+' in \w+$",  # 단순 키 존재만 확인
             ]
             
             for pattern in theater_indicators:
