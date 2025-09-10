@@ -809,6 +809,114 @@
         "metadata": []
       },
       "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250910111842-e705af",
+      "timestamp": "2025-09-10T11:18:42.110071",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "532a7f47",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 2,
+        "lines_added": 425,
+        "lines_removed": 337
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250910111843-7ae40e",
+      "timestamp": "2025-09-10T11:18:43.125259",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "532a7f47",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 5,
+        "lines_added": 487,
+        "lines_removed": 345
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
+    },
+    {
+      "id": "tr-20250910154945-3a3868",
+      "timestamp": "2025-09-10T15:49:45.146589",
+      "command": "\ub808\ud3ec\uc815\ub9ac",
+      "parameters": [
+        "--track"
+      ],
+      "git": {
+        "commit": "532a7f47",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 114,
+        "lines_removed": 249
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 1234
+    },
+    {
+      "id": "tr-20250910154946-2a92f9",
+      "timestamp": "2025-09-10T15:49:46.161725",
+      "command": "\ubb38\uc11c\uc815\ub9ac",
+      "parameters": [
+        "--with-timeline"
+      ],
+      "git": {
+        "commit": "532a7f47",
+        "branch": "feat/tadd-command-restructure",
+        "author": "kyuwon.shim@ip-korea.org"
+      },
+      "changes": {
+        "files_modified": 4,
+        "lines_added": 169,
+        "lines_removed": 250
+      },
+      "tracking": {
+        "auto_enabled": true,
+        "reason": "default behavior (v18.0 - full integration)"
+      },
+      "generated": {
+        "reports": [],
+        "metadata": []
+      },
+      "duration_ms": 2345
     }
   ]
 }

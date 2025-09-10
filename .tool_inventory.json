@@ -192,14 +192,14 @@
   },
   "execute": {
     "type": "function",
-    "file": "src/enhanced_commands.py",
-    "line": 333,
-    "docstring": "\uc804\uccb4\uc0ac\uc774\ud074 \uc2e4\ud589",
+    "file": "src/research_manager_hybrid.py",
+    "line": 102,
+    "docstring": "\uc720\uc5f0\ud55c \uba85\ub839\uc5b4 \uc2e4\ud589 - \uc601\uc5b4/\ud55c\uae00 \ubaa8\ub450 \uc9c0\uc6d0\n\n\uc0ac\uc6a9 \uc608:\n    manager.execute(\"\uc0dd\uc131\", \"\ud504\ub85c\uc81d\ud2b8\uba85\", \"\uc124\uba85\")\n    manager.execute(\"init\", \"project_name\", \"description\")\n    manager.execute(\"\uc9c4\ud589\", \"\uc791\uc5c5 \uc644\ub8cc\")\n    manager.execute(\"track\", \"Task completed\")",
     "params": [
       "self",
-      "task"
+      "command"
     ],
-    "usage_example": "from src.enhanced_commands import execute\nresult = execute(...)"
+    "usage_example": "from src.research_manager_hybrid import execute\nresult = execute(...)"
   },
   "gather_additional_context": {
     "type": "function",
@@ -760,5 +760,284 @@
       "project_id"
     ],
     "usage_example": "from src.input_validator import extract_name_from_id\nresult = extract_name_from_id(...)"
+  },
+  "\uc5f0\uad6c\ud504\ub85c\uc81d\ud2b8\uad00\ub9ac\uc790": {
+    "type": "class",
+    "file": "src/research_manager_korean.py",
+    "line": 11,
+    "docstring": "ResearchProjectManager\uc758 \ud55c\uae00 \uc778\ud130\ud398\uc774\uc2a4",
+    "methods": [
+      "__init__",
+      "\ud504\ub85c\uc81d\ud2b8_\uc0dd\uc131",
+      "\uc9c4\ud589\uc0ac\ud56d_\uae30\ub85d",
+      "\ub9c8\uc77c\uc2a4\ud1a4_\uc124\uc815",
+      "\ud504\ub85c\uc81d\ud2b8_\ubaa9\ub85d",
+      "\ud504\ub85c\uc81d\ud2b8_\uc804\ud658",
+      "\ud504\ub85c\uc81d\ud2b8_\ubcf4\uad00",
+      "\ub370\uc774\ud130_\ud0d0\uc0c9",
+      "\uac00\uc124_\uc124\uc815",
+      "\uc2e4\ud5d8_\uc2dc\uc791",
+      "\uacb0\uacfc_\uac80\uc99d",
+      "\uccb4\ud06c\ud3ec\uc778\ud2b8",
+      "\uccb4\ud06c\ud3ec\uc778\ud2b8_\ubcf5\uc6d0",
+      "\uacb0\uacfc_\uacf5\uc720",
+      "\ub3c4\uad6c_\ubaa9\ub85d",
+      "\ud604\uc7ac_\ud504\ub85c\uc81d\ud2b8",
+      "\ud504\ub85c\uc81d\ud2b8_\uc815\ubcf4"
+    ],
+    "usage_example": "from src.research_manager_korean import \uc5f0\uad6c\ud504\ub85c\uc81d\ud2b8\uad00\ub9ac\uc790\ninstance = \uc5f0\uad6c\ud504\ub85c\uc81d\ud2b8\uad00\ub9ac\uc790()\nresult = instance.method(...)"
+  },
+  "\uc5f0\uad6c\uad00\ub9ac\uc790": {
+    "type": "class",
+    "file": "src/research_manager_korean.py",
+    "line": 179,
+    "docstring": "\ub354 \uc9e7\uc740 \uc774\ub984\uc758 \ubcc4\uce6d \ud074\ub798\uc2a4",
+    "methods": [],
+    "usage_example": "from src.research_manager_korean import \uc5f0\uad6c\uad00\ub9ac\uc790\ninstance = \uc5f0\uad6c\uad00\ub9ac\uc790()\nresult = instance.method(...)"
+  },
+  "\uc0c8_\ud504\ub85c\uc81d\ud2b8": {
+    "type": "function",
+    "file": "src/research_manager_korean.py",
+    "line": 185,
+    "docstring": "\ube60\ub978 \ud504\ub85c\uc81d\ud2b8 \uc0dd\uc131\uc744 \uc704\ud55c \ud5ec\ud37c \ud568\uc218",
+    "params": [
+      "\uc774\ub984",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_korean import \uc0c8_\ud504\ub85c\uc81d\ud2b8\nresult = \uc0c8_\ud504\ub85c\uc81d\ud2b8(...)"
+  },
+  "\uc9c4\ud589_\uae30\ub85d": {
+    "type": "function",
+    "file": "src/research_manager_korean.py",
+    "line": 191,
+    "docstring": "\ube60\ub978 \uc9c4\ud589\uc0ac\ud56d \uae30\ub85d\uc744 \uc704\ud55c \ud5ec\ud37c \ud568\uc218",
+    "params": [
+      "\uba54\uc2dc\uc9c0",
+      "\ud30c\uc77c\ub4e4"
+    ],
+    "usage_example": "from src.research_manager_korean import \uc9c4\ud589_\uae30\ub85d\nresult = \uc9c4\ud589_\uae30\ub85d(...)"
+  },
+  "\ud504\ub85c\uc81d\ud2b8_\uc0dd\uc131": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 157,
+    "docstring": "\ud504\ub85c\uc81d\ud2b8 \uc0dd\uc131 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uc774\ub984",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ud504\ub85c\uc81d\ud2b8_\uc0dd\uc131\nresult = \ud504\ub85c\uc81d\ud2b8_\uc0dd\uc131(...)"
+  },
+  "\uc9c4\ud589\uc0ac\ud56d_\uae30\ub85d": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 161,
+    "docstring": "\uc9c4\ud589\uc0ac\ud56d \uae30\ub85d (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uba54\uc2dc\uc9c0",
+      "\ud30c\uc77c\ub4e4"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uc9c4\ud589\uc0ac\ud56d_\uae30\ub85d\nresult = \uc9c4\ud589\uc0ac\ud56d_\uae30\ub85d(...)"
+  },
+  "\ub9c8\uc77c\uc2a4\ud1a4_\uc124\uc815": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 165,
+    "docstring": "\ub9c8\uc77c\uc2a4\ud1a4 \uc124\uc815 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uc774\ub984",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ub9c8\uc77c\uc2a4\ud1a4_\uc124\uc815\nresult = \ub9c8\uc77c\uc2a4\ud1a4_\uc124\uc815(...)"
+  },
+  "\ud504\ub85c\uc81d\ud2b8_\ubaa9\ub85d": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 169,
+    "docstring": "\ud504\ub85c\uc81d\ud2b8 \ubaa9\ub85d (\ud55c\uae00)",
+    "params": [
+      "self"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ud504\ub85c\uc81d\ud2b8_\ubaa9\ub85d\nresult = \ud504\ub85c\uc81d\ud2b8_\ubaa9\ub85d(...)"
+  },
+  "\ud504\ub85c\uc81d\ud2b8_\uc804\ud658": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 173,
+    "docstring": "\ud504\ub85c\uc81d\ud2b8 \uc804\ud658 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\ud504\ub85c\uc81d\ud2b8_id"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ud504\ub85c\uc81d\ud2b8_\uc804\ud658\nresult = \ud504\ub85c\uc81d\ud2b8_\uc804\ud658(...)"
+  },
+  "\ud504\ub85c\uc81d\ud2b8_\ubcf4\uad00": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 177,
+    "docstring": "\ud504\ub85c\uc81d\ud2b8 \ubcf4\uad00 (\ud55c\uae00)",
+    "params": [
+      "self"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ud504\ub85c\uc81d\ud2b8_\ubcf4\uad00\nresult = \ud504\ub85c\uc81d\ud2b8_\ubcf4\uad00(...)"
+  },
+  "\ub370\uc774\ud130_\ud0d0\uc0c9": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 181,
+    "docstring": "\ub370\uc774\ud130 \ud0d0\uc0c9 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ub370\uc774\ud130_\ud0d0\uc0c9\nresult = \ub370\uc774\ud130_\ud0d0\uc0c9(...)"
+  },
+  "\uac00\uc124_\uc124\uc815": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 185,
+    "docstring": "\uac00\uc124 \uc124\uc815 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uac00\uc124"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uac00\uc124_\uc124\uc815\nresult = \uac00\uc124_\uc124\uc815(...)"
+  },
+  "\uc2e4\ud5d8_\uc2dc\uc791": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 189,
+    "docstring": "\uc2e4\ud5d8 \uc2dc\uc791 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uc2e4\ud5d8\uba85",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uc2e4\ud5d8_\uc2dc\uc791\nresult = \uc2e4\ud5d8_\uc2dc\uc791(...)"
+  },
+  "\uacb0\uacfc_\uac80\uc99d": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 193,
+    "docstring": "\uacb0\uacfc \uac80\uc99d (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uc124\uba85"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uacb0\uacfc_\uac80\uc99d\nresult = \uacb0\uacfc_\uac80\uc99d(...)"
+  },
+  "\uccb4\ud06c\ud3ec\uc778\ud2b8": {
+    "type": "function",
+    "file": "src/research_manager_korean.py",
+    "line": 120,
+    "docstring": "\ud604\uc7ac \uc0c1\ud0dc\ub97c \uccb4\ud06c\ud3ec\uc778\ud2b8\ub85c \uc800\uc7a5\n\n\uc0ac\uc6a9 \uc608:\n    \uccb4\ud06c\ud3ec\uc778\ud2b8_id = \uad00\ub9ac\uc790.\uccb4\ud06c\ud3ec\uc778\ud2b8(\"\ubaa8\ub378 \ud559\uc2b5 \uc644\ub8cc, \ud558\uc774\ud37c\ud30c\ub77c\ubbf8\ud130 \ud29c\ub2dd \uc608\uc815\")",
+    "params": [
+      "self",
+      "\uba54\ubaa8"
+    ],
+    "usage_example": "from src.research_manager_korean import \uccb4\ud06c\ud3ec\uc778\ud2b8\nresult = \uccb4\ud06c\ud3ec\uc778\ud2b8(...)"
+  },
+  "\uccb4\ud06c\ud3ec\uc778\ud2b8_\ubcf5\uc6d0": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 201,
+    "docstring": "\uccb4\ud06c\ud3ec\uc778\ud2b8 \ubcf5\uc6d0 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uccb4\ud06c\ud3ec\uc778\ud2b8_id"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uccb4\ud06c\ud3ec\uc778\ud2b8_\ubcf5\uc6d0\nresult = \uccb4\ud06c\ud3ec\uc778\ud2b8_\ubcf5\uc6d0(...)"
+  },
+  "\uacb0\uacfc_\uacf5\uc720": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 205,
+    "docstring": "\uacb0\uacfc \uacf5\uc720 (\ud55c\uae00)",
+    "params": [
+      "self"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uacb0\uacfc_\uacf5\uc720\nresult = \uacb0\uacfc_\uacf5\uc720(...)"
+  },
+  "\ub3c4\uad6c_\ubaa9\ub85d": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 209,
+    "docstring": "\ub3c4\uad6c \ubaa9\ub85d (\ud55c\uae00)",
+    "params": [
+      "self"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \ub3c4\uad6c_\ubaa9\ub85d\nresult = \ub3c4\uad6c_\ubaa9\ub85d(...)"
+  },
+  "\ud604\uc7ac_\ud504\ub85c\uc81d\ud2b8": {
+    "type": "function",
+    "file": "src/research_manager_korean.py",
+    "line": 156,
+    "docstring": "\ud604\uc7ac \ud65c\uc131 \ud504\ub85c\uc81d\ud2b8 ID \ubc18\ud658",
+    "params": [
+      "self"
+    ],
+    "usage_example": "from src.research_manager_korean import \ud604\uc7ac_\ud504\ub85c\uc81d\ud2b8\nresult = \ud604\uc7ac_\ud504\ub85c\uc81d\ud2b8(...)"
+  },
+  "\ud504\ub85c\uc81d\ud2b8_\uc815\ubcf4": {
+    "type": "function",
+    "file": "src/research_manager_korean.py",
+    "line": 160,
+    "docstring": "\ud2b9\uc815 \ud504\ub85c\uc81d\ud2b8\uc758 \uc0c1\uc138 \uc815\ubcf4 \uc870\ud68c\n\nArgs:\n    \ud504\ub85c\uc81d\ud2b8_id: \uc870\ud68c\ud560 \ud504\ub85c\uc81d\ud2b8 ID (None\uc774\uba74 \ud604\uc7ac \ud504\ub85c\uc81d\ud2b8)\n\nReturns:\n    \ud504\ub85c\uc81d\ud2b8 \uc815\ubcf4 \ub515\uc154\ub108\ub9ac",
+    "params": [
+      "self",
+      "\ud504\ub85c\uc81d\ud2b8_id"
+    ],
+    "usage_example": "from src.research_manager_korean import \ud504\ub85c\uc81d\ud2b8_\uc815\ubcf4\nresult = \ud504\ub85c\uc81d\ud2b8_\uc815\ubcf4(...)"
+  },
+  "HybridResearchManager": {
+    "type": "class",
+    "file": "src/research_manager_hybrid.py",
+    "line": 11,
+    "docstring": "\uc601\uc5b4\uc640 \ud55c\uae00 \uba85\ub839\uc5b4\ub97c \ubaa8\ub450 \uc9c0\uc6d0\ud558\ub294 \ud558\uc774\ube0c\ub9ac\ub4dc \ub9e4\ub2c8\uc800",
+    "methods": [
+      "__init__",
+      "execute",
+      "\ud504\ub85c\uc81d\ud2b8_\uc0dd\uc131",
+      "\uc9c4\ud589\uc0ac\ud56d_\uae30\ub85d",
+      "\ub9c8\uc77c\uc2a4\ud1a4_\uc124\uc815",
+      "\ud504\ub85c\uc81d\ud2b8_\ubaa9\ub85d",
+      "\ud504\ub85c\uc81d\ud2b8_\uc804\ud658",
+      "\ud504\ub85c\uc81d\ud2b8_\ubcf4\uad00",
+      "\ub370\uc774\ud130_\ud0d0\uc0c9",
+      "\uac00\uc124_\uc124\uc815",
+      "\uc2e4\ud5d8_\uc2dc\uc791",
+      "\uacb0\uacfc_\uac80\uc99d",
+      "\uccb4\ud06c\ud3ec\uc778\ud2b8_\uc0dd\uc131",
+      "\uccb4\ud06c\ud3ec\uc778\ud2b8_\ubcf5\uc6d0",
+      "\uacb0\uacfc_\uacf5\uc720",
+      "\ub3c4\uad6c_\ubaa9\ub85d",
+      "help"
+    ],
+    "usage_example": "from src.research_manager_hybrid import HybridResearchManager\ninstance = HybridResearchManager()\nresult = instance.method(...)"
+  },
+  "\uccb4\ud06c\ud3ec\uc778\ud2b8_\uc0dd\uc131": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 197,
+    "docstring": "\uccb4\ud06c\ud3ec\uc778\ud2b8 \uc0dd\uc131 (\ud55c\uae00)",
+    "params": [
+      "self",
+      "\uba54\ubaa8"
+    ],
+    "usage_example": "from src.research_manager_hybrid import \uccb4\ud06c\ud3ec\uc778\ud2b8_\uc0dd\uc131\nresult = \uccb4\ud06c\ud3ec\uc778\ud2b8_\uc0dd\uc131(...)"
+  },
+  "help": {
+    "type": "function",
+    "file": "src/research_manager_hybrid.py",
+    "line": 213,
+    "docstring": "\ub3c4\uc6c0\ub9d0 \ud45c\uc2dc\n\nArgs:\n    language: \"korean\", \"english\", \"both\"",
+    "params": [
+      "self",
+      "language"
+    ],
+    "usage_example": "from src.research_manager_hybrid import help\nresult = help(...)"
   }
 }

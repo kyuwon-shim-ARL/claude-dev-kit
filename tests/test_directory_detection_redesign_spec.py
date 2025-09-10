@@ -387,6 +387,14 @@ class TestRecursiveDirectorySearch:
 class TestPerformanceAndScalability:
     """성능 및 확장성 테스트"""
     
+    def setup_method(self):
+        """테스트 환경 설정"""
+        self.original_cwd = os.getcwd()
+    
+    def teardown_method(self):
+        """테스트 환경 정리"""
+        os.chdir(self.original_cwd)
+    
     def test_directory_detection_completes_within_50ms(self):
         """디렉토리 감지가 50ms 이내에 완료되어야 함"""
         
