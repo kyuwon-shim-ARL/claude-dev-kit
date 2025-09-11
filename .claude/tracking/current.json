@@ -1,12 +1,12 @@
 {
-  "id": "tr-20250910161729-aa15a8",
-  "timestamp": "2025-09-10T16:17:29.800589",
+  "id": "tr-20250911160114-0d86ff",
+  "timestamp": "2025-09-11T16:01:14.680353",
   "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
     "--with-timeline"
   ],
   "git": {
-    "commit": "f8783c56",
+    "commit": "ce122caf",
     "branch": "feat/tadd-command-restructure",
     "author": "kyuwon.shim@ip-korea.org"
   },
