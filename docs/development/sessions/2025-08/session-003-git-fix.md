@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_session-003-git-fix
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-09
+tags: git, sessions, session, 2025-08, development
+related: 
+-->
+
 # init.sh Git 설정 오작동 수정 완료 v7.1.0
 
 ## 📋 문제 분석 및 해결

@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_testing-reality-check
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-09
+tags: reality, testing-reality-check.md, development, check, testing
+related: 
+-->
+
 # 테스트 현실성 검증 가이드
 
 ## 🚨 Mock 테스트 문제점

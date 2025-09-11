@@ -336,7 +336,7 @@ gh run view [run-id] --log-failed | grep "Resource not accessible"
   type: [implementation|test_report|documentation]
   status: draft  # draft → review → published
   created: [date]
-  updated: [date]
+  updated: 2025-09-09
   -->
   ```
 - 메타데이터 기반 자동 분류:

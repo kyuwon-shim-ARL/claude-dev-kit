@@ -1,0 +1,75 @@
+name: TADD Test-First Integrity Enforcement
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  enforce-test-integrity:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # 전체 히스토리 필요
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install Dependencies
+      run: |
+        pip install pytest pytest-cov coverage
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+    
+    - name: Count and Verify Tests
+      id: test_count
+      run: |
+        TOTAL=$(find . -name 'test*.py' -exec grep -c 'def test_' {} \; 2>/dev/null | awk '{sum+=$1} END {print sum}')
+        echo "total_tests=$TOTAL" >> $GITHUB_OUTPUT
+        echo "📊 총 테스트 개수: $TOTAL"
+        
+        # 이전 커밋과 비교
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          BASE_COUNT=$(git show ${{ github.event.pull_request.base.sha }}:tests/ 2>/dev/null | grep -c 'def test_' || echo 0)
+          if [ "$TOTAL" -lt "$BASE_COUNT" ]; then
+            echo "::error::테스트 감소 감지! $BASE_COUNT → $TOTAL"
+            exit 1
+          fi
+        fi
+    
+    - name: Run All Tests (No Skip Allowed)
+      run: |
+        pytest --strict-markers --tb=short -v
+    
+    - name: Check Test Quality
+      run: |
+        # Theater Testing 패턴 검사 (Python AST 기반 정확한 검사)
+        python scripts/check_theater_testing.py
+    
+    - name: Analyze Mock Usage
+      run: |
+        # Mock 사용률 계산
+        MOCK_COUNT=$(find . -name "*.py" -exec grep -c "mock\|Mock" {} \; 2>/dev/null | awk '{sum+=$1} END {print sum}')
+        TOTAL_LINES=$(find . -name "test*.py" -exec wc -l {} \; | awk '{sum+=$1} END {print sum}')
+        
+        if [ "$TOTAL_LINES" -gt 0 ]; then
+          MOCK_PERCENTAGE=$((MOCK_COUNT * 100 / TOTAL_LINES))
+          echo "📊 Mock 사용률: ${MOCK_PERCENTAGE}%"
+          
+          if [ "$MOCK_PERCENTAGE" -gt 20 ]; then
+            echo "::warning::Mock 사용률이 20%를 초과합니다 (${MOCK_PERCENTAGE}%)"
+          fi
+        fi
+    
+    - name: Generate Test Report
+      if: always()
+      run: |
+        echo "## 📋 Test Integrity Report" >> $GITHUB_STEP_SUMMARY
+        echo "- 총 테스트: ${{ steps.test_count.outputs.total_tests }}개" >> $GITHUB_STEP_SUMMARY
+        echo "- 상태: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+        echo "- 시간: $(date)" >> $GITHUB_STEP_SUMMARY

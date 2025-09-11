@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_index
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-09
+tags: index.md, index, claude-dev-kit-v15, projects
+related: 
+-->
+
 # claude-dev-kit v15.0 독립 문서 아카이브
 
 ## 📊 문서 현황  

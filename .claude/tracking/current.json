@@ -1,18 +1,18 @@
 {
-  "id": "tr-20250904162202-c2e828",
-  "timestamp": "2025-09-04T16:22:02.256692",
+  "id": "tr-20250910161729-aa15a8",
+  "timestamp": "2025-09-10T16:17:29.800589",
   "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
     "--with-timeline"
   ],
   "git": {
-    "commit": "3fe167c9",
-    "branch": "feat/real-testing-integration",
+    "commit": "f8783c56",
+    "branch": "feat/tadd-command-restructure",
     "author": "kyuwon.shim@ip-korea.org"
   },
   "changes": {
-    "files_modified": 2,
-    "lines_added": 89,
+    "files_modified": 3,
+    "lines_added": 62,
     "lines_removed": 8
   },
   "tracking": {

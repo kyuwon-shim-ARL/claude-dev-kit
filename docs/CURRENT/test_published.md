@@ -4,7 +4,7 @@ id: doc_20250901_test_published
 type: test
 status: published
 created: 2025-08-01
-updated: 2025-08-15
+updated: 2025-09-09
 -->
 
 # 테스트: 완료된 문서 (Published)

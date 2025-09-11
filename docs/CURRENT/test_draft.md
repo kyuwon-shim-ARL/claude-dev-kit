@@ -4,7 +4,7 @@ id: doc_20250901_test_draft
 type: test
 status: draft
 created: 2025-09-01
-updated: 2025-09-01
+updated: 2025-09-09
 -->
 
 # 테스트: 진행 중인 문서 (Draft)

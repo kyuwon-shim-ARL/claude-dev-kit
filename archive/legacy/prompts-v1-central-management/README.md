@@ -1,3 +1,15 @@
+<!--
+@meta
+id: document_20250905_1110_README
+type: document
+scope: operational
+status: archived
+created: 2025-09-05
+updated: 2025-09-09
+tags: legacy, README, README.md, prompts-v1-central-management
+related: 
+-->
+
 # Claude Dev Kit 프롬프트 관리 시스템
 
 ## 🎯 단일 진실 공급원 (Single Source of Truth)
