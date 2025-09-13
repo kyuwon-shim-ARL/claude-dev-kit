@@ -1,18 +1,18 @@
 {
-  "id": "tr-20250912034356-d8a06a",
-  "timestamp": "2025-09-12T03:43:56.699175",
+  "id": "tr-20250914005833-bf4543",
+  "timestamp": "2025-09-14T00:58:33.554352",
   "command": "\ubb38\uc11c\uc815\ub9ac",
   "parameters": [
     "--with-timeline"
   ],
   "git": {
-    "commit": "8b440e5c",
-    "branch": "main",
+    "commit": "a5fe293c",
+    "branch": "feat/research-clean-archive",
     "author": "kyuwon.shim@ip-korea.org"
   },
   "changes": {
     "files_modified": 3,
-    "lines_added": 63,
+    "lines_added": 171,
     "lines_removed": 9
   },
   "tracking": {

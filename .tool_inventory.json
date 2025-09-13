@@ -1040,6 +1040,69 @@
     ],
     "usage_example": "from src.tool_inventory import validate_code\nresult = validate_code(...)"
   },
+  "ResearchEntry": {
+    "type": "class",
+    "file": "src/research_report_generator.py",
+    "line": 18,
+    "docstring": "\uc5f0\uad6c \uae30\ub85d \ud56d\ubaa9",
+    "methods": [],
+    "usage_example": "from src.research_report_generator import ResearchEntry\ninstance = ResearchEntry()\nresult = instance.method(...)"
+  },
+  "ResearchReportGenerator": {
+    "type": "class",
+    "file": "src/research_report_generator.py",
+    "line": 27,
+    "docstring": "\uc5f0\uad6c \ubcf4\uace0\uc11c \uc790\ub3d9 \uc0dd\uc131\uae30",
+    "methods": [
+      "__init__",
+      "collect_research_data",
+      "generate_academic_report",
+      "generate_comprehensive_report"
+    ],
+    "usage_example": "from src.research_report_generator import ResearchReportGenerator\ninstance = ResearchReportGenerator()\nresult = instance.method(...)"
+  },
+  "main": {
+    "type": "function",
+    "file": "src/research_report_generator.py",
+    "line": 252,
+    "docstring": "\uba54\uc778 \uc2e4\ud589 \ud568\uc218",
+    "params": [],
+    "usage_example": "from src.research_report_generator import main\nresult = main(...)"
+  },
+  "collect_research_data": {
+    "type": "function",
+    "file": "src/research_report_generator.py",
+    "line": 36,
+    "docstring": "\uc5f0\uad6c \ud504\ub85c\uc81d\ud2b8\uc758 \ubaa8\ub4e0 \ub370\uc774\ud130 \uc218\uc9d1",
+    "params": [
+      "self",
+      "project_name"
+    ],
+    "usage_example": "from src.research_report_generator import collect_research_data\nresult = collect_research_data(...)"
+  },
+  "generate_academic_report": {
+    "type": "function",
+    "file": "src/research_report_generator.py",
+    "line": 68,
+    "docstring": "\ud559\uc220 \ub17c\ubb38 \uc2a4\ud0c0\uc77c\uc758 \uc5f0\uad6c \ubcf4\uace0\uc11c \uc0dd\uc131",
+    "params": [
+      "self",
+      "project_name",
+      "research_data"
+    ],
+    "usage_example": "from src.research_report_generator import generate_academic_report\nresult = generate_academic_report(...)"
+  },
+  "generate_comprehensive_report": {
+    "type": "function",
+    "file": "src/research_report_generator.py",
+    "line": 221,
+    "docstring": "\uc644\uc804\ud55c \uc5f0\uad6c \ubcf4\uace0\uc11c \uc0dd\uc131 \ubc0f \uc800\uc7a5",
+    "params": [
+      "self",
+      "project_name"
+    ],
+    "usage_example": "from src.research_report_generator import generate_comprehensive_report\nresult = generate_comprehensive_report(...)"
+  },
   "parse_flags": {
     "type": "function",
     "file": "src/commands/deployment.py",
