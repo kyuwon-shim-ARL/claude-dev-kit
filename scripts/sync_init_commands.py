@@ -40,8 +40,8 @@ def update_init_script(commands):
     # commands 배열 부분 찾기
     pattern = r'declare -A commands=\(\s*([^)]+)\s*\)'
 
-    # 새로운 commands 배열 생성
-    command_entries = [f'        ["{cmd}"]"{cmd}"' for cmd in commands]
+    # 새로운 commands 배열 생성 (bash 문법: = 주위 공백 없음)
+    command_entries = [f'        ["{cmd}"]="{cmd}"' for cmd in commands]
     new_commands = "declare -A commands=(\n" + "\n".join(command_entries) + "\n    )"
 
     # 교체
