@@ -160,23 +160,50 @@ install_slash_commands() {
         encoded_filename=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$korean_cmd.md'))" 2>/dev/null)
         
         if [ -n "$encoded_filename" ]; then
-            # Try URL-encoded download first (GitHub Raw)
-            if curl -sSL "$BASE_URL/$encoded_filename" -o ".claude/commands/$korean_cmd.md" 2>/dev/null && 
-               [ -s ".claude/commands/$korean_cmd.md" ] && 
-               ! grep -q "html" ".claude/commands/$korean_cmd.md"; then
-                success_count=$((success_count + 1))
-                echo "    ✅ $korean_cmd.md ($(stat -c%s ".claude/commands/$korean_cmd.md") bytes)"
-            else
-                # Fallback to English mapping for backward compatibility
-                english_cmd="${commands[$korean_cmd]}"
-                if curl -sSL "$BASE_URL/$english_cmd.md" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
-                    success_count=$((success_count + 1))
-                    echo "    ✅ $korean_cmd.md (fallback)"
-                else
-                    echo "    ⚠️ Failed to download $korean_cmd (skipping)"
-                    # Create empty file to prevent errors
-                    echo "# $korean_cmd - 다운로드 실패" > ".claude/commands/$korean_cmd.md"
+            # Try URL-encoded download with improved validation
+            download_success=false
+
+            # Attempt 1: URL-encoded Korean filename
+            for attempt in 1 2; do
+                if curl -sSL --max-time 30 "$BASE_URL/$encoded_filename" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
+                    # Validate downloaded file
+                    if [ -s ".claude/commands/$korean_cmd.md" ] &&
+                       ! grep -qi "html\|404\|not found\|error" ".claude/commands/$korean_cmd.md" &&
+                       [ $(stat -c%s ".claude/commands/$korean_cmd.md") -gt 100 ]; then
+                        download_success=true
+                        success_count=$((success_count + 1))
+                        echo "    ✅ $korean_cmd.md ($(stat -c%s ".claude/commands/$korean_cmd.md") bytes)"
+                        break
+                    fi
                 fi
+                sleep 1  # Brief pause before retry
+            done
+
+            # Attempt 2: Fallback to English mapping if Korean failed
+            if [ "$download_success" = false ]; then
+                english_cmd="${commands[$korean_cmd]}"
+                if [ "$english_cmd" != "$korean_cmd" ]; then
+                    for attempt in 1 2; do
+                        if curl -sSL --max-time 30 "$BASE_URL/$english_cmd.md" -o ".claude/commands/$korean_cmd.md" 2>/dev/null; then
+                            if [ -s ".claude/commands/$korean_cmd.md" ] &&
+                               ! grep -qi "html\|404\|not found\|error" ".claude/commands/$korean_cmd.md" &&
+                               [ $(stat -c%s ".claude/commands/$korean_cmd.md") -gt 100 ]; then
+                                download_success=true
+                                success_count=$((success_count + 1))
+                                echo "    ✅ $korean_cmd.md ($(stat -c%s ".claude/commands/$korean_cmd.md") bytes, fallback)"
+                                break
+                            fi
+                        fi
+                        sleep 1
+                    done
+                fi
+            fi
+
+            # If all attempts failed, create minimal placeholder
+            if [ "$download_success" = false ]; then
+                echo "    ⚠️ Failed to download $korean_cmd after retries"
+                echo "# $korean_cmd - 다운로드 실패 ($(date))" > ".claude/commands/$korean_cmd.md"
+                echo "다운로드 실패. 수동으로 추가하세요." >> ".claude/commands/$korean_cmd.md"
             fi
         else
             echo "    ⚠️ URL encoding failed for $korean_cmd (skipping)"
