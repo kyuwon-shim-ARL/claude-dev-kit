@@ -153,9 +153,9 @@ class TestExploreUtilities:
         engine = DecisionEngine()
         decision = engine.make_decision(scenario)
         
-        # Then: 의사결정 경로 완전 기록
+        # Then: 의사결정 경로 완전 기록 (구체적 값 검증)
         assert "decision_path" in decision
-        assert len(decision["decision_path"]) > 0
+        assert len(decision["decision_path"]) == 3, f"Expected 3 decision nodes, got {len(decision['decision_path'])}"
         
         # 각 결정 노드에 이유 포함
         for node in decision["decision_path"]:

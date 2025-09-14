@@ -134,29 +134,21 @@ install_slash_commands() {
     
     BASE_URL="https://raw.githubusercontent.com/kyuwon-shim-ARL/claude-dev-kit/main/.claude/commands"
     
-    # Command mapping (Korean -> English for GitHub)
+    # Command mapping - Only existing commands (verified 2025-09-15)
     declare -A commands=(
-        ["기획"]="plan"
-        ["구현"]="implement"
-        ["안정화"]="stabilize"
-        ["검증"]="validate"
-        ["배포"]="deploy"
-        ["전체사이클"]="fullcycle"
-        ["개발완료"]="complete"
-        ["품질보증"]="quality"
-        ["기획구현"]="plandev"
-        ["극한검증"]="extreme"
-        ["컨텍스트"]="context"
-        ["분석"]="analyze"
-        ["주간보고"]="주간보고"
-        ["문서정리"]="docsorg"
-        ["레포정리"]="repoclean"
-        ["세션마감"]="세션마감"
-        ["실험시작"]="실험시작"
-        ["실험완료"]="실험완료"
-        ["보고서작업"]="보고서작업"
-        ["TADD강화"]="TADD강화"
-    )
+                ["검증"]"검증"
+                ["구현"]"구현"
+                ["기획"]"기획"
+                ["배포"]"배포"
+                ["보고"]"보고"
+                ["분석"]"분석"
+                ["실험"]"실험"
+                ["연구"]"연구"
+                ["전체사이클"]"전체사이클"
+                ["찾기"]"찾기"
+                ["탐구"]"탐구"
+                ["테스트"]"테스트"
+            )
     
     local success_count=0
     local total_commands=${#commands[@]}
